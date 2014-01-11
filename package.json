@@ -1,28 +1,21 @@
 {
-  "name": "twitter-bootstrap.docpad",
-  "version": "0.10.0",
-  "description": "Bootstrap skeleton for DocPad. Simple and flexible HTML, CSS, and Javascript for popular user interface components and interactions.",
-  "homepage": "https://github.com/bevry/twitter-bootstrap.docpad",
+  "name": "mattblair.docpad",
+  "version": "0.0.1",
+  "description": "Matt Blair's Personal Blog and Other Stuff",
+  "homepage": "https://github.com/duereg/codetype",
   "keywords": [
-    "docpad-skeleton",
     "docpad",
     "website",
     "bootstrap",
-    "twitter bootstrap"
+    "codetype"
   ],
-  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
-  "maintainers": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
-  "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
+  "author": "Matt Blair <matt@mattblair.co> (http://mattblair.co)",
   "bugs": {
-    "url": "https://github.com/docpad/twitter-bootstrap.docpad/issues"
+    "url": "https://github.com/duereg/codetype/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/docpad/twitter-bootstrap.docpad.git"
+    "url": "https://github.com/duereg/codetype.git"
   },
   "engines": {
     "node": "0.10",
