@@ -3,20 +3,57 @@
 a, a:link
 	cursor pointer
 
+@media (max-width: 767px)
+	body
+		section.content
+			padding-left 5px
+			padding-right 5px
+
+@media (min-width: 768px) and (max-width: 991px)
+	body
+		section.content
+			padding-left 10px
+			padding-right 10px
+
+@media (min-width: 992px) and (max-width: 1199px)
+	body
+		section.content
+			padding-left 20px
+			padding-right 20px
+
+@media (min-width: 1200px)
+	body
+		section.content
+			padding-left 40px
+			padding-right 40px
+
 body
 	padding-top 60px
-	background-color rgb(174, 26, 14)
+	font-family Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', "Hiragino Sans GB", "STXihei", "微软雅黑", serif
+	color #444
+	font-size 12px
+	line-height 1.5em
+	background-color #FAFAFA
+	// background-color rgb(174, 26, 14)
 
 	section.content
 		background-color white
-		padding 10px 40px 20px 40px
+		padding-top 10px
+		padding-bottom 20px
 		margin-bottom 10px
 		border-radius 5px
 
 table
+	thead
+		th
+			padding-right 10px
 	tfoot, tbody
 		th
 			border-top 1px solid #DDD
+			padding-right 10px
+		td
+			padding-right 10px
+
 
 .shortDate
 	font-family "Lucida Console", Monaco, monospace
