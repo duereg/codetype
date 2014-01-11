@@ -1,0 +1,24 @@
+---
+layout: 'default'
+title: 'Home'
+---
+
+<!-- Primary marketing message or call to action -->
+<img id="logo" alt="A Place for Poor Examples" src="/images/header.png" />
+
+<!-- Example row of columns -->
+<div class="row" class="text-center">
+	<div class="col-lg-9">
+		<% for i in [0..2]: %>
+			<% document = @getCollection('posts').toJSON()[i] %>
+			<article id="<%= document.post_name %>" class="post">
+				<div class="post-content"><%- document.contentRendered %></div>
+			</article>
+		<% end %>
+	</div>
+	<div class="col-lg-3">
+		<h2>Other Stuff</h2>
+		<p>Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.</p>
+		<p><a class="btn btn-default" href="http://twitter.github.com/bootstrap/">Visit Website</a></p>
+	</div>
+</div>
