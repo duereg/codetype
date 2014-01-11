@@ -50,13 +50,11 @@ namespace ProofOfConcept
         /// Type of the base.
         /// The instantiated model
         ///
-        ///
         /// You must create a hidden field named 'ModelTypeName' on the View,
         /// where the value is the Full name of the class you are trying to create.
         /// The HtmlHelper extension method 'Type' was designed to create this field
         /// and hide the implementation details.
         ///
- 
         /// Currently, the model you trying to create must inherit from a base class
         /// that is the same assembly.
         ///
@@ -109,7 +107,6 @@ namespace ProofOfConcept
 }
 ```
 
- 
 ``` cs
 namespace System.Web.Mvc.Html
 {
