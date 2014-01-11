@@ -18,7 +18,10 @@ I've just started using [node.js](http://nodejs.org/) with [express.js](http://e
 
 ## Generate the starter app
 
-At first, I wanted to just hack away modify some of the existing example apps that were out there. However, this ended up being a pretty frustrating experience as most of the basic examples were just sending 'Hello World' back to the browser. Now, I didn't want to do much more than this when I was starting out, but I did at least want to load a basic page with some basic information I passed in. After many hours of browsing blogs and the express documentation, I managed what I wanted, but right after I did all of this from scratch, I found out that the exact basic application I wanted can be generated automatically by express. **From the express.js documentation: ** The quickest way to get started with express is to utilize the executable express(1) to generate an application as shown below: 
+At first, I wanted to just hack away modify some of the existing example apps that were out there. However, this ended up being a pretty frustrating experience as most of the basic examples were just sending 'Hello World' back to the browser. Now, I didn't want to do much more than this when I was starting out, but I did at least want to load a basic page with some basic information I passed in. After many hours of browsing blogs and the express documentation, I managed what I wanted, but right after I did all of this from scratch, I found out that the exact basic application I wanted can be generated automatically by express. 
+
+**From the express.js documentation: ** 
+The quickest way to get started with express is to utilize the executable express(1) to generate an application as shown below: 
 
 ### Create the app:
 
@@ -34,7 +37,17 @@ At first, I wanted to just hack away modify some of the existing example apps th
 
 ## The installation commands, explained
 
-` npm install -g express ` [NPM](http://npmjs.org), or the Node Package Manager, is a tool that comes with node that allows your install node packages quickly and easily from the command line. This command installs express, the popular MVC-ish framework for node. `$ express /tmp/foo && cd /tmp/foo` This line of code installs express into /tmp/foo, then changes the directory to /tmp/foo. You can also run this command from the folder you want to install express in (just run express from the command line). You can also specify some options when you generate your starter app, such as the templating and stylesheet language you want to use. `express -t jade -c stylus` This command tells express you want to install in the current directory, using [Jade](http://jade-lang.com/) as your template language, and [Stylus](http://learnboost.github.com/stylus/) as your stylesheet language. ` $ npm install -d ` This command installs any dependencies that express needs for the instance you have installed. Express has a couple js packages that it needs to run, so this command goes and downloads the latest version of these dependencies. 
+`npm install -g express ` 
+[NPM](http://npmjs.org), or the Node Package Manager, is a tool that comes with node that allows your install node packages quickly and easily from the command line. This command installs express, the popular MVC-ish framework for node. 
+
+`express /tmp/foo && cd /tmp/foo` 
+This line of code installs express into /tmp/foo, then changes the directory to /tmp/foo. You can also run this command from the folder you want to install express in (just run express from the command line). You can also specify some options when you generate your starter app, such as the templating and stylesheet language you want to use. 
+
+`express -t jade -c stylus` 
+This command tells express you want to install in the current directory, using [Jade](http://jade-lang.com/) as your template language, and [Stylus](http://learnboost.github.com/stylus/) as your stylesheet language. 
+
+`npm install -d ` 
+This command installs any dependencies that express needs for the instance you have installed. Express has a couple js packages that it needs to run, so this command goes and downloads the latest version of these dependencies. 
 
 ## What "Generate An App" Gives You
 
@@ -65,4 +78,14 @@ If you jump into the routes folder, and open index.js, you'll see your index rou
 
 ` exports.index = function(req, res) { res.render('index', { title: 'Express' }) }; ` 
 
-But what does this code mean? The first line of code defines two variables, `express and routes`. The first is a registered node module, express, and the second is just a js file. Later in ` app.js `, the line ` app.get ` tells node that when the the base Url of your application (something like http://localhost:3123/) is called in a browser, that the routes.index method should be called. But how does routes variable in the first file get the index method, when in ` index.js ` in the routes folder only defines the ` index ` function on something calls `exports`? To keep the system loosely coupled, node using a library called [RequireJs](http://requirejs.org) to inject dependencies into an application. One way to do this is create a function you want to be able to export to the rest of your application, then simply add your function to the ` exports ` object in your code. When you call ` require(PATH_TO_YOUR_FILE) `, any methods you added to `exports` will be added to the object returned by your call to `require`. The final code is the the call to `res.render`. This is a call to `express`, which is telling express to load the file 'index.jade' (because in this instance, jade is the default render engine). The second parameter is passing a javascript object containing one element, `title`, which will be passed the index.jade template to be rendered.
+But what does this code mean? The first line of code defines two variables, `express and routes`. 
+
+The first is a registered node module, express, and the second is just a js file. 
+
+Later in ` app.js `, the line ` app.get ` tells node that when the the base Url of your application (something like http://localhost:3123/) is called in a browser, that the routes.index method should be called. 
+
+But how does routes variable in the first file get the index method, when in ` index.js ` in the routes folder only defines the ` index ` function on something calls `exports`? 
+
+To keep the system loosely coupled, node using a library called [RequireJs](http://requirejs.org) to inject dependencies into an application. One way to do this is create a function you want to be able to export to the rest of your application, then simply add your function to the ` exports ` object in your code. When you call ` require(PATH_TO_YOUR_FILE) `, any methods you added to `exports` will be added to the object returned by your call to `require`. 
+
+The final code is the the call to `res.render`. This is a call to `express`, which is telling express to load the file 'index.jade' (because in this instance, jade is the default render engine). The second parameter is passing a javascript object containing one element, `title`, which will be passed the index.jade template to be rendered.
