@@ -72,11 +72,6 @@
 		<section id="content" class="content">
 			<%- @content %>
 		</section>
-
-		<!-- Footer -->
-		<footer>
-			<p class="pull-left">&copy; Matt Blair <%- (new Date()).getFullYear() %></p>
-		</footer>
 	</div><!-- /container -->
 
 	<!-- Scripts -->
