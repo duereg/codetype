@@ -12,37 +12,34 @@ docpadConfig = {
 		# Specify some site properties
 		site:
 			# The production url of our website
-			url: "http://website.com"
+			url: "http://mattblair.co"
 
 			# Here are some old site urls that you would like to redirect from
 			oldUrls: [
-				'www.website.com',
-				'website.herokuapp.com'
+				'codetype.wordpress.com'
 			]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "A Place for Poor Examples"
 
 			# The website description (for SEO)
 			description: """
-				When your website appears in search results in say Google, the text here will be shown underneath your website's title.
+				What I've learned about software development. Don't expect too much.
 				"""
 
 			# The website keywords (for SEO) separated by commas
 			keywords: """
-				place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+				JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET
 				"""
 
 			# The website author's name
-			author: "Your Name"
-
-			# The website author's email
-			email: "your@email.com"
+			author: "Matt Blair"
 
 			# Styles
 			styles: [
 				"/styles/twitter-bootstrap.css"
 				"/styles/style.css"
+				"/styles/mono-blue.css"
 			]
 
 			# Scripts
