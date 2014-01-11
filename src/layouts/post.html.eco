@@ -3,11 +3,12 @@ layout: default
 ---
 
 <article id="<%= @document.post_name %>" class="post">
+	<div class="post-date"><%= new Date(@document.created).toDateString() %>
 	<div class="post-content"><%- @content %></div>
 </article>
 
 <footer>
-	<% if  @document.relatedDocuments and @document.relatedDocuments.length: %>
+	<% if @document.relatedDocuments and @document.relatedDocuments.length: %>
 	<section id="related">
 		<h3>Related Posts</h3>
 		<nav class="linklist">
