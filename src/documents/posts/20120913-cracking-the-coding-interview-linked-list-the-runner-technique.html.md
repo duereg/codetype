@@ -20,10 +20,12 @@ I've been going over the [Linked List](http://en.wikipedia.org/wiki/Linked_list#
   * [Determine if a linked list contains a loop](http://www.mytechinterviews.com/loop-in-a-singly-linked-list)
   * [Determine if a linked list is a palindrome](http://dev-faqs.blogspot.com.au/2012/04/check-if-linked-list-is-palindrome.html)
   * [Determine the kth element of a linked list](http://stackoverflow.com/questions/2598348/how-to-find-nth-element-from-the-end-of-a-singly-linked-list)
+
 Where do you use it? If you get handed a linked list question, and you find yourself asking these questions: 
   * How do I figure out where these two things meet?
   * How do I figure out the midpoint?
   * How do I figure out the length?
+
 You're most likely dealing with a problem where you need to use the runner technique. How does it work? I'll illustrate one of the examples above. Given two lists of different lengths that merge at a point, determine the merge point![Terrible Branched Linked List Picture](http://img10.imageshack.us/img10/7690/37343904.jpg)
 
   1. Start a node at the beginning of each list on the left.
@@ -31,4 +33,5 @@ You're most likely dealing with a problem where you need to use the runner techn
   3. The difference between the two numbers is the difference in length of the two lists before the merge point (the difference is 1)
   4. Move your nodes to the beginning of each list, but the longer list should get a headstart equal to the amount of difference. (so the top list would start on its 2nd element, while the bottom list would start on its 1st).
   5. Move each node forward at the same speed until they meet. Where they meet is the collision point.
+  
 Each of the links above contains code and solutions to each of the problems. I hope this example and the ones above show the usefulness of this approach. There are also some examples located [here](https://github.com/duereg/js-algorithms/tree/master/lib/algorithms/chapter2) of various linked list algorithms problems and solutions written in JavaScript.

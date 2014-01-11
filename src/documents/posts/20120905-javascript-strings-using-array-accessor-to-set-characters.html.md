@@ -30,6 +30,10 @@ I've been learning quite a bit about JavaScript in writing algorithms from [Crac
 
 I highlighted the important part. I know that strings are [immutable in JavaScript](http://en.wikibooks.org/wiki/JavaScript/Optimization#String_concatenation), but why give me array access if you won't let me use it? So if you want to use the array accessor with a string, there is a way to do it, but it requires a bit of overhead. 
 ``` js
- var sentence = "this is a proper JavaScript string."; sentence = sentence.split(""); //split into array sentence[18] = 'j'; //changing values to lowercase sentence[22] = 's'; sentence = sentence.join(""); //make the array a string again 
+var sentence = "this is a proper JavaScript string."; 
+sentence = sentence.split(""); //split into array 
+sentence[18] = 'j'; //changing values to lowercase 
+sentence[22] = 's'; 
+sentence = sentence.join(""); //make the array a string again 
 ```
 

@@ -35,26 +35,38 @@ If you still need to install MongoDB go [here](http://www.mongodb.org/display/DO
 # Configuring Derby to use MongoDB
 
 Now that you know about MongoDB, let's get MongoDB set up to work with [Derby](http://derbyjs.com/). This is straightforward and takes about two minutes. To add MongoDB to your Derby application, you'll need to include the `racer-db-mongo` package in your project. Update your `package.json` file to look something like this: 
-``` js
- { "name": "potluck", "description": "", "version": "0.0.1", "main": "./server.js", "dependencies": { "derby": "*", "derby-ui-boot": "*", "express": "3.0.0beta4", "gzippo": ">=0.1.7", "racer-db-mongo": "*" //this is the line. Glory in its beauty. }, "private": true } 
+``` json
+ { 
+    "name": "potluck", 
+    "description": "", 
+    "version": "0.0.1", 
+    "main": "./server.js", 
+    "dependencies": { 
+        "derby": "*", 
+        "derby-ui-boot": "*", 
+        "express": "3.0.0beta4", 
+        "gzippo": ">=0.1.7", 
+        "racer-db-mongo": "*" //this is the line. Glory in its beauty. 
+    }, 
+    "private": true 
+} 
 ```
 
- Then, at the command prompt, update your project (and download the recently added `racer-db-mongo` dependency) using the following command: 
-    
+Then, at the command prompt, update your project (and download the recently added `racer-db-mongo` dependency) using the following command: 
     
      npm update 
 
 You'll have to update your server configuration (by default in `/lib/server/index.js`) to use the new dependency. This requires TWO new lines of code 
 ``` js
- derby.use(require('racer-db-mongo')); // This line is new app.createStore({ listen: server , db: {type: 'Mongo', uri: 'mongodb://localhost/database'} /* This line is new */ }); 
+derby.use(require('racer-db-mongo')); // This line is new 
+app.createStore({ listen: server , db: {type: 'Mongo', uri: 'mongodb://localhost/database'} /* This line is new */ }); 
 ```
 
- That's all the changes you need to make to add MongoDB to your project. So why I'd bother with a blog post? 
+That's all the changes you need to make to add MongoDB to your project. So why I'd bother with a blog post? 
 
 # What About Troubleshooting?
 
 Now, if you go and start your Derby application, you might see the following error: 
-    
     
     Error: failed to connect to [localhost:27017]
 
@@ -71,16 +83,13 @@ If you've forgotten to [install Mongo](http://www.mongodb.org/display/DOCS/Quick
 
 If you've installed Mongo, you have to start the service before Derby can use it. On Ubuntu, you start Mongo using the following command: 
     
-    
      sudo start mongodb 
 
 Remember to stop Mongo later with: 
     
-    
      sudo stop mongodb 
 
 If you've started Mongo, then loaded your Derby application, and you're still getting an error, it's possible that Mongo did not start correctly. Typing: 
-    
     
      sudo status mongodb 
 
@@ -89,7 +98,6 @@ will let you know if Mongo is running or not. If you've run the Mongo Start comm
 # Repairing MongoDB
 
 To repair your installation, run the following commands: 
-    
     
     $ sudo rm /var/lib/mongodb/mongod.lock
     $ sudo -u mongodb mongod -f /etc/mongodb.conf --repair 
@@ -100,17 +108,14 @@ _The code above was taken from [this](http://blog.brianbuikema.com/2011/01/mongo
 
 If your application loads, but you're getting a strange error whenever you add to a collection that looks something like this: 
     
-    
     Error: No persistence handler for 
     push(FIRST_WORD.SECOND_WORD, [object Object], 18) 
 
 It means that you are pushing to the wrong portion on an model path. You can only use push to arrays, and arrays are not objects, and you can only use objects for the first and second words of your model path. In the case shown above, a push is attempting to be made to 
     
-    
      FIRST_WORD.SECOND_WORD 
 
 which equates to 
-    
     
      FIRST_WORD.SECOND_WORD.push(object) 
 
