@@ -4,7 +4,7 @@ title: 'Home'
 ---
 
 <!-- Primary marketing message or call to action -->
-<img id="logo" alt="A Place for Poor Examples" src="/images/header.png" />
+<img id="logo" class="img-responsive" alt="A Place for Poor Examples" src="/images/header.jpg" />
 
 <!-- Example row of columns -->
 <div class="row" class="text-center">
@@ -15,10 +15,64 @@ title: 'Home'
 				<div class="post-content"><%- document.contentRendered %></div>
 			</article>
 		<% end %>
+		<a href="/pages/posts">Read More...</a>
 	</div>
-	<div class="col-lg-3">
-		<h2>Other Stuff</h2>
-		<p>Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.</p>
-		<p><a class="btn btn-default" href="http://twitter.github.com/bootstrap/">Visit Website</a></p>
+	<div class="col-lg-3 hidden-xs hidden-sm">
+		<div class="textwidget">
+		    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB" target="_blank">
+		      <img alt="Creative Commons Licence" style="border-width:0;" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+		    </a>
+		    <br />
+		    <span>A Place For Poor Examples</span> is licensed under a
+		    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB" target="_blank">
+		      Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+		    </a>.
+		</div>
+		<div class="textwidget">
+			<iframe src="http://githubbadge.appspot.com/duereg" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+		</div>
+		<div class="linkwidget">
+		  <h3 class="widget-title">
+		    Tools
+		  </h3>
+			<dl>
+					<dt>
+							<a href="http://gitimmersion.com" title="Hands on walk through of Git." target="_blank">Git Immersion</a>
+					</dt>
+					<dd>
+							Hands on walk through of Git.
+					</dd>
+					<dt>
+							<a href="http://ejohn.org/apps/learn" title="Learn Advanced Javascript" target="_blank">Learn Advanced Javascript</a>
+					</dt>
+					<dd>
+							An interactive site where you can play with JavaScript. Simple and elegant.
+					</dd>
+					<dt>
+							<a href="http://learn.knockoutjs.com/" title="Learn Knockout" target="_blank">Learn Knockout</a>
+					</dt>
+					<dd>
+							One of the best interactive learning sites out there. Learn to use the basics of Knockout painlessly.
+					</dd>
+					<dt>
+							<a href="http://try.mongodb.org/" title="Learn MongoDB." target="_blank">Learn MongoDB</a>
+					</dt>
+					<dd>
+							Interactive with MongoDB like it’s on your own machine (if you machine is a WANG green screen). Great way to learn 2% of MongoDB.
+					</dd>
+					<dt>
+							<a href="http://learnyouahaskell.com/starting-out" title="Learn how to program functionally. With Haskell." target="_blank">Learn You a Haskell</a>
+					</dt>
+					<dd>
+							Learn how to program functionally. With Haskell.
+					</dd>
+					<dt>
+							<a href="https://github.com/duereg/" rel="me" title="My github repo" target="_blank">My Github Repository</a>
+					</dt>
+					<dd>
+							Where I store my public coding projects. Check me out!
+					</dd>
+			</dl>
+		</div>
 	</div>
 </div>
