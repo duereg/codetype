@@ -135,4 +135,4 @@ trie.prototype.sort = function() {
 };
 ```
 
-The source code for the project and the tests is [here](https://github.com/duereg/js-algorithms).
+The source code for the project and the tests are [here](https://github.com/duereg/js-algorithms).
