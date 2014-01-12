@@ -9,11 +9,11 @@ layout: post
 
 # A/B Testing and Random Selection
 
-At work, we do a bit of A/B testing. Usually this testing revolves around features the user can see - do they see marketing promotion #1, or a picture of a cat?
+Are you looking for an A/B framework? Something you can use in the browser to toggle a user experience - do they see marketing promotion #1, or a picture of a cat?
 
-In other cases, we're more interested in random selection - we want to send our 5000 emails of differing types, and see how users respond.
+Or are you interested in random selection - you want to send our 5000 emails of differing types, and see how users respond?
 
-Enter [laboratory](http://www.github.com/goodeggs/laboratory). A simple framework that allows random selection or A/B testing. With the added bonus of being usable anywhere you can load JavaScript.
+Either way, enter [laboratory](http://www.github.com/goodeggs/laboratory). A simple framework that allows random selection or A/B testing. With the added bonus of being usable anywhere you can load JavaScript.
 
 An example for random selection:
 
@@ -32,9 +32,9 @@ experiment = laboratory.run("FuzzyBunnies")
 experiment.value # Either Peter or Briar Rabbit
 ```
 
-In this example, the user would get either Peter or Briar, and if you ran the experiment again, you'd get another set of random values, irregardless of the user.
+In this example, the user would get either Peter or Briar. If you ran the experiment again you'd get another set of random values irregardless of the user.
 
-To use the A/B features, you need to provide laboratory with some kind of storage mechanism to store the selected options for the user. On the client side, we usually use a thin wrapper over localStore.
+To use the A/B features you need to provide laboratory with some kind of storage mechanism to store the selected options for the user. On the client side, we usually use a thin wrapper over localStore.
 
 Your storage needs to implement two methods:
 
@@ -47,7 +47,7 @@ class Store
   get: (experimentName) -> {}
 ```
 
-If you want to give the user the same experiment every time they come to your site, simply pass in your storage to the laboratory when you declare it.
+If you want to give the user the same experiment every time they come to your site simply pass in your storage to the laboratory when you declare it.
 
 ``` coffeescript
 laboratory = new Laboratory(new Store())
