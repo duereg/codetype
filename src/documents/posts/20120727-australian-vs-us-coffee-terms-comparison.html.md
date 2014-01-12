@@ -2,7 +2,7 @@
 title: Australian vs US Coffee Terms Comparison
 link: http://codetype.wordpress.com/2012/07/27/australian-vs-us-coffee-terms-comparison/
 author: mablair2
-description: 
+description:
 post_id: 157
 created: 2012/07/27 11:43:47
 created_gmt: 2012/07/27 03:43:47
@@ -14,7 +14,7 @@ layout: post
 
 # Australian vs US Coffee Terms Comparison
 
-This took me a while to figure out when I first moved to Australia. I still remember the look on the barista's face when I tried to order an Americano, and then the absolute puzzlement over what the hell a flat white vs a long black was. I hope this helps other visitors to Australia from the US order a decent cup of coffee! 
+This took me a while to figure out when I first moved to Australia. I still remember the look on the barista's face when I tried to order an Americano, and then the absolute puzzlement over what the hell a flat white vs a long black was. I hope this helps other visitors to Australia from the US order a decent cup of coffee!
 
 |Description|Australian Name|US Name|
 |:--- | --- | ---|
@@ -28,10 +28,3 @@ This took me a while to figure out when I first moved to Australia. I still reme
 |A shot of espresso with half steamed milk, half milk froth.|Cappuccino|Cappuccino|
 |A shot of espresso with cold milk and ice cream.|Iced Coffee|\---|
 |A cup of drip coffee over ice.|\---|Iced Coffee|
-
-## Comments
-
-**[ashiot](#12 "2012-07-27 16:28:16"):** A shot of espresso is called an Expresso (with an 'x') in the US? Funny. Nice comparison though.
-
-**[Matt](#13 "2012-07-27 16:50:07"):** The X is for EXTREME
-
