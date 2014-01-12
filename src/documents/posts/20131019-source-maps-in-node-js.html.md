@@ -1,13 +1,13 @@
 ```
-title: Source Maps and Immature Tooling
-description:  Source Maps and Immature Tooling
+title: Source maps in node.js
+description: Source maps in node.js
 created: 2013/10/19 19:33:27
 post_name: source-maps-and-immature-tooling
 status: publish
 layout: post
 ```
 
-# Source Maps in node.js
+# Source maps in node.js
 
 One of the projects I'm working on deals with source maps.
 
