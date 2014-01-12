@@ -22,7 +22,7 @@ I do a little digging and find out that you need to install the Windows SDK to g
 
 I dig a little further and find out that by default MSBuild installs pointing at the VS version of the Windows SDK whether it is there or not. Also, the Windows SDK does not care about the settings of MSBuild, so when you install the SDK it doesn't fix this or update this. Which I understand from the SDK team's point of view, but it would have been a nice fix.
 
-![Registry View of the MSBuild Settings for .NET 4.0](http://codetype.files.wordpress.com/2011/10/registry-msbuild.jpg?w=1024)
+![Registry View of the MSBuild Settings for .NET 4.0](/images/posts/registry-msbuild.jpg)
 
 The important thing to note is the keys which have "7.0a" in their values. 7.0a is the version of the Windows SDK that ships with Visual Studio 2010. If you download the SDK from Microsoft you get version 7.1. So I go in and manually change all those 7.0a to 7.1. It builds! But it fails.
 
@@ -34,7 +34,7 @@ So, another trip to the registry. This time, to the Microsoft-SDKS section. Ther
 
 1)  All the keys need to have a dash after the "WinSDK" portion
 2)  Some of the fields have an "-86" in their key, which needs to be "-x86"
-![A view of the registry for the Windows SDK](http://codetype.files.wordpress.com/2011/10/registry-windows-sdk.jpg)
+![A view of the registry for the Windows SDK](/images/posts/registry-windows-sdk.jpg)
 
 One more try. Build successful. :)
 

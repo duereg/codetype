@@ -119,4 +119,4 @@ which equates to
 
      FIRST_WORD.SECOND_WORD.push(object)
 
-which means SECOND_WORD is an array (which isn't allowed). If this last bit of explanation might have well been in Latin, check out [this post](http://codetype.wordpress.com/2012/07/22/derby-js-playing-with-models/). It'll explain a little bit about how to declare models and what Derby is expecting you to do. Unfortunately, you CAN use the second word of a model path as an array without persistence support. So this kind of bug will only surface once you've got MongoDB integrated with Derby.
+which means SECOND_WORD is an array (which isn't allowed). If this last bit of explanation might have well been in Latin, check out [this post](/posts/20120722-derby-js-playing-with-models). It'll explain a little bit about how to declare models and what Derby is expecting you to do. Unfortunately, you CAN use the second word of a model path as an array without persistence support. So this kind of bug will only surface once you've got MongoDB integrated with Derby.

@@ -14,7 +14,7 @@ layout: post
 
 # Derby.js - Integrating Twitter Bootstrap into your Application
 
-As I've mentioned in a [previous post](http://codetype.wordpress.com/2012/05/04/why-use-twitter-bootstrap/), I'm a big fan of Twitter Bootstrap. Lately I've been playing been with JavaScript and [Derby](http://www.derbyjs.com). I want to integrate bootstrap with the POC site I'm building, and the creators of Derby have already figured out a way to do this.
+As I've mentioned in a [previous post](/posts/20120504-why-use-twitter-bootstrap), I'm a big fan of Twitter Bootstrap. Lately I've been playing been with JavaScript and [Derby](http://www.derbyjs.com). I want to integrate bootstrap with the POC site I'm building, and the creators of Derby have already figured out a way to do this.
 
 Step 1: Add a dependency to the [derby-ui-boot](https://github.com/codeparty/derby-ui-boot/) package, which is a Derby component library based on Twitter Bootstrap.
 ``` json
