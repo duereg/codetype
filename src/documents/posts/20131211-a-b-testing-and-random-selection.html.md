@@ -1,5 +1,5 @@
 ```
-title: A/B Testing and Random Selection everywhere!
+title: A/B Testing and Random Selection
 description: A/B Testing or Random Selection in the browser and on the server
 created: 2013/12/11 11:46:19
 post_name: a-b-testing-and-random-selection

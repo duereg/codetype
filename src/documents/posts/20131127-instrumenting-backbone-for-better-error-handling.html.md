@@ -1,17 +1,17 @@
 ```
-title: A/B Testing and Random Selection everywhere!
-description: A/B Testing or Random Selection in the browser and on the server
+title: Instrumenting Backbone for better error handling
+description: Instrumenting Backbone for better error handling
 created: 2013/11/27 06:03:09
 post_name: instrumenting-backbone-for-better-error-handling
 status: publish
 layout: post
 ```
 
-#Instrumenting Backbone for better error handling
+# Instrumenting Backbone for better error handling
 
-At work we've been having some issues tracking down some nasty client side bugs. We know they're happening in our Backbone views, but we've been unable to locate them with any accuracy due to the errors bubbling all the way to the window.onerror handler.
+At work we've been having some issues tracking down some nasty client side bugs. We know they're happening in our [Backbone](http://backbonejs.org/) views, but we've been unable to locate them with any accuracy due to the errors bubbling all the way to the window.onerror handler.
 
-Enter Stackbone. A simple bit of code to instrument Backbone’s event loops to better locate client side errors.
+Enter [Stackbone](http://www.github.com/goodeggs/stackbone). A simple bit of code to instrument Backbone’s event loops to better locate client side errors.
 
 To use:
 
