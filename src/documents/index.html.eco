@@ -61,6 +61,17 @@ title: 'Home'
 					</dd>
 			</dl>
 		</div>
+		<div class="linkwidget" style="margin-bottom: 20px">
+		  <h3 class="widget-title">
+		    Recommended Books
+		  </h3>
+		  <dl>
+		  	<dt>http://www.amazon.com/gp/product/098478280X/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20</dt>
+		  	<dd>
+		  		Fun Read even if you're not interviewing. Tons of great problems to work through.
+		  	</dd>
+		  </dl>
+		</div>
 		<div class="textwidget">
 			<iframe src="http://githubbadge.appspot.com/duereg" style="border: 0;height: 120px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
 		</div>
