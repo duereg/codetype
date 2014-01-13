@@ -29,6 +29,19 @@ title: 'Home'
 		  	<dd>
 		  		Fun Read even if you're not interviewing. Tons of great problems to work through.
 		  	</dd>
+		  	<dt> 
+		  		<a href="http://www.amazon.com/gp/product/0321125215/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321125215&linkCode=as2&tag=aplfopoex-20">Domain-Driven Design: Tackling Complexity in the Heart of Software</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=aplfopoex-20&l=as2&o=1&a=0321125215" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+			</dt>
+			<dd>
+				"This book belongs on the shelf of every thoughtful software developer." --Kent Beck
+			</dd>
+			<dt>
+				<a href="http://www.amazon.com/gp/product/0201485672/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201485672&linkCode=as2&tag=aplfopoex-20">Refactoring: Improving the Design of Existing Code</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=aplfopoex-20&l=as2&o=1&a=0201485672" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+			</dt>
+			<dd>
+				Anyone working on legacy systems should read this book. Or anyone who suspects the system they're working on is destined for that fate. 
+			</dd>
+			
 		  </dl>
 		</div>
 		<div class="linkwidget">
