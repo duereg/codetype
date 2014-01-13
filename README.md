@@ -1,3 +1,6 @@
+[![Dependencies](https://david-dm.org/duereg/codetype.png)](https://david-dm.org/duereg/codetype)
+[![devDependencies](https://david-dm.org/duereg/codetype/dev-status.png)](https://david-dm.org/duereg/codetype#info=devDependencies&view=table)
+
 ## How to run my blog (not sure why you'd want to)
 
 1. [Install DocPad](https://github.com/bevry/docpad)
