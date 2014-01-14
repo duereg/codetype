@@ -1,0 +1,4 @@
+<article id="<%= @document.post_name %>" class="post">
+  <div class="post-date"><%= new Date(@document.created).toDateString() %>
+  <div class="post-content"><%- @content %></div>
+</article>

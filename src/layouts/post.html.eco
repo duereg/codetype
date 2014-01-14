@@ -2,25 +2,7 @@
 layout: default
 ---
 
-<article id="<%= @document.post_name %>" class="post">
-	<div class="post-date"><%= new Date(@document.created).toDateString() %>
-	<div class="post-content"><%- @content %></div>
-</article>
+<%- @partial('article', {document: @document, content: @content}) %>
+<%- @partial('comments', {document: @document}) %>
 
-<footer>
-	 <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_shortname = 'codetype';
-        var disqus_identifier = '<%= @document.post_name %>';
-    		var disqus_title = '<%= @document.title %>';
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</footer>
