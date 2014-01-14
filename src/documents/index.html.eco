@@ -12,9 +12,8 @@ title: 'Home'
 		<% postsCollection = @getCollection('posts').toJSON()%>
 		<% for i in [0..2]: %>
 			<% document = postsCollection[i] %>
-			<article id="<%= document.post_name %>" class="post">
-				<div class="post-content"><%- document.contentRendered %></div>
-			</article>
+			<%- @partial('article', {document: document, content: document.contentRenderedWithoutLayouts}) %>
+			<hr />
 		<% end %>
 		<a href="/pages/posts">Read More...</a>
 	</div>
