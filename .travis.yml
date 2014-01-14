@@ -1,4 +1,9 @@
-language: node.js
-node_js: 
+language: node_js
+node_js:
   - "0.11"
   - "0.10"
+deploy: 
+  api_key: 
+    secure: YVhUFFG3euxZnNn6td/UCNx/hgzTHMGGlqmC8qqG8GNdH6JIkt1UzKbqLeLifnWI1B2AKdH5BEs4xd1edcM56J5oFFq/299NSAtDobKXRL8xHiPBuNMmeYbRrUCDa9Ddxb/160mTwPooR+q3pKwvBdc0MPnP38EjR1eeOJDH7N8=
+  app: dry-anchorage-5415
+  provider: heroku
