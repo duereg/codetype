@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/duereg/codetype.png)](https://travis-ci.org/duereg/codetype)
 [![Dependencies](https://david-dm.org/duereg/codetype.png)](https://david-dm.org/duereg/codetype)
 [![devDependencies](https://david-dm.org/duereg/codetype/dev-status.png)](https://david-dm.org/duereg/codetype#info=devDependencies&view=table)
 
