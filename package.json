@@ -41,6 +41,7 @@
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
     "build": "node_modules/docpad/bin/docpad-compile",
+    "pretest": "node_modules/docpad/bin/docpad-compile",
     "start": "node_modules/docpad/bin/docpad-server"
   }
 }
