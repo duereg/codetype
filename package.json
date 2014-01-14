@@ -1,6 +1,6 @@
 {
   "name": "mattblair.docpad",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Matt Blair's Personal Blog and Other Stuff",
   "homepage": "https://github.com/duereg/codetype",
   "keywords": [
@@ -18,7 +18,7 @@
     "url": "https://github.com/duereg/codetype.git"
   },
   "engines": {
-    "node": "0.10",
+    "node": ">=0.10.0",
     "npm": "1.2"
   },
   "dependencies": {
@@ -32,14 +32,15 @@
     "docpad-plugin-partials": "~2.8.1",
     "docpad-plugin-related": "~2.2.2",
     "docpad-plugin-stylus": "~2.5.0",
-    "docpad-plugin-text": "~2.3.2"
+    "docpad-plugin-text": "~2.3.2",
+    "docpad-plugin-highlightjs": "~2.2.0"
   },
   "devDependencies": {
-    "docpad-plugin-livereload": "~2.5.6",
-    "docpad-plugin-highlightjs": "~2.2.0"
+    "docpad-plugin-livereload": "~2.5.6"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
+    "build": "node_modules/docpad/bin/docpad-compile",
     "start": "node_modules/docpad/bin/docpad-server"
   }
 }

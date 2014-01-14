@@ -2,10 +2,3 @@ language: node.js
 node_js:
 - '0.11'
 - '0.10'
-deploy:
-  provider: heroku
-  api_key:
-    secure: k1DCmVwp9AbVheeCYDBXF6RYcw2ARMdfbyMna221IlfjBz0YYImNksyAUBGBhHLs2GrStu7hQetGrQa4jfMU6uIItSJ0hiF8YvyygJE/6PeRo8iJgs1Sq6TDB9mOccAiE/vTjVPKXnQ7a6KzvPp9vsNUEOpHwJdB+pVqkxA/vBs=
-  app: dry-anchorage-5415
-  on:
-    repo: duereg/codetype
