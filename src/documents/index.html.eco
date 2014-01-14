@@ -87,6 +87,16 @@ title: 'Home'
 					</dd>
 			</dl>
 		</div>
+		<div class="linkwidget">
+		  <h3 class="widget-title">
+		    Subscribe
+		  </h3>
+			<dl>
+					<dt>
+							<a href="/atom.xml" title="Atom Feed">Atom Feed</a>
+					</dt>
+			</dl>
+		</div>
 		<div class="textwidget">
 			<iframe src="http://githubbadge.appspot.com/duereg" style="border: 0;height: 120px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
 		</div>
