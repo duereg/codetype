@@ -1,0 +1,13 @@
+---
+title: Hockey Stuff
+layout: page
+pageOrder: 3
+---
+
+<nav class="linklist">
+  <% for document in @getCollection('hockey').toJSON(): %>
+    <li><span class="shortDate"><%= new Date(document.created).toDateString() %></span>
+    &raquo;
+    <a class="title" href="<%= document.url %>"><%= document.title %></a></li>
+  <% end %>
+</nav>

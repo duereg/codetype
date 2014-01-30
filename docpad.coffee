@@ -89,7 +89,8 @@ docpadConfig = {
 		posts: (database) ->
 			database.findAllLive({status: 'publish'}, [created:-1]) #tags:$has:'post'
 
-
+		hockey: (database) ->
+			database.findAllLive({status: 'publish'}, [created:-1])
 	# =================================
 	# Plugins
 
