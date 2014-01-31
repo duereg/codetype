@@ -3,14 +3,89 @@ title: Advantage Plays at CMCs
 description: Advantage Plays
 created: 2014/01/30 11:48:01
 post_name: advantage-plays-at-cmcs
-status: publish
+status: hockey
 layout: post
 ```
 
 # Advantage Plays at CMCs
 
-![Advantage 1](/images/hockey/advantage-1.jpg)
-![Advantage 2](/images/hockey/advantage-2.jpg)
-![Advantage 3](/images/hockey/advantage-3.jpg)
-![Advantage 4](/images/hockey/advantage-4.jpg)
-![Advantage 5](/images/hockey/advantage-5.jpg)
+<div class="row">
+  <div class="col-md-4">
+    <a href="/images/hockey/advantage-1.jpg" >
+      <img class="small" alt="Advantage 1" src="/images/hockey/advantage-1.jpg" />
+    </a>
+  </div>
+  <div class="col-md-8">
+    <p>
+      This was how we started with our advantage play. Center forward facing the person with the puck with their head basically on the penalty line. The outside forwards facing the feet of the center forward.
+    </p>
+    <p>
+    Center back took every advantage.
+    </p>
+    <p>
+      If the center back could get through the crowd, he would keep swimming at the center forward, the center forward would lift up, and the center back would swim to where the feet of the center forward was.
+    </p>
+    <p>
+      This style worked well if the center back could consistently get through the first wave of bodies, but then it generally meant the center forward was down but had no real role on the play. When the pass went to the center forward, the 2nd pass was relatively ineffective.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <a href="/images/hockey/advantage-2.jpg" >
+      <img class="small" alt="Advantage 2" src="/images/hockey/advantage-2.jpg" />
+    </a>
+  </div>
+  <div class="col-md-8">
+    <p>
+      We tweaked the play slightly here to try to get the center forward move involved. Here, the center forward had their waist on the advantage line, facing the direction we wanted to go. The outside forwards were basically in the same spot, but this created an empty zone of space directly in front of the center forward.
+    </p>
+    <p>
+      Center back took every advantage.
+    </p>
+    <p>
+      This play lead to less center back led pushes and more forward lead pushes. However, definitely felt like we didn't get a strong advantage out of the play. The puck would drop into that empty zone, then massive stick battle.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <a href="/images/hockey/advantage-4.jpg" >
+      <img class="small" alt="Advantage 4" src="/images/hockey/advantage-4.jpg" />
+    </a>
+  </div>
+  <div class="col-md-8">
+    <p>This was a slight change to our old strategy. We moved the strong side back into the center forward position and then moved the center forward to the tip of the diamond.</p>
+    <p>This put a lot of onus on the center back to get a good shot off. However, if the puck could get into the crowd here, good things generally happened.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <a href="/images/hockey/advantage-5.jpg" >
+      <img class="small" alt="Advantage 5" src="/images/hockey/advantage-5.jpg" />
+    </a>
+  </div>
+  <div class="col-md-8">
+    <p>Variation on the 1st and 2nd advantage, with the strong side back starting farther back.</p>
+    <p>I didn't really notice a difference here except for the fact the strong side back was more likely to go into the play.
+    </p>
+    <p>One problem with this play was that it limited the options of what the strong side back could do. In option 1 and 2, the back could go wide of the play to make a run to the corner.
+    </p>
+  </div>
+</div>
