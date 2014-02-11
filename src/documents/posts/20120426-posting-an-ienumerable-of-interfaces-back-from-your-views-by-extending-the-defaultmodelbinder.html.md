@@ -16,11 +16,17 @@ layout: post
 
 > **Please note I came across a bug in the code, and revised this post on 31/07/2012.**
 
-Came across an interesting problem. In ASP.Net MVC, you can easily pass an enumerable of interfaces to your views from your controllers. As long as you have `DisplayTemplates` and `EditorTemplates` defined for the subclasses, then those classes will be rendered correctly from your enumerable of the parent interfaces. However, if you then POST to a controller method that accepts an `IEnumerable`, you'll get the error message:
+Came across an interesting problem today. In ASP.Net MVC, you can easily pass an enumerable of interfaces to your views from your controllers. As long as you have `DisplayTemplates` and `EditorTemplates` defined for the subclasses, then those classes will be rendered correctly from your enumerable of the parent interfaces.
+
+However, if you then POST to a controller method that accepts an `IEnumerable`, you'll get the error message:
 
 > Cannot create an instance of an Interface
 
-In looking for a solution, I found some examples online that handled abstract classes. Unfortunately, none of those examples had a way to post data back without modifying the views, and I couldn't figure out a way either. So here is my solution: 1) Modify your EditorTemplates to use the `Type` extension method defined below. This will write a hidden field to the view that defines the class being used. Example:
+In looking for a solution, I found some examples online that handled abstract classes. Unfortunately, none of those examples had a way to post data back without modifying the views, and I couldn't figure out a way either.
+
+Here is my solution:
+
+1) Modify your EditorTemplates to use the `Type` extension method defined below. This will write a hidden field to the view that defines the class being used. Example:
 
 > ` @Html.Type(Model) `
 
@@ -29,6 +35,7 @@ In looking for a solution, I found some examples online that handled abstract cl
 > ` ModelBinders.Binders.DefaultBinder = new SectionModelBinder(); `
 
 3) That's it! You should be on your way to POSTing a generic list of different subclasses to a controller method.
+
 ``` cs
 using System;
 using System.Collections;
@@ -55,7 +62,7 @@ namespace ProofOfConcept
         /// The HtmlHelper extension method 'Type' was designed to create this field
         /// and hide the implementation details.
         ///
-        /// Currently, the model you trying to create must inherit from a base class
+        /// Currently the model you trying to create must inherit from a base class
         /// that is the same assembly.
         ///
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type baseType)
