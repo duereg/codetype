@@ -18,7 +18,7 @@ This took me a while to figure out when I first moved to Australia. I still reme
 
 |Description|Australian Name|US Name|
 |:--- | --- | ---|
-|A shot of espresso.|Short Black|Expresso|
+|A shot of espresso.|Short Black|Espresso|
 |A shot of espresso mixed with hot water.|Long Black|Americano||
 |A shot of espresso topped with milk froth.|Macchiato|\---|
 |A cup of hot milk with a shot of expresso poured in.|\---|Macchiato|
