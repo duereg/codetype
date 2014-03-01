@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Posting an IEnumerable of Interfaces back from your Views by extending the DefaultModelBinder | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="posting-an-ienumerable-of-interfaces-back-from-your-views-by-extending-the-defaultmodelbinder" class="post">
+  <div class="post-date">Thu Apr 26 2012
+  <div class="post-content"><h1 id="posting-an-ienumerable-of-interfaces-back-from-your-views-by-extending-the-defaultmodelbinder">Posting an IEnumerable of Interfaces back from your Views by extending the DefaultModelBinder</h1>
+<blockquote>
+<p><strong>Please note I came across a bug in the code, and revised this post on 31/07/2012.</strong></p>
+</blockquote>
+<p>Came across an interesting problem. In ASP.Net MVC, you can easily pass an enumerable of interfaces to your views from your controllers. As long as you have <code>DisplayTemplates</code> and <code>EditorTemplates</code> defined for the subclasses, then those classes will be rendered correctly from your enumerable of the parent interfaces. However, if you then POST to a controller method that accepts an <code>IEnumerable</code>, you&#39;ll get the error message:</p>
+<blockquote>
+<p>Cannot create an instance of an Interface</p>
+</blockquote>
+<p>In looking for a solution, I found some examples online that handled abstract classes. Unfortunately, none of those examples had a way to post data back without modifying the views, and I couldn&#39;t figure out a way either. So here is my solution: 1) Modify your EditorTemplates to use the <code>Type</code> extension method defined below. This will write a hidden field to the view that defines the class being used. Example:</p>
+<blockquote>
+<p><code>@Html.Type(Model)</code></p>
+</blockquote>
+<p>2) Register the <code>SectionModelBinder</code> below in Global.asax. Example:</p>
+<blockquote>
+<p><code>ModelBinders.Binders.DefaultBinder = new SectionModelBinder();</code></p>
+</blockquote>
+<p>3) That&#39;s it! You should be on your way to POSTing a generic list of different subclasses to a controller method.</p>
+<pre class="highlight"><code class="cs"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.Collections;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> System.Linq;
+<span class="hljs-keyword">using</span> System.Web.Mvc;
+
+namespace ProofOfConcept
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> SectionModelBinder : DefaultModelBinder
+    {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> ModelTypeNameKey = <span class="hljs-string">"ModelTypeName"</span>;
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span><span class="hljs-xmlDocTag">&lt;summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> Creates the model.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="hljs-xmlDocTag">&lt;/summary&gt;</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> The controller context.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> The binding context.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> Type of the base.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> The instantiated model</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> You must create a hidden field named 'ModelTypeName' on the View,</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> where the value is the Full name of the class you are trying to create.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> The HtmlHelper extension method 'Type' was designed to create this field</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> and hide the implementation details.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> Currently, the model you trying to create must inherit from a base class</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> that is the same assembly.</span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span></span>
+        <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">object</span> <span class="hljs-title">CreateModel</span>(ControllerContext controllerContext, ModelBindingContext bindingContext, Type baseType)
+        {
+            <span class="hljs-keyword">if</span> (baseType.IsInterface &amp;&amp;
+                (baseType != <span class="hljs-keyword">typeof</span>(IEnumerable)) &amp;&amp;
+                !baseType.GetInterfaces().Any(t =&gt; t == <span class="hljs-keyword">typeof</span>(IEnumerable)) &amp;&amp;
+                !(baseType.IsGenericType &amp;&amp; baseType.GetGenericTypeDefinition() == <span class="hljs-keyword">typeof</span>(IEnumerable)))
+            {
+                <span class="hljs-keyword">var</span> modelTypeValue = bindingContext.ValueProvider.GetValue(bindingContext.ModelName + <span class="hljs-string">"."</span> + ModelTypeNameKey);
+
+                <span class="hljs-keyword">if</span> (modelTypeValue == <span class="hljs-keyword">null</span>)
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"View does not contain "</span> + bindingContext.ModelName + <span class="hljs-string">"."</span> + ModelTypeNameKey + <span class="hljs-string">" field."</span>);
+
+                <span class="hljs-keyword">var</span> subclassName = modelTypeValue.AttemptedValue;
+
+                <span class="hljs-keyword">if</span>(<span class="hljs-keyword">string</span>.IsNullOrWhiteSpace(subclassName ))
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"View for "</span> + bindingContext.ModelName + <span class="hljs-string">" does not have a value set for the "</span> + ModelTypeNameKey + <span class="hljs-string">" field."</span>);
+
+                <span class="hljs-keyword">var</span> subclassType = baseType.Assembly.GetTypes().SingleOrDefault(x =&gt; (x.FullName == subclassName));
+
+                <span class="hljs-keyword">var</span> model = CreateInstance(baseType, subclassType, subclassName);
+
+                <span class="hljs-keyword">if</span> (model != <span class="hljs-keyword">null</span>)
+                {
+                    bindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() =&gt; model, subclassType);
+                }
+
+                <span class="hljs-keyword">return</span> model;
+            }
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">base</span>.CreateModel(controllerContext, bindingContext, baseType);
+        }
+
+        <span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">object</span> <span class="hljs-title">CreateInstance</span>(Type baseType, Type subclassType, <span class="hljs-keyword">string</span> subclassName)
+        {
+            <span class="hljs-keyword">if</span> (subclassName == <span class="hljs-keyword">null</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-string">"subclassName"</span>);
+
+            <span class="hljs-keyword">if</span> (subclassType == <span class="hljs-keyword">null</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"Could not find model "</span> + subclassName);
+
+            <span class="hljs-keyword">if</span> (!subclassType.GetInterfaces().Any(t =&gt; t == baseType))
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"The model of type "</span> + subclassName + <span class="hljs-string">" does not implement "</span> + baseType.FullName);
+
+            <span class="hljs-keyword">return</span> Activator.CreateInstance(subclassType);
+        }
+    }
+}
+</code></pre>
+<pre class="highlight"><code class="cs">namespace System.Web.Mvc.Html
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> HtmlHelperExtension
+    {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> MvcHtmlString <span class="hljs-title">Type</span>(<span class="hljs-keyword">this</span> HtmlHelper htmlHelper, <span class="hljs-keyword">object</span> <span class="hljs-keyword">value</span>)
+        {
+            <span class="hljs-keyword">if</span> (htmlHelper == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-string">"htmlHelper"</span>);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">value</span> == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-string">"value"</span>);
+
+            <span class="hljs-keyword">return</span> htmlHelper.Hidden(SectionModelBinder.ModelTypeNameKey, <span class="hljs-keyword">value</span>.GetType().FullName);
+        }
+    }
+}
+</code></pre>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'posting-an-ienumerable-of-interfaces-back-from-your-views-by-extending-the-defaultmodelbinder';
+        var disqus_title = 'Posting an IEnumerable of Interfaces back from your Views by extending the DefaultModelBinder';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

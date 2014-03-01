@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>A/B Testing and Random Selection | A Place for Poor Examples</title>
+	<meta name="description" content="A/B Testing or Random Selection in the browser and on the server" />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="a-b-testing-and-random-selection" class="post">
+  <div class="post-date">Wed Dec 11 2013
+  <div class="post-content"><h1 id="a-b-testing-and-random-selection">A/B Testing and Random Selection</h1>
+<p>Are you looking for an A/B framework? Something you can use in the browser to toggle a user experience - do they see marketing promotion #1, or a picture of a cat?</p>
+<p>Or are you interested in random selection - you want to send our 5000 emails of differing types, and see how users respond?</p>
+<p>Either way, enter <a href="http://www.github.com/goodeggs/laboratory">laboratory</a>. A simple framework that allows random selection or A/B testing. With the added bonus of being usable anywhere you can load JavaScript.</p>
+<p>An example for random selection:</p>
+<pre class="highlight"><code class="coffeescript">laboratory = <span class="hljs-keyword">new</span> Laboratory()
+
+laboratory.addExperiment(<span class="hljs-string">"FuzzyBunnies"</span>)
+  .variant <span class="hljs-string">"variant0"</span>, <span class="hljs-number">50</span>,
+    <span class="hljs-attribute">name</span>: <span class="hljs-string">"Peter Rabbit"</span>
+    <span class="hljs-attribute">type</span>: <span class="hljs-string">"Wooly"</span>
+  .variant <span class="hljs-string">"variant1"</span>, <span class="hljs-number">50</span>,
+    <span class="hljs-attribute">subject</span>: <span class="hljs-string">"Briar Rabbit"</span>
+    <span class="hljs-attribute">type</span>: <span class="hljs-string">"Silky"</span>
+
+experiment = laboratory.run(<span class="hljs-string">"FuzzyBunnies"</span>)
+experiment.value <span class="hljs-comment"># Either Peter or Briar Rabbit</span>
+</code></pre>
+<p>In this example, the user would get either Peter or Briar. If you ran the experiment again you&#39;d get another set of random values irregardless of the user.</p>
+<p>To use the A/B features you need to provide laboratory with some kind of storage mechanism to store the selected options for the user. On the client side, we usually use a thin wrapper over localStore.</p>
+<p>Your storage needs to implement two methods:</p>
+<pre class="highlight"><code class="coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span></span>
+  <span class="hljs-comment"># stores the experiment results (as the variant name selected) for this user</span>
+  <span class="hljs-attribute">addResult</span>: <span class="hljs-function"><span class="hljs-params">(experimentName, variantName)</span> -&gt;</span> {}
+
+  <span class="hljs-comment"># retrieves a variant result if the user has already seen this experiment</span>
+  <span class="hljs-attribute">get</span>: <span class="hljs-function"><span class="hljs-params">(experimentName)</span> -&gt;</span> {}
+</code></pre>
+<p>If you want to give the user the same experiment every time they come to your site simply pass in your storage to the laboratory when you declare it.</p>
+<pre class="highlight"><code class="coffeescript">laboratory = <span class="hljs-keyword">new</span> Laboratory(<span class="hljs-keyword">new</span> Store())
+</code></pre>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'a-b-testing-and-random-selection';
+        var disqus_title = 'A/B Testing and Random Selection';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

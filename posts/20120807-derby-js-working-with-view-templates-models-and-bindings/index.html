@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Derby.js - Working with Views, Models, and Bindings | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="derby-js-working-with-view-templates-models-and-bindings" class="post">
+  <div class="post-date">Tue Aug 07 2012
+  <div class="post-content"><h1 id="derby-js-working-with-views-models-and-bindings">Derby.js - Working with Views, Models, and Bindings</h1>
+<p>In my previous <a href="/posts/20120722-derby-js-playing-with-models">post</a> about <a href="http://derbyjs.com/">derby</a>, I talked a bit about how to create a model in derby and one rule you need to follow when creating models (the first two path segments should be an object). I&#39;m creating a test application to help me learn derby <a href="http://github.com/duereg/Potluck">here</a>. In the process of doing absolutely everything wrong to start I&#39;ve learned a bit about how Derby binds to models. Let&#39;s say you&#39;re got some markup like this that you&#39;d like to bind to.</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"firstName"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"lastName"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"tel"</span>  <span class="hljs-attribute">id</span>=<span class="hljs-value">"phoneNumber"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"date"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"birthDate"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p> Nothing sexy but you get the idea. You can post this information into a view and everything will show up the way you&#39;d expect it to. If you want to bind this to a model, such as <code>myApp.stuff.newGuy</code>, changing the code is straight forward.</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"firstName"</span>
+               <span class="hljs-attribute">value</span>=<span class="hljs-value">"{myApp.stuff.newGuy.firstName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"lastName"</span>
+               <span class="hljs-attribute">value</span>=<span class="hljs-value">"{myApp.stuff.newGuy.lastName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"tel"</span>  <span class="hljs-attribute">id</span>=<span class="hljs-value">"phoneNumber"</span>
+               <span class="hljs-attribute">value</span>=<span class="hljs-value">"{myApp.stuff.newGuy.phoneNumber}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"date"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"birthDate"</span>
+               <span class="hljs-attribute">value</span>=<span class="hljs-value">"{myApp.stuff.newGuy.birthDate}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p> Note that you don&#39;t have to write any js code in your /lib/ folder to create this model. The binding [the {} information in the value attribute] will automatically wire up these fields to the <code>myApp.stuff.newGuy</code> model. If you want to add some default values to these fields you could accomplish this like so:</p>
+<pre class="highlight"><code class="javascript">get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(page, model, params)</span> {</span>
+
+  <span class="hljs-comment">//set some default values for my model</span>
+  model.set(<span class="hljs-string">'myApp.stuff.newGuy'</span>, { firstName: <span class="hljs-string">'John'</span>, lastName: <span class="hljs-string">'Smith'</span> });
+
+  <span class="hljs-comment">//render my template containing the model above</span>
+  page.render();
+});
+</code></pre>
+<p> When you browsed to the page you would see John in the firstName input and Smith in the lastName input. How would you render a similar collection of models? There are a couple of ways. To iterate through a collection of objects, you&#39;ll most likely want to use the <code>#each</code> binding.</p>
+<pre class="highlight"><code class="xml">{#each myApp.stuff.people}
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{.firstName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{.lastName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"tel"</span>  <span class="hljs-attribute">value</span>=<span class="hljs-value">"{.phoneNumber}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"date"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{.birthDate}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+{/}
+</code></pre>
+<p> Several things to note here. First, you have to remove the id&#39;s from the html inputs you are binding to. Each input needs to have a unique id. If you omit the id field from the markup, derby will generate a unique id for you. Otherwise you&#39;ll be repeating the same id over and over again (and get strange behaviour as a result). Second, in an <code>#each</code> binding you don&#39;t use the full path to the model field you want to bind to (e.g. <code>{myApp.stuff.people.firstName}</code>), just the field with a dot prepended. (e.g. <code>{.firstName}</code>). Note that the dot is very important. If you just put <code>{firstName}</code> as your binding, because of the automatic model creation we noticed above, you will bind to a model called <code>{firstName}</code> for every item in the <code>myApp.stuff.people</code> collection. This will show itself by the very annoying behaviour of every edit being mirrored in every row (since every row is binding to the same model). Another way to do binding with #each is by using an alias. The documentation of creating an alias:</p>
+<blockquote>
+<p>Aliases to a specific scope may be defined, enabling relative model path references within nested sections. Aliases begin with a colon (:), and can be defined at the end of a section tag with the as keyword.</p>
+</blockquote>
+<p>What would this look like?</p>
+<pre class="highlight"><code class="xml">{#each myApp.stuff.people as :person}
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{:person.firstName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{:person.lastName}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"tel"</span>  <span class="hljs-attribute">value</span>=<span class="hljs-value">"{:person.phoneNumber}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"date"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{:person.birthDate}"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+{/}
+</code></pre>
+<p> Note that when you declare your alias with your each statement (as :person) you have to keep the colon for your subsequent bindings ({:person.firstName})</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'derby-js-working-with-view-templates-models-and-bindings';
+        var disqus_title = 'Derby.js - Working with Views, Models, and Bindings';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

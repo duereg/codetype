@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Cracking the Coding Interview - JavaScript Min/Max Binary Heap | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="cracking-the-coding-interview-javascript-minmax-binary-heap" class="post">
+  <div class="post-date">Wed Aug 29 2012
+  <div class="post-content"><h1 id="cracking-the-coding-interview-javascript-min-max-binary-heap">Cracking the Coding Interview - JavaScript Min/Max Binary Heap</h1>
+<p>I finished my second algorithm from <a href="http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=098478280X&amp;linkCode=as2&amp;tag=aplfopoex-20">Cracking the Coding Interview</a> - the <a href="http://en.wikipedia.org/wiki/Binary_heap">Binary Heap</a>. This algorithm racketed up the complexity from the <a href="/posts/20120824-cracking-the-coding-interview-javascript-singly-linked-list">Linked List</a>. The heap&#39;s structure is easy to understand - it&#39;s a binary tree (a tree where each node can have at most two children). In the case of a max heap, the parents have a greater value than their children. So the values in a Max Heap decrease as you move down the tree from the parent to children.</p>
+<p>(This image is from Wikipedia)
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Max-heap.png/240px-Max-heap.png" alt="Max Tree Example"></p>
+<p>The complexity comes from the behaviour. Though the algorithms are easy to understand, there is enough going on in each one that it&#39;s easy to sneak in bugs. It took me a bit of time to get each of my implementations the way I wanted it. The insert operation is the easiest to implement. The algorithm is also straight forward.</p>
+<ol>
+<li>Add the element to the bottom of the heap.</li>
+<li>Compare the added element with its parent; if they are in the correct order, stop.</li>
+<li>If not, swap the element with its parent and return to the previous step.</li>
+</ol>
+<p>Here is part of my implementation of insert:</p>
+<pre class="highlight"><code class="javascript">binaryHeap.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+    <span class="hljs-keyword">if</span> (data === <span class="hljs-literal">undefined</span>) { <span class="hljs-keyword">throw</span> <span class="hljs-string">"data must be valid to add"</span>; }
+
+    <span class="hljs-keyword">this</span>.array.push(data);
+    <span class="hljs-keyword">this</span>.bubbleUp(<span class="hljs-keyword">this</span>.array.length - <span class="hljs-number">1</span>, data);
+};
+
+binaryHeap.prototype.bubbleUp = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(childIndex, childData)</span> {</span>
+    <span class="hljs-keyword">if</span>(childIndex &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">var</span> parentIndex = <span class="hljs-keyword">this</span>.getParentIndex(childIndex);
+        <span class="hljs-keyword">var</span> parentData = <span class="hljs-keyword">this</span>.array[parentIndex];
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldSwap(childData, parentData)) {
+            <span class="hljs-keyword">this</span>.array[parentIndex] = childData;
+            <span class="hljs-keyword">this</span>.array[childIndex] = parentData;
+            <span class="hljs-keyword">this</span>.bubbleUp(parentIndex, childData);
+        }
+    }
+};
+
+binaryHeap.prototype.getParentIndex = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(childIndex)</span> {</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor((childIndex - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>);
+};
+</code></pre>
+<p> Delete is a quite bit more complicated, though the algorithm reads about the same. To delete the top of a heap:</p>
+<ol>
+<li>Replace the root of the heap with the last element on the last level.</li>
+<li>Compare the new root with its children; if they are in the correct order, stop.</li>
+<li>If not, swap the element with one of its children and return to the previous step.<ul>
+<li>Swap with its smaller child in a min-heap and its larger child in a max-heap.</li>
+</ul>
+</li>
+</ol>
+<pre class="highlight"><code class="javascript">binaryHeap.prototype.removeHead = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">var</span> headNode = <span class="hljs-keyword">this</span>.array[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> tailNode = <span class="hljs-keyword">this</span>.array.pop();
+
+    <span class="hljs-keyword">this</span>.array[<span class="hljs-number">0</span>] = tailNode;
+    <span class="hljs-keyword">this</span>.bubbleDown(<span class="hljs-number">0</span>, tailNode);
+
+    <span class="hljs-keyword">return</span> headNode;
+};
+
+binaryHeap.prototype.bubbleDown = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(parentIndex, parentData)</span> {</span>
+    <span class="hljs-keyword">if</span>(parentIndex &lt; <span class="hljs-keyword">this</span>.array.length) {
+        <span class="hljs-keyword">var</span> targetIndex = parentIndex;
+        <span class="hljs-keyword">var</span> targetData = parentData;
+
+        <span class="hljs-keyword">var</span> leftChildIndex = <span class="hljs-keyword">this</span>.getLeftChild(parentIndex);
+        <span class="hljs-keyword">var</span> rightChildIndex = <span class="hljs-keyword">this</span>.getRightChild(parentIndex);
+
+        <span class="hljs-keyword">if</span>(leftChildIndex &lt; <span class="hljs-keyword">this</span>.array.length) {
+            <span class="hljs-keyword">var</span> leftChildData = <span class="hljs-keyword">this</span>.array[leftChildIndex];
+
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldSwap( leftChildData, targetData )) {
+                targetIndex = leftChildIndex;
+                targetData = leftChildData;
+            }
+        }
+
+        <span class="hljs-keyword">if</span>(rightChildIndex &lt; <span class="hljs-keyword">this</span>.array.length) {
+            <span class="hljs-keyword">var</span> rightChildData = <span class="hljs-keyword">this</span>.array[rightChildIndex];
+
+            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.shouldSwap(rightChildData, targetData )) {
+                targetIndex = rightChildIndex;
+                targetData = rightChildData;
+            }
+        }
+
+        <span class="hljs-keyword">if</span>(targetIndex !== parentIndex) {
+            <span class="hljs-keyword">this</span>.array[parentIndex] = targetData;
+            <span class="hljs-keyword">this</span>.array[targetIndex] = parentData;
+            <span class="hljs-keyword">this</span>.bubbleDown(targetIndex, parentData);
+        }
+    }
+};
+
+binaryHeap.prototype.getLeftChild = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parentIndex)</span> {</span>
+    <span class="hljs-keyword">return</span> parentIndex * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+};
+
+binaryHeap.prototype.getRightChild = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parentIndex)</span>{</span>
+    <span class="hljs-keyword">return</span> parentIndex * <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;
+};
+</code></pre>
+<p> It&#39;s quite a bit more code to delete the top element and reshuffle the list into the correct order. With all the extra comparisons there are quite a few places that bugs can sneak into the code. The source code for the project and the tests are <a href="https://github.com/duereg/js-algorithms">here</a>.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'cracking-the-coding-interview-javascript-minmax-binary-heap';
+        var disqus_title = 'Cracking the Coding Interview - JavaScript Min/Max Binary Heap';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

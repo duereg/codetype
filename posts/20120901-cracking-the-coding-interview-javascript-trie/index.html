@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Cracking the Coding Interview - JavaScript Trie | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="cracking-the-coding-interview-javascript-trie" class="post">
+  <div class="post-date">Sat Sep 01 2012
+  <div class="post-content"><h1 id="cracking-the-coding-interview-javascript-trie">Cracking the Coding Interview - JavaScript Trie</h1>
+<p>I finished my third algorithm from <a href="http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=098478280X&amp;linkCode=as2&amp;tag=aplfopoex-20">Cracking the Coding Interview</a> - the <a href="http://en.wikipedia.org/wiki/Trie">Trie</a>. Tries are an extremely useful algorithm, if not all that well known. They can be used for very efficient spell checking, auto suggestion, as well as the sorting of a collection of strings. This algorithm was more complex to implement than the <a href="/posts/20120824-cracking-the-coding-interview-javascript-singly-linked-list">Linked List</a>, but a little simpler than the <a href="/posts/20120829-cracking-the-coding-interview-javascript-minmax-binary-heap">Max/Min Binary Heap</a> to implement. The trie&#39;s structure is easy to understand - it&#39;s a word tree, where each leaf of the tree is a letter of a word. Where words share common prefixes (such as <strong>fre</strong>sh and <strong>fre</strong>edom), those words share a common &quot;branch&quot; of prefix letters, and split where the words differ.</p>
+<p>(This image is from Wikipedia)
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Trie_example.svg/250px-Trie_example.svg.png" alt="Trie Tree Example"></p>
+<p>The <code>insert</code> and <code>hasWord</code> operations are easy to implement. However, removal of words can be complicated due to shared nature of the word prefixes.</p>
+<p>Insert goes something like this: For each letter in the word:</p>
+<ol>
+<li>if the letter exists on the tree, go to the letter. If it does not exist, create it.</li>
+<li>If there is another letter, return to the previous step. If not, add a word terminating marker.</li>
+</ol>
+<p>Here is my implementation of insert:</p>
+<pre class="highlight"><code class="javascript"><span class="hljs-keyword">var</span> trie = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">this</span>.head = {};
+};
+
+trie.prototype.validate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(word)</span> {</span>
+    <span class="hljs-keyword">if</span>((word === <span class="hljs-literal">undefined</span>) || (word === <span class="hljs-literal">null</span>)) <span class="hljs-keyword">throw</span> <span class="hljs-string">"The given word is invalid."</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> word !== <span class="hljs-string">"string"</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">"The given word is not a string"</span>;
+}
+
+trie.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(word)</span> {</span>
+    <span class="hljs-keyword">this</span>.validate(word);
+
+    <span class="hljs-keyword">var</span> current = <span class="hljs-keyword">this</span>.head;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; word.length; i++) {
+        <span class="hljs-keyword">if</span>(!(word[i] <span class="hljs-keyword">in</span> current)) {
+            current[word[i]] = {};
+        }
+
+        current = current[word[i]]
+    };
+
+    current.$ = <span class="hljs-number">1</span>;  <span class="hljs-comment">//word end marker</span>
+};
+</code></pre>
+<p> The hasWord algorithm is very similar to the insert algorithm. For each letter in the word:</p>
+<ol>
+<li>if the letter exists on the tree, go to the letter. If it does not exist, the word does not exist.</li>
+<li>If there is another letter, return to the previous step. If not, check for the word terminating marker.</li>
+</ol>
+<pre class="highlight"><code class="javascript">trie.prototype.hasWord = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(word)</span> {</span>
+    <span class="hljs-keyword">this</span>.validate(word);
+
+    <span class="hljs-keyword">var</span> current = <span class="hljs-keyword">this</span>.head;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; word.length; i++) {
+        <span class="hljs-keyword">if</span>(!(word[i] <span class="hljs-keyword">in</span> current)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+
+        current = current[word[i]]
+    };
+
+    <span class="hljs-keyword">return</span> current.$ === <span class="hljs-number">1</span>; <span class="hljs-comment">//word end marker</span>
+};
+</code></pre>
+<p> Delete isn&#39;t much more complicated, though the recursive nature of the algorithm does make it a bit of a pain. You have to go to the end of the word, and if no other letters are hanging off your word, delete from the end towards the head. As soon as you find an element that is being shared, you stop the deletion.</p>
+<pre class="highlight"><code class="javascript">trie.prototype.remove = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(word)</span> {</span>
+    <span class="hljs-keyword">this</span>.validate(word);
+
+    canDelete(word, -<span class="hljs-number">1</span>, <span class="hljs-keyword">this</span>.head);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">canDelete</span><span class="hljs-params">(word, index, node)</span>{</span>
+        <span class="hljs-keyword">if</span>(word === <span class="hljs-literal">undefined</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Bad Word"</span>;
+        <span class="hljs-keyword">if</span>(index &gt;= word.length) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Bad index to check for deletion."</span>;
+        <span class="hljs-keyword">if</span>(node === <span class="hljs-literal">undefined</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-string">"Bad Node at "</span> + index + <span class="hljs-string">" for "</span> + word;
+
+        <span class="hljs-keyword">if</span>(index === word.length - <span class="hljs-number">1</span>) {
+            <span class="hljs-comment">//last letter</span>
+            <span class="hljs-comment">//always delete word marker (as we are deleting word)</span>
+            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">delete</span> node.$) &amp;&amp; noKids(node); <span class="hljs-comment">//if last letter of word, should be empty.</span>
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">//any other letter in word</span>
+            <span class="hljs-comment">//check child, and after child check, I am now empty</span>
+            <span class="hljs-keyword">if</span>(canDelete(word, index + <span class="hljs-number">1</span>, node[word[index + <span class="hljs-number">1</span>]]) )
+            {
+                <span class="hljs-comment">//delete me</span>
+                <span class="hljs-keyword">return</span> (<span class="hljs-keyword">delete</span> node[word[index + <span class="hljs-number">1</span>]]) &amp;&amp; noKids(node);
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    };
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noKids</span><span class="hljs-params">(node)</span> {</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(node).length === <span class="hljs-number">0</span>;
+    };
+};
+</code></pre>
+<p> My favorite advantage of using a trie is the ease in which a sorted list of words can be generated. All you have to do is output all the letters by <a href="http://en.wikipedia.org/wiki/Pre-order_traversal">Pre-Order Traversal</a>. And sorting using a trie is fast - the worst case sorting is O(kn), where k is the length of the longest word in the trie.</p>
+<pre class="highlight"><code class="javascript">trie.prototype.sort = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">var</span> word = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">var</span> sorted = [];
+
+    sortTrie(<span class="hljs-keyword">this</span>.head, word, sorted);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sortTrie</span><span class="hljs-params">(node, word, sorted)</span> {</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> letter <span class="hljs-keyword">in</span> node) {
+            <span class="hljs-keyword">if</span> (letter == <span class="hljs-string">'</span>) { sorted.push(word); }
+            <span class="hljs-keyword">else</span> {
+                sortTrie(node[letter], word + letter, sorted);
+            }
+        }
+    }
+
+    console.log(sorted);
+    <span class="hljs-keyword">return</span> sorted;
+};
+</code></pre>
+<p>The source code for the project and the tests are <a href="https://github.com/duereg/js-algorithms">here</a>.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'cracking-the-coding-interview-javascript-trie';
+        var disqus_title = 'Cracking the Coding Interview - JavaScript Trie';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Source maps in node.js | A Place for Poor Examples</title>
+	<meta name="description" content="Source maps in node.js" />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="source-maps-and-immature-tooling" class="post">
+  <div class="post-date">Sat Oct 19 2013
+  <div class="post-content"><h1 id="source-maps-in-node-js">Source maps in node.js</h1>
+<p>One of the projects I&#39;m working on deals with source maps.</p>
+<p>If you don&#39;t know anything about source maps <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">this link</a> is a good introduction to what source maps are and why they&#39;re useful.</p>
+<p>Looking at the article date (March 21st, 2012), it&#39;s not like source maps are some new hot thing. But the tooling around them is still pretty raw as is their use.</p>
+<p>So why would you want to use source maps?</p>
+<ul>
+<li>Source maps are great for client side development. You can minify/mangle your code, use it in dev, and still debug. Faster dev environments while still being able to debug.</li>
+<li>Source maps can give you decent stack traces in your production environment without hurting your site&#39;s performance. And without exposing any of your unminified source code to the end user.</li>
+</ul>
+<p>Read that last point again. This is the killer feature we were looking for at work - being able to track down client side errors reliably on production.</p>
+<p>To do this you have to jump through a few hoops. At least in a node.js environment.</p>
+<h2 id="the-three-ways-to-use-source-maps">The three ways to use source maps</h2>
+<p>There are three ways you can include source maps in your project.</p>
+<ol>
+<li>You can imbed the source map directly in a .js file.</li>
+<li>You can add a comment to the .js to that points to the appropraite source map.</li>
+<li>You can set a header in the response for the .js file that points the browser to a source map.</li>
+</ol>
+<p>If you use <a href="http://browserify.org/">Browserify</a> you can turn on option 1 just by setting <code>debug: true</code> in your configuration. You&#39;ll probably notice the performance degradation almost immediately. That&#39;s because browserify includes your source map (with includes all your source) along with the combined .js you&#39;re given it. Which is a pretty huge payload compared to just .js.</p>
+<h2 id="making-source-maps-work-in-development">Making source maps work in development</h2>
+<p>If you strip out that source map from the .js file and move the code to an external .map file you still have the ability to debug your browserify-ied code without hurting your performance.</p>
+<p>Browsers only download external source maps (source maps included via option 2 or 3) when they are needed. So even in development your app will load quickly if you have <em>external</em> source maps. Once you open your debugger in the browser then you&#39;ll go and download the source maps you need to debug the current page.</p>
+<h2 id="making-source-maps-work-in-production">Making source maps work in production</h2>
+<p>However, the source maps you generate for development aren&#39;t appropriate for production. Why? Two reasons.</p>
+<ol>
+<li>All of your source code is available for download from the source map.</li>
+<li>The .js browserify generates in <code>debug</code> mode is unminified.</li>
+</ol>
+<p>Even if you want to use source maps in production you wouldn&#39;t want to push unminified code up. You also don&#39;t want to expose your source code to the public. Luckily there is a solution: <a href="https://github.com/mishoo/UglifyJS2">UglifyJS</a>.</p>
+<p>So Uglify (or more correctly Uglify 2) can take your unminified code and minify for you. If given a source map as input it can rewrite the source map to now point at the minified file. Pretty good.</p>
+<p>That would still leave us with the problem with the embedded source code in your source map. Except for one thing - they&#39;re a bug in Uglify. It strips out the embedded source code when it does it second run on your source map to get it match to the newly minified code.</p>
+<p>Which means an uglified, external source map can be pushed to production. You won&#39;t be able to debug production - you won&#39;t have any source to look at - but an error that occurs will at least give you a decent stack trace.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'source-maps-and-immature-tooling';
+        var disqus_title = 'Source maps in node.js';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

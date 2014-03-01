@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Home | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<!-- Primary marketing message or call to action -->
+<img id="logo" class="img-responsive" alt="A Place for Poor Examples" src="/images/header.jpg" />
+
+<!-- Example row of columns -->
+<div class="row" class="text-center">
+	<div class="col-lg-9">
+		
+		
+			
+			<article id="introducing-songbird" class="post">
+  <div class="post-date">Sun Feb 09 2014
+  <div class="post-content"><h1 id="introducing-songbird">Introducing Songbird</h1>
+<p>Would you rather write this:</p>
+<pre class="highlight"><code class="javascript"><span class="hljs-keyword">var</span> updateUser = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, attributes, callback)</span> {</span>
+  User.findOne(id, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, user)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+
+    user.set(attributes);
+    user.save(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, updated)</span> {</span>
+      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+
+      console.log(<span class="hljs-string">"Updated"</span>, updated);
+      callback(<span class="hljs-literal">null</span>, updated);
+    });
+  });
+});
+</code></pre>
+<p>Or this:</p>
+<pre class="highlight"><code class="coffeescript">  User.promise.findOne(id).<span class="hljs-keyword">then</span>( (user) →
+    user.set(attributes)
+    user.promise.save()
+  ).<span class="hljs-keyword">then</span> <span class="hljs-function"><span class="hljs-params">(user)</span> -&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Updated"</span>, user)
+</code></pre>
+<p><a href="http://www.github.com/duereg/songbird">Songbird</a> allows you to easily mix asynchronous and synchronous programming styles in node.js.</p>
+<p>Songbird is built upon the <a href="https://raw2.github.com/petkaantonov/bluebird/master/API.md">bluebird promise library</a> (hence the name).</p>
+<h2 id="install">Install</h2>
+<p>Songbird requires node version 0.6.x or greater.</p>
+<pre class="highlight"><code class="cmake">npm <span class="hljs-keyword">install</span> songbird
+</code></pre><h2 id="examples">Examples</h2>
+<h3 id="without-songbird">Without Songbird</h3>
+<p>Using standard node callback-style APIs without Songbird, we write
+(from <a href="http://nodejs.org/docs/v0.6.14/api/fs.html#fs_fs_readfile_filename_encoding_callback">the fs docs</a>):</p>
+<pre class="highlight"><code class="javascript">fs.readFile(<span class="hljs-string">'/etc/passwd'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, data)</span> {</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+  console.log(data);
+});
+</code></pre>
+<h3 id="using-the-promise-property">Using the promise property</h3>
+<p>Using Songbird, we write:</p>
+<pre class="highlight"><code class="javascript">fs.promise.readFile(<span class="hljs-string">'/etc/passwd'</span>).then(console.log);
+</code></pre>
+<h3 id="object-function-mixins">Object &amp; Function mixins</h3>
+<p>Songbird mixes <code>promise</code> into <code>Function.prototype</code> so you can
+use them directly as in:</p>
+<pre class="highlight"><code class="javascript">readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile;
+readFile.promise(<span class="hljs-string">'/etc/passwd'</span>).then(console.log);
+</code></pre>
+<p>Songbird adds <code>promise</code> to <code>Object.prototype</code> correctly so they
+are not enumerable.</p>
+<p>These proxy methods also ignore all getters, even those that may
+return functions. If you need to call a getter with Songbird that returns an
+asynchronous function, you can do:</p>
+<pre class="highlight"><code class="javascript">func = obj.getter
+func.promise.call(obj, args)
+</code></pre>
+<h3 id="handling-multiple-promises">Handling Multiple Promises</h3>
+<p>Requiring the songbird library not only updates the Object and Function prototype, but also returns a Promise library in which you can carry out certain actions that aren&#39;t easily handled from the the promise property.</p>
+<p>For example: you have a situation where you&#39;re dealing with multiple promises, but don&#39;t care what order they complete in.</p>
+<pre class="highlight"><code class="javascript">Promise = <span class="hljs-built_in">require</span>(<span class="hljs-string">"songbird"</span>);
+
+Promise.all([task1, task2, task3]).spread(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result1, result2, result3)</span>{</span>
+
+});
+</code></pre>
+<p>Normally when using <code>.then</code> the code would be like:</p>
+<pre class="highlight"><code class="javascript">Promise = <span class="hljs-built_in">require</span>(<span class="hljs-string">"songbird"</span>);
+
+Promise.all([task1, task2, task3]).then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(results)</span>{</span>
+    <span class="hljs-keyword">var</span> result1 = results[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> result2 = results[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">var</span> result3 = results[<span class="hljs-number">2</span>];
+});
+</code></pre>
+<p>For more information about the underlying bluebird promise API, the <a href="https://raw2.github.com/petkaantonov/bluebird/master/API.md">API docs are here</a>.</p>
+<h3 id="disclaimer">Disclaimer</h3>
+<p>Some people don&#39;t like libraries that mix in to Object.prototype
+and Function.prototype. If that&#39;s how you feel, then Songbird is probably
+not for you.</p>
+<h2 id="contributing">Contributing</h2>
+<pre class="highlight"><code class="php">git <span class="hljs-keyword">clone</span> git:<span class="hljs-comment">//github.com/duereg/songbird.git</span>
+npm install
+npm test
+</code></pre><p>Songbird is written in <a href="http://coffeescript.org">coffeescript</a> with
+source in <code>src/</code> compiled to <code>lib/</code>.</p>
+<p>Tests are written with mocha and chai in <code>test/</code>.</p>
+<p>Run tests with <code>npm test</code> which will also compile the coffeescript to
+<code>lib/</code>.</p>
+<p>Pull requests are welcome. Please provide tests for your changes and
+features. Thanks!</p>
+</div>
+</article>
+			<hr />
+		
+			
+			<article id="react-server-side-rendering" class="post">
+  <div class="post-date">Thu Jan 16 2014
+  <div class="post-content"><h1 id="react-server-side-rendering-and-a-cool-data-embedding-technique">React, server side rendering, and a cool data embedding technique</h1>
+<p>I&#39;ve been spending some time going through the <a href="http://facebook.github.io/react/">React</a> docs and examples for some work on a side project.</p>
+<p>What is React? From their website:</p>
+<blockquote>
+<p>React: A javascript library for building user interfaces</p>
+</blockquote>
+<p>The React devs have some killer ideas about how to render web pages using something they call a Virtual DOM. Also from React&#39;s website:</p>
+<blockquote>
+<p>React uses a virtual DOM diff implementation for ultra-high performance. It can also render on the server using Node.js — no heavy browser DOM required.</p>
+</blockquote>
+<p>Some people who&#39;ve been experimenting with React has shown dramatic client-side rendering performance improvements - <a href="http://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/">2-4x faster in the average case, up to 30-40x in certain cases</a>.</p>
+<p>The Virtual DOM implementation would be enough for most people to switch over to trying out React, but I think the killer feature of React isn&#39;t the blazing client-side performance - it&#39;s the ability to server-side render.</p>
+<p>It&#39;s well known that <a href="https://blog.twitter.com/2012/improving-performance-twittercom">server-side rendering can reduce page load times</a>. Twitter claimed to reduce page loads times to 1/5th of what they had been by server side rendering.</p>
+<p>So:</p>
+<p><code>1/5th * (2x as fast) == Really, Really Fast Rendering</code></p>
+<p>(Especially in low-power devices like phones)</p>
+<p>So how do you server side render with React?</p>
+<p>The client makes a request for a page.</p>
+<p>On the server, you:</p>
+<ol>
+<li>You grab whatever data is appropriate for the request</li>
+<li>You pass that data into some React components, generating HTML</li>
+<li>You embed the data in a page to send to the client</li>
+<li>You embed the generated HTML in a page to send to the client</li>
+<li>You add a script block to include all the needed JS in the page to glue to all together</li>
+<li>You send the client back the html with the data / generated HTML / react JS code.</li>
+</ol>
+<p>There is a good example of this flow <a href="https://npmjs.org/package/react-server-example">here</a>.</p>
+<p>My favorite part of this example - and a cool way to embed some code - are these lines of code:</p>
+<pre class="highlight"><code class="javascript">
+  <span class="hljs-comment">// Include our static React-rendered HTML in our content div.</span>
+  <span class="hljs-comment">// This is the same div that we render the component to on the client side,</span>
+  <span class="hljs-comment">// and by using the same initial data, we can ensure that the contents are the same</span>
+  <span class="hljs-comment">// (React is smart enough to ensure no rendering will actually occur on page load)</span>
+ <span class="hljs-string">'&lt;div id=content&gt;'</span> + myAppHtml + <span class="hljs-string">'&lt;/div&gt;'</span> +
+
+  <span class="hljs-comment">// Ensure that our initial data is also accessible on the client-side by embedding it</span>
+  <span class="hljs-comment">// here in the page.</span>
+  <span class="hljs-comment">// We could have used a window-level variable, or even a JSON-typed script tag,</span>
+  <span class="hljs-comment">// but this option is safe from namespacing and injection issues,</span>
+  <span class="hljs-comment">// and doesn't require parsing</span>
+  <span class="hljs-string">'&lt;script type=text/javascript&gt;'</span> +
+    <span class="hljs-string">'document.getElementById("content").myAppProps = '</span> + escapeJs(<span class="hljs-built_in">JSON</span>.stringify(props)) +
+  <span class="hljs-string">'&lt;/script&gt;'</span> +
+</code></pre>
+<p>That embedding code - adding data to a DOM element for a particular component - is a pretty cool way to get the data you need client-side.</p>
+</div>
+</article>
+			<hr />
+		
+			
+			<article id="new-blog" class="post">
+  <div class="post-date">Sun Jan 12 2014
+  <div class="post-content"><h1 id="new-blog-">New Blog!</h1>
+<p>I&#39;ve just ended a very long relationship that was hideously overdue for some closure. That&#39;s right - I&#39;ve left <a href="http://codetype.wordpress.com">wordpress</a>.</p>
+<p>It&#39;s a great platform if you can&#39;t make a website or just don&#39;t care about the details. But it&#39;s a little less than I was looking for.</p>
+<p>So I&#39;ve decided to get minorly techy and build a nice static site to hold all my blog entries. A thousand thanks goes to <a href="https://github.com/dreikanter/wp2md">@dreikanter</a> for writing a simple converter of the wordpress XML format to markdown.</p>
+<p>This site is so cool! It&#39;s powered by a heap of great tech:</p>
+<ul>
+<li><a href="http://docpad.org">Docpad</a> to serve my posts</li>
+<li><a href="http://coffeescript.org/">CoffeeScript</a> whenever I need to write code</li>
+<li><a href="http://getbootstrap.com/">Twitter Bootstrap</a> for easy styling and reactive handling</li>
+<li><a href="http://daringfireball.net/projects/markdown/">Markdown</a> for easy blog writing</li>
+<li><a href="https://github.com/sstephenson/eco">Eco</a> for cool templating</li>
+<li><a href="http://lesscss.org/">Less</a> and <a href="http://learnboost.github.io/stylus/">Stylus</a> for my css</li>
+</ul>
+<p>The only thing I couldn&#39;t take with me - all the old comments. I&#39;ve tried to go back and edit the old entries where the comments where useful.</p>
+</div>
+</article>
+			<hr />
+		
+		<a href="/pages/posts">Read More...</a>
+	</div>
+	<div class="col-lg-3 hidden-xs hidden-sm">
+		<div class="linkwidget">
+  <h3 class="widget-title">
+    Recommended Books
+  </h3>
+  <dl>
+    <dt>
+      <a href="http://www.amazon.com/gp/product/098478280X/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20">Cracking the Coding Interview</a>
+    </dt>
+    <dd>
+      Fun Read even if you're not interviewing. Tons of great problems to work through.
+    </dd>
+    <dt>
+      <a href="http://www.amazon.com/gp/product/0321125215/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321125215&linkCode=as2&tag=aplfopoex-20">Domain-Driven Design: Tackling Complexity in the Heart of Software</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=aplfopoex-20&l=as2&o=1&a=0321125215" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    </dt>
+    <dd>
+      "This book belongs on the shelf of every thoughtful software developer." --Kent Beck
+    </dd>
+    <dt>
+      <a href="http://www.amazon.com/gp/product/0201485672/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201485672&linkCode=as2&tag=aplfopoex-20">Refactoring: Improving the Design of Existing Code</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=aplfopoex-20&l=as2&o=1&a=0201485672" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    </dt>
+    <dd>
+      Anyone working on legacy systems should read this book. Or anyone who suspects the system they're working on is destined for that fate.
+    </dd>
+  </dl>
+</div>
+<div class="linkwidget">
+  <h3 class="widget-title">
+    Tools
+  </h3>
+  <dl>
+      <dt>
+          <a href="http://gitimmersion.com" title="Hands on walk through of Git." target="_blank">Git Immersion</a>
+      </dt>
+      <dd>
+          Hands on walk through of Git.
+      </dd>
+      <dt>
+          <a href="http://ejohn.org/apps/learn" title="Learn Advanced Javascript" target="_blank">Learn Advanced Javascript</a>
+      </dt>
+      <dd>
+          An interactive site where you can play with JavaScript. Simple and elegant.
+      </dd>
+      <dt>
+          <a href="http://learn.knockoutjs.com/" title="Learn Knockout" target="_blank">Learn Knockout</a>
+      </dt>
+      <dd>
+          One of the best interactive learning sites out there. Learn to use the basics of Knockout painlessly.
+      </dd>
+      <dt>
+          <a href="http://try.mongodb.org/" title="Learn MongoDB." target="_blank">Learn MongoDB</a>
+      </dt>
+      <dd>
+          Interactive with MongoDB like it’s on your own machine (if you machine is a WANG green screen). Great way to learn 2% of MongoDB.
+      </dd>
+      <dt>
+          <a href="http://learnyouahaskell.com/starting-out" title="Learn how to program functionally. With Haskell." target="_blank">Learn You a Haskell</a>
+      </dt>
+      <dd>
+          Learn how to program functionally. With Haskell.
+      </dd>
+      <dt>
+          <a href="https://github.com/duereg/" rel="me" title="My github repo" target="_blank">My Github Repository</a>
+      </dt>
+      <dd>
+          Where I store my public coding projects. Check me out!
+      </dd>
+  </dl>
+</div>
+<div class="linkwidget">
+  <h3 class="widget-title">
+    Subscribe
+  </h3>
+  <dl>
+      <dt>
+          <a href="/atom.xml" title="Atom Feed">Atom Feed</a>
+      </dt>
+  </dl>
+</div>
+<div class="textwidget">
+  <iframe src="http://githubbadge.appspot.com/duereg" style="border: 0;height: 120px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+</div>
+<div class="textwidget">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB" target="_blank">
+    <img alt="Creative Commons Licence" style="border-width:0;" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <span>A Place For Poor Examples</span> is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB" target="_blank">
+    Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+  </a>.
+</div>
+	</div>
+</div>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

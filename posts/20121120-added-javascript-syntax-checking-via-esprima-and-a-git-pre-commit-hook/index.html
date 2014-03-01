@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Added JavaScript syntax checking via Esprima and a Git pre-commit hook | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="added-javascript-syntax-checking-via-esprima-and-a-git-pre-commit-hook" class="post">
+  <div class="post-date">Tue Nov 20 2012
+  <div class="post-content"><h1 id="added-javascript-syntax-checking-via-esprima-and-a-git-pre-commit-hook">Added JavaScript syntax checking via Esprima and a Git pre-commit hook</h1>
+<p>I came across a brilliant project the other day - <a href="http://esprima.org/">Esprima</a> from <a href="https://plus.google.com/103266860731871773002/posts">Ariya Hidayat</a>, the author of PhantomJS. What is Esprima? Esprima is a JavaScript Parser written in JavaScript Syntax Validator. It forms the basis of several different tools - a minifier, a code coverage tool, a syntax validator - just to name a few. I was immediately interested in the syntax validation tool. It&#39;s not a linter - it just checks that the JavaScript written is syntactically correct. Why would you want this if you already have JsHint and JsLint? </p>
+<ol>
+<li>It is extremely fast. Validating three.js (800 KB source) takes less than a second on a modern machine.</li>
+<li>It looks only for syntax errors, it does not care about coding style at all. </li>
+<li>It handles generated files as the result of minification or compilation (CoffeeScript, Dart, TypeScript, etc). </li>
+<li>It tries to be tolerant and not give up immediately on the first error, especially for strict mode violations. </li>
+</ol>
+<p>Esprima is available as an npm package, so installing it only takes a second: <code>sudo npm install -g esprima</code> 
+Using Esprima from the command line is simple: <code>esvalidate file.js</code> </p>
+<p>The only thing to note about running from the command line: if the validation succeeds, you won&#39;t get much in the way of confirmation. Which can be painful if you are processing a whole directory. You only get useful feedback in the default mode on error. If you don&#39;t mind reading a little XML: <code>esvalidate lib/*.js --format=junit</code> </p>
+<p>Prints junit XML which at least you can visually parse to see which files were validated. Where would I use this where I might not use JsHint? As a pre-commit hook to screen my checkins. Instead of going through a check-in, building everything, then running JSHint just to hear that something is not up to spec, I can add a little script that will do a quick sanity check of my JS before I go to commit anything to git. </p>
+<p>If you&#39;ve never created a pre-commit hook before, it&#39;s pretty easy. Two lines in bash will give you a pre-commit file: <code>touch .git/hooks/pre-commit chmod +x .git/hooks/pre-commit</code> </p>
+<p>This is windows version of the code for the pre-commit hook: <code>#!/bin/sh files=$(git diff-index --name-only HEAD | grep -l &#39;\\.js$&#39;) for file in $files; do esvalidate $file if [ $? -eq 1 ]; then echo &quot;Syntax error: $file&quot; exit 1 fi done</code> </p>
+<p>To make this work on Linux, just remove the remove the #!/bin/sh line. For more information about Esprima, check out <a href="http://ariya.ofilabs.com/2012/10/javascript-validator-with-esprima.html">this article</a> by the author.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'added-javascript-syntax-checking-via-esprima-and-a-git-pre-commit-hook';
+        var disqus_title = 'Added JavaScript syntax checking via Esprima and a Git pre-commit hook';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

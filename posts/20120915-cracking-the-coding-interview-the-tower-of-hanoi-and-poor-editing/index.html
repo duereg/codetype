@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Cracking the Coding Interview - The Tower of Hanoi and Poor Editing | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="cracking-the-coding-interview-the-tower-of-hanoi-and-poor-editing" class="post">
+  <div class="post-date">Sat Sep 15 2012
+  <div class="post-content"><h1 id="cracking-the-coding-interview-the-tower-of-hanoi-and-poor-editing">Cracking the Coding Interview - The Tower of Hanoi and Poor Editing</h1>
+<p>I just finished the <a href="http://en.wikipedia.org/wiki/Stack_\(abstract_data_type\">Stack</a>) section of <a href="http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=098478280X&amp;linkCode=as2&amp;tag=aplfopoex-20">Cracking the Coding Interview</a> and came across an old puzzle - <a href="http://en.wikipedia.org/wiki/Tower_of_Hanoi">The Tower of Hanoi</a>. I struggled with solving this problem. I wrote this elaborate, strange algorithm to try to solve it (which should have been a dead give-away that I had it wrong). Ironically enough, hidden in the 20-30 lines of code I wrote were the three lines of code I needed to solve the problem. Anyways, after beating my head in trying to solve this, I ended up going to the back of the book and looking up the solution. And found this pile of shit psuedocode. I&#39;ve shortened the comments, but the content is the same.</p>
+<pre class="highlight"><code class="c">moveDisks(<span class="hljs-keyword">int</span> n, Tower origin, Tower destination, Tower buffer) {
+    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">//Move top n - 1 disks from 1 to 2</span>
+    moveDisks(n-<span class="hljs-number">1</span>, tower <span class="hljs-number">1</span>, tower <span class="hljs-number">2</span>, tower <span class="hljs-number">3</span>); <span class="hljs-comment">//Move top from 1 to 3</span>
+    moveTop(tower <span class="hljs-number">1</span>, tower <span class="hljs-number">3</span>); <span class="hljs-comment">//Move top n - 1 disks from 2 to 3</span>
+    moveDisks(n-<span class="hljs-number">1</span>, tower <span class="hljs-number">2</span>, tower <span class="hljs-number">3</span>, tower <span class="hljs-number">1</span>);
+}
+</code></pre>
+<p> In this tiny amount of code, in over five revisions to her book, the author has managed to miss two errors.</p>
+<ol>
+<li>In the first line, Variables <code>origin</code>, <code>destination</code>, and <code>buffer</code> are declared, but then <code>tower 1</code>, <code>tower 2</code>, and <code>tower 3</code> are used. Which is which?</li>
+<li>In line 5, the comment says &quot;Move top n-1 disks&quot;. Then, in lines 8-9, the author indicates that you move the top. Since you&#39;ve already moved all the items in the stack but one, the bottom element, that line should read &quot;move bottom&quot;.</li>
+</ol>
+<p>Maybe these aren&#39;t huge issues, but since I was pretty frustrated with this problem, having to correct the solution didn&#39;t help my frustration. The correct code:</p>
+<pre class="highlight"><code class="c">moveDisks(<span class="hljs-keyword">int</span> n, Tower origin, Tower destination, Tower buffer) {
+    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">//Move top n - 1 disks from origin to buffer</span>
+    moveDisks(n-<span class="hljs-number">1</span>, origin, buffer, destination); <span class="hljs-comment">//Move nth disk (the bottom disk) from origin to destination</span>
+    moveBottom(origin , destination); <span class="hljs-comment">//Move top n - 1 disks from buffer to destination</span>
+    moveDisks(n-<span class="hljs-number">1</span>, buffer, destination, origin); }
+</code></pre>
+<p> I hope this helps somebody else who&#39;s working on this problem.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'cracking-the-coding-interview-the-tower-of-hanoi-and-poor-editing';
+        var disqus_title = 'Cracking the Coding Interview - The Tower of Hanoi and Poor Editing';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

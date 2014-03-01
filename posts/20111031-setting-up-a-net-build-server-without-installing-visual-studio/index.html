@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Setting up a .NET build server WITHOUT installing Visual Studio | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="setting-up-a-net-build-server-without-installing-visual-studio" class="post">
+  <div class="post-date">Mon Oct 31 2011
+  <div class="post-content"><h1 id="setting-up-a-net-build-server-without-installing-visual-studio">Setting up a .NET build server WITHOUT installing Visual Studio</h1>
+<p>I&#39;ve been tasked with upgrading my client&#39;s build server. It currently builds VS 2080 solutions in .NET 3.5 - and I&#39;ve been pushing to upgrade everyone to Visual Studio (VS) 2010 and eventually .NET 4.0. I want to upgrade the server to build a VS 2010 solution in .NET 3.5.</p>
+<p>This will allow everyone to upgrade to VS 2010 while leaving the task of upgrading the production web servers to another day. I try the easy approach. I install .NET 4.0 on the build server and run the MSBuild scripts that already exist. Nothing good happens.</p>
+<p>I do a little digging and find out that you need to install the Windows SDK to get MSBuild to work. So I get the Windows SDK - <a href="http://www.microsoft.com/download/en/details.aspx?id=8279">Microsoft Windows SDK for Windows 7 and .NET Framework 4</a> - and install it. Nothing good happens.</p>
+<p>I dig a little further and find out that by default MSBuild installs pointing at the VS version of the Windows SDK whether it is there or not. Also, the Windows SDK does not care about the settings of MSBuild, so when you install the SDK it doesn&#39;t fix this or update this. Which I understand from the SDK team&#39;s point of view, but it would have been a nice fix.</p>
+<p><img src="/images/posts/registry-msbuild.jpg" alt="Registry View of the MSBuild Settings for .NET 4.0"></p>
+<p>The important thing to note is the keys which have &quot;7.0a&quot; in their values. 7.0a is the version of the Windows SDK that ships with Visual Studio 2010. If you download the SDK from Microsoft you get version 7.1. So I go in and manually change all those 7.0a to 7.1. It builds! But it fails.</p>
+<p>For some reason, I can&#39;t get any of the XmlSerializers dll (which are needed by web projects that have web services or WCF) to generate correctly. The normal dll&#39;s compile into .NET 3.5 versions (which is what I want), but the XmlSerializers dlls all generate in .NET 4.0. What&#39;s going on here? Another bug.</p>
+<p>The Windows SDK installer, by default, installs the WRONG keys into the registry. This apparently only affects certain edge cases, like trying to generate XmlSerializer dll&#39;s with MSBuild from .NET 4.0 into .NET 3.5. I&#39;m guessing the Visual Studio installer fixes this when it runs. The issue is documented here: <a href="http://connect.microsoft.com/VisualStudio/feedback/details/594338/tfs-2010-build-agent-and-windows-7-1-sdk-targeting-net-3-5-generates-wrong-embedded-resources">Windows 7.1 SDK targeting .NET 3.5 generates wrong embedded Resources</a>.</p>
+<p>So, another trip to the registry. This time, to the Microsoft-SDKS section. There are two bugs here:</p>
+<p>1)  All the keys need to have a dash after the &quot;WinSDK&quot; portion
+2)  Some of the fields have an &quot;-86&quot; in their key, which needs to be &quot;-x86&quot;
+<img src="/images/posts/registry-windows-sdk.jpg" alt="A view of the registry for the Windows SDK"></p>
+<p>One more try. Build successful. :)</p>
+<h3 id="valuable-old-comment-note-">Valuable Old Comment Note:</h3>
+<p><strong><a href="#109" title="2013-10-10 04:00:32">Antek</a>:</strong> Unfortunately the changes in the MsBuild/ToolVersions/4.0 section can (and will) be lost when .NET patches are applied through Windows Update.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'setting-up-a-net-build-server-without-installing-visual-studio';
+        var disqus_title = 'Setting up a .NET build server WITHOUT installing Visual Studio';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

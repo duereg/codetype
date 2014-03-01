@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Beautiful LINQ to Xml | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="beautiful-linq-to-xml" class="post">
+  <div class="post-date">Sat Sep 24 2011
+  <div class="post-content"><h1 id="beautiful-linq-to-xml">Beautiful LINQ to Xml</h1>
+<p>Is there anything better in life than finding a better way to do something? An easier commute, a better night&#39;s sleep, a tastier cake recipe? In starting the Nike+ importer for www.runningahead.com, I knew I was going to have to deal with a bit of XML. Which used to mean XPath. Not so much anymore. LINQ to XML, you rock my world. It turns XML like this... </p>
+<pre class="highlight"><code class="xml"> <span class="hljs-tag">&lt;<span class="hljs-title">extendedDataList</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">extendedData</span> <span class="hljs-attribute">dataType</span>=<span class="hljs-value">"distance"</span> <span class="hljs-attribute">intervalType</span>=<span class="hljs-value">"time"</span> <span class="hljs-attribute">intervalUnit</span>=<span class="hljs-value">"s"</span> <span class="hljs-attribute">intervalValue</span>=<span class="hljs-value">"10"</span>&gt;</span> 
+         0.0, 0.0372, 0.0705, 0.1041, .... 
+     <span class="hljs-tag">&lt;/<span class="hljs-title">extendedData</span>&gt;</span> 
+     <span class="hljs-tag">&lt;<span class="hljs-title">extendedData</span> <span class="hljs-attribute">dataType</span>=<span class="hljs-value">"speed"</span> <span class="hljs-attribute">intervalType</span>=<span class="hljs-value">"time"</span> <span class="hljs-attribute">intervalUnit</span>=<span class="hljs-value">"s"</span> <span class="hljs-attribute">intervalValue</span>=<span class="hljs-value">"10"</span>&gt;</span> 
+         0.0, 13.3866, 12.6856, 12.4970, .... 
+     <span class="hljs-tag">&lt;/<span class="hljs-title">extendedData</span>&gt;</span> 
+     <span class="hljs-tag">&lt;<span class="hljs-title">extendedData</span> <span class="hljs-attribute">dataType</span>=<span class="hljs-value">"heartRate"</span> <span class="hljs-attribute">intervalType</span>=<span class="hljs-value">"time"</span> <span class="hljs-attribute">intervalUnit</span>=<span class="hljs-value">"s"</span> <span class="hljs-attribute">intervalValue</span>=<span class="hljs-value">"10"</span>&gt;</span> 
+         0, 88, 108, 115, .... 
+     <span class="hljs-tag">&lt;/<span class="hljs-title">extendedData</span>&gt;</span> 
+ <span class="hljs-tag">&lt;/<span class="hljs-title">extendedDataList</span>&gt;</span>
+</code></pre>
+<p> With a little bit of code like this:  </p>
+<pre class="highlight"><code class="cs"> work.Snapshots = 
+     <span class="hljs-keyword">from</span> n <span class="hljs-keyword">in</span> extendedData.Elements(<span class="hljs-string">"extendedData"</span>) 
+     <span class="hljs-keyword">select</span>     <span class="hljs-keyword">new</span> Workout.SnapShot { 
+                 DataType = n.Attribute(<span class="hljs-string">"dataType"</span>).Value, 
+                 Interval = (<span class="hljs-keyword">int</span>) n.Attribute(<span class="hljs-string">"intervalValue"</span>), 
+                 IntervalType = n.Attribute(<span class="hljs-string">"intervalType"</span>).Value, 
+                 IntervalUnit = n.Attribute(<span class="hljs-string">"intervalUnit"</span>).Value, 
+                 Intervals = n.Value.Split(<span class="hljs-string">','</span>).Select(p =&gt; Convert.ToSingle(p.Trim())) };
+</code></pre>
+<p> into something useful. The best part - no more XPath string literals in your code. 2nd best part - that (int) cast. That isn&#39;t really a cast - it&#39;s actually an indirect call to Convert.ToInt32. So it parses the underlying value contained in the Attribute (or Element), then converts it into the correct type. That&#39;s the kind of coding magic I like.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'beautiful-linq-to-xml';
+        var disqus_title = 'Beautiful LINQ to Xml';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Setting up MongoDB to work with Derby.js | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="setting-up-mongodb-to-work-with-derby-js" class="post">
+  <div class="post-date">Thu Sep 06 2012
+  <div class="post-content"><h1 id="setting-up-mongodb-to-work-with-derby-js">Setting up MongoDB to work with Derby.js</h1>
+<p>This post is going to cover installing and configuring MongoDB to use with Derby. If you&#39;re reading this post looking to add model persistence to your Derby application but don&#39;t know much about MongoDB, understanding MongoDB will help you understand Derby and the model system it uses.</p>
+<h1 id="what-s-mongodb-">What&#39;s MongoDB?</h1>
+<p>From their website:</p>
+<blockquote>
+<p>MongoDB (from &quot;humongous&quot;) is a scalable, high-performance, open source NoSQL database.</p>
+</blockquote>
+<p>If you&#39;ve never used <a href="http://www.mongodb.org/">MongoDB</a> before, you should immediately go <a href="http://try.mongodb.org/">here</a>. This is the easiest, fastest way to learn the basics of what mongo is and how it works. And it only takes about fifteen minutes. It&#39;s even interactive to keep you from getting bored. Go give it a play.</p>
+<h1 id="derby-and-mongodb">Derby and MongoDB</h1>
+<p>Now that you have an idea about how MongoDB works, many of the conventions Derby uses for models should make sense. If you scan through the <a href="https://github.com/codeparty/racer/blob/master/src/descriptor/query/README.md">Derby Query Readme</a> now, hopefully is makes a bit more sense (like where the term &quot;gte&quot; came from).</p>
+<h1 id="installing-mongodb">Installing MongoDB</h1>
+<p>If you still need to install MongoDB go <a href="http://www.mongodb.org/display/DOCS/Quickstart">here</a> for downloads and installation directions.</p>
+<h1 id="configuring-derby-to-use-mongodb">Configuring Derby to use MongoDB</h1>
+<p>Now that you know about MongoDB, let&#39;s get MongoDB set up to work with <a href="http://derbyjs.com/">Derby</a>. This is straightforward and takes about two minutes. To add MongoDB to your Derby application, you&#39;ll need to include the <code>racer-db-mongo</code> package in your project. Update your <code>package.json</code> file to look something like this:</p>
+<pre class="highlight"><code class="json"> {
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"potluck"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+    "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"0.0.1"</span></span>,
+    "<span class="hljs-attribute">main</span>": <span class="hljs-value"><span class="hljs-string">"./server.js"</span></span>,
+    "<span class="hljs-attribute">dependencies</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">derby</span>": <span class="hljs-value"><span class="hljs-string">"*"</span></span>,
+        "<span class="hljs-attribute">derby-ui-boot</span>": <span class="hljs-value"><span class="hljs-string">"*"</span></span>,
+        "<span class="hljs-attribute">express</span>": <span class="hljs-value"><span class="hljs-string">"3.0.0beta4"</span></span>,
+        "<span class="hljs-attribute">gzippo</span>": <span class="hljs-value"><span class="hljs-string">"&gt;=0.1.7"</span></span>,
+        "<span class="hljs-attribute">racer-db-mongo</span>": <span class="hljs-value"><span class="hljs-string">"*"</span> //this is the line. Glory in its beauty.
+    </span>}</span>,
+    "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+</span>}
+</code></pre>
+<p>Then, at the command prompt, update your project (and download the recently added <code>racer-db-mongo</code> dependency) using the following command:</p>
+<pre class="highlight"><code class="sql"> npm <span class="hljs-operator"><span class="hljs-keyword">update</span>
+</span></code></pre><p>You&#39;ll have to update your server configuration (by default in <code>/lib/server/index.js</code>) to use the new dependency. This requires TWO new lines of code</p>
+<pre class="highlight"><code class="javascript">derby.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'racer-db-mongo'</span>)); <span class="hljs-comment">// This line is new</span>
+app.createStore({ listen: server , db: {type: <span class="hljs-string">'Mongo'</span>, uri: <span class="hljs-string">'mongodb://localhost/database'</span>} <span class="hljs-comment">/* This line is new */</span> });
+</code></pre>
+<p>That&#39;s all the changes you need to make to add MongoDB to your project. So why I&#39;d bother with a blog post?</p>
+<h1 id="what-about-troubleshooting-">What About Troubleshooting?</h1>
+<p>Now, if you go and start your Derby application, you might see the following error:</p>
+<pre class="highlight"><code class="vbnet"><span class="hljs-keyword">Error</span>: failed <span class="hljs-keyword">to</span> connect <span class="hljs-keyword">to</span> [localhost:<span class="hljs-number">27017</span>]
+</code></pre><p>Which means:</p>
+<ol>
+<li>You&#39;ve installed the <code>racer-db-mongo</code> dependency correctly!</li>
+<li>You now need to:<ul>
+<li>Install MongoDB</li>
+<li>Turn on MongoDB</li>
+<li>OR Fix MongoDB
+If you&#39;ve forgotten to <a href="http://www.mongodb.org/display/DOCS/Quickstart">install Mongo</a>, if you look around, you&#39;ll probably find a link somewhere which will help you out.</li>
+</ul>
+</li>
+</ol>
+<h1 id="starting-stopping-statusing-mongodb">Starting/Stopping/Statusing MongoDB</h1>
+<p>If you&#39;ve installed Mongo, you have to start the service before Derby can use it. On Ubuntu, you start Mongo using the following command:</p>
+<pre class="highlight"><code class="bash"> <span class="hljs-built_in">sudo</span> start mongodb
+</code></pre><p>Remember to stop Mongo later with:</p>
+<pre class="highlight"><code class="bash"> <span class="hljs-built_in">sudo</span> stop mongodb
+</code></pre><p>If you&#39;ve started Mongo, then loaded your Derby application, and you&#39;re still getting an error, it&#39;s possible that Mongo did not start correctly. Typing:</p>
+<pre class="highlight"><code class="bash"> <span class="hljs-built_in">sudo</span> status mongodb
+</code></pre><p>will let you know if Mongo is running or not. If you&#39;ve run the Mongo Start command, yet the status command is telling you that Mongo is stopped, the most likely cause is Mongo did not shut down gracefully last time it was run. You&#39;ll have to go and repair your installation (luckily, this is pretty easy).</p>
+<h1 id="repairing-mongodb">Repairing MongoDB</h1>
+<p>To repair your installation, run the following commands:</p>
+<pre class="highlight"><code class="bash">$ <span class="hljs-built_in">sudo</span> rm /var/lib/mongodb/mongod.lock
+$ <span class="hljs-built_in">sudo</span> -u mongodb mongod <span class="hljs-operator">-f</span> /etc/mongodb.conf --repair
+</code></pre><p><em>The code above was taken from <a href="http://blog.brianbuikema.com/2011/01/mongodb-ubunto-overview-installation-setup-dev-python-2/">this</a> great article</em> At this point, you should have a working copy on MongoDB along with a working integration with Derby. Congrats!</p>
+<h1 id="mongodb-is-working-great-now-derby-hates-me">MongoDB is working great - now Derby hates me</h1>
+<p>If your application loads, but you&#39;re getting a strange error whenever you add to a collection that looks something like this:</p>
+<pre class="highlight"><code class="vbnet"><span class="hljs-keyword">Error</span>: No persistence handler <span class="hljs-keyword">for</span>
+push(FIRST_WORD.SECOND_WORD, [<span class="hljs-built_in">object</span> <span class="hljs-built_in">Object</span>], <span class="hljs-number">18</span>)
+</code></pre><p>It means that you are pushing to the wrong portion on an model path. You can only use push to arrays, and arrays are not objects, and you can only use objects for the first and second words of your model path. In the case shown above, a push is attempting to be made to</p>
+<pre class="highlight"><code class="avrasm"> FIRST_WORD<span class="hljs-preprocessor">.SECOND</span>_WORD
+</code></pre><p>which equates to</p>
+<pre class="highlight"><code class="avrasm"> FIRST_WORD<span class="hljs-preprocessor">.SECOND</span>_WORD<span class="hljs-preprocessor">.push</span>(object)
+</code></pre><p>which means SECOND_WORD is an array (which isn&#39;t allowed). If this last bit of explanation might have well been in Latin, check out <a href="/posts/20120722-derby-js-playing-with-models">this post</a>. It&#39;ll explain a little bit about how to declare models and what Derby is expecting you to do. Unfortunately, you CAN use the second word of a model path as an array without persistence support. So this kind of bug will only surface once you&#39;ve got MongoDB integrated with Derby.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'setting-up-mongodb-to-work-with-derby-js';
+        var disqus_title = 'Setting up MongoDB to work with Derby.js';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Introducing Songbird | A Place for Poor Examples</title>
+	<meta name="description" content="How to have promises everywhere, all the time" />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="introducing-songbird" class="post">
+  <div class="post-date">Sun Feb 09 2014
+  <div class="post-content"><h1 id="introducing-songbird">Introducing Songbird</h1>
+<p>Would you rather write this:</p>
+<pre class="highlight"><code class="javascript"><span class="hljs-keyword">var</span> updateUser = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, attributes, callback)</span> {</span>
+  User.findOne(id, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, user)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+
+    user.set(attributes);
+    user.save(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, updated)</span> {</span>
+      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+
+      console.log(<span class="hljs-string">"Updated"</span>, updated);
+      callback(<span class="hljs-literal">null</span>, updated);
+    });
+  });
+});
+</code></pre>
+<p>Or this:</p>
+<pre class="highlight"><code class="coffeescript">  User.promise.findOne(id).<span class="hljs-keyword">then</span>( (user) →
+    user.set(attributes)
+    user.promise.save()
+  ).<span class="hljs-keyword">then</span> <span class="hljs-function"><span class="hljs-params">(user)</span> -&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Updated"</span>, user)
+</code></pre>
+<p><a href="http://www.github.com/duereg/songbird">Songbird</a> allows you to easily mix asynchronous and synchronous programming styles in node.js.</p>
+<p>Songbird is built upon the <a href="https://raw2.github.com/petkaantonov/bluebird/master/API.md">bluebird promise library</a> (hence the name).</p>
+<h2 id="install">Install</h2>
+<p>Songbird requires node version 0.6.x or greater.</p>
+<pre class="highlight"><code class="cmake">npm <span class="hljs-keyword">install</span> songbird
+</code></pre><h2 id="examples">Examples</h2>
+<h3 id="without-songbird">Without Songbird</h3>
+<p>Using standard node callback-style APIs without Songbird, we write
+(from <a href="http://nodejs.org/docs/v0.6.14/api/fs.html#fs_fs_readfile_filename_encoding_callback">the fs docs</a>):</p>
+<pre class="highlight"><code class="javascript">fs.readFile(<span class="hljs-string">'/etc/passwd'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, data)</span> {</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+  console.log(data);
+});
+</code></pre>
+<h3 id="using-the-promise-property">Using the promise property</h3>
+<p>Using Songbird, we write:</p>
+<pre class="highlight"><code class="javascript">fs.promise.readFile(<span class="hljs-string">'/etc/passwd'</span>).then(console.log);
+</code></pre>
+<h3 id="object-function-mixins">Object &amp; Function mixins</h3>
+<p>Songbird mixes <code>promise</code> into <code>Function.prototype</code> so you can
+use them directly as in:</p>
+<pre class="highlight"><code class="javascript">readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile;
+readFile.promise(<span class="hljs-string">'/etc/passwd'</span>).then(console.log);
+</code></pre>
+<p>Songbird adds <code>promise</code> to <code>Object.prototype</code> correctly so they
+are not enumerable.</p>
+<p>These proxy methods also ignore all getters, even those that may
+return functions. If you need to call a getter with Songbird that returns an
+asynchronous function, you can do:</p>
+<pre class="highlight"><code class="javascript">func = obj.getter
+func.promise.call(obj, args)
+</code></pre>
+<h3 id="handling-multiple-promises">Handling Multiple Promises</h3>
+<p>Requiring the songbird library not only updates the Object and Function prototype, but also returns a Promise library in which you can carry out certain actions that aren&#39;t easily handled from the the promise property.</p>
+<p>For example: you have a situation where you&#39;re dealing with multiple promises, but don&#39;t care what order they complete in.</p>
+<pre class="highlight"><code class="javascript">Promise = <span class="hljs-built_in">require</span>(<span class="hljs-string">"songbird"</span>);
+
+Promise.all([task1, task2, task3]).spread(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result1, result2, result3)</span>{</span>
+
+});
+</code></pre>
+<p>Normally when using <code>.then</code> the code would be like:</p>
+<pre class="highlight"><code class="javascript">Promise = <span class="hljs-built_in">require</span>(<span class="hljs-string">"songbird"</span>);
+
+Promise.all([task1, task2, task3]).then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(results)</span>{</span>
+    <span class="hljs-keyword">var</span> result1 = results[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> result2 = results[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">var</span> result3 = results[<span class="hljs-number">2</span>];
+});
+</code></pre>
+<p>For more information about the underlying bluebird promise API, the <a href="https://raw2.github.com/petkaantonov/bluebird/master/API.md">API docs are here</a>.</p>
+<h3 id="disclaimer">Disclaimer</h3>
+<p>Some people don&#39;t like libraries that mix in to Object.prototype
+and Function.prototype. If that&#39;s how you feel, then Songbird is probably
+not for you.</p>
+<h2 id="contributing">Contributing</h2>
+<pre class="highlight"><code class="php">git <span class="hljs-keyword">clone</span> git:<span class="hljs-comment">//github.com/duereg/songbird.git</span>
+npm install
+npm test
+</code></pre><p>Songbird is written in <a href="http://coffeescript.org">coffeescript</a> with
+source in <code>src/</code> compiled to <code>lib/</code>.</p>
+<p>Tests are written with mocha and chai in <code>test/</code>.</p>
+<p>Run tests with <code>npm test</code> which will also compile the coffeescript to
+<code>lib/</code>.</p>
+<p>Pull requests are welcome. Please provide tests for your changes and
+features. Thanks!</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'introducing-songbird';
+        var disqus_title = 'Introducing Songbird';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

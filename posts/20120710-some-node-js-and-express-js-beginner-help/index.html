@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Some node.js and express.js beginner help | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="some-node-js-and-express-js-beginner-help" class="post">
+  <div class="post-date">Tue Jul 10 2012
+  <div class="post-content"><h1 id="some-node-js-and-express-js-beginner-help">Some node.js and express.js beginner help</h1>
+<p>I&#39;ve just started using <a href="http://nodejs.org/">node.js</a> with <a href="http://expressjs.com">express.js</a> on both Windows (with iisnode) and Ubuntu. I love the stack (one programming language from front to back!), but some of the documentation has been frustrating for me. I wanted to document what I&#39;ve learned so far in the hopes that it&#39;ll help someone else down the line. </p>
+<h2 id="generate-the-starter-app">Generate the starter app</h2>
+<p>At first, I wanted to just hack away modify some of the existing example apps that were out there. However, this ended up being a pretty frustrating experience as most of the basic examples were just sending &#39;Hello World&#39; back to the browser. Now, I didn&#39;t want to do much more than this when I was starting out, but I did at least want to load a basic page with some basic information I passed in. After many hours of browsing blogs and the express documentation, I managed what I wanted, but right after I did all of this from scratch, I found out that the exact basic application I wanted can be generated automatically by express. </p>
+<p><strong>From the express.js documentation: </strong> 
+The quickest way to get started with express is to utilize the executable express(1) to generate an application as shown below: </p>
+<h3 id="create-the-app-">Create the app:</h3>
+<p><code>$ npm install -g express $ express /tmp/foo &amp;&amp; cd /tmp/foo</code></p>
+<h3 id="install-dependencies-">Install dependencies:</h3>
+<p><code>$ npm install -d</code></p>
+<h3 id="start-the-server-">Start the server:</h3>
+<p><code>$ node app.js</code> But what does &quot;generate an app&quot; mean? When I first read those lines, I skipped right past this step, as I though I already had express and its dependencies setup correctly. However, these commands create the basic structure of a web app (with all the basic files, folders, and dependencies installed). Let&#39;s walk the commands to get a better idea what each of them does </p>
+<h2 id="the-installation-commands-explained">The installation commands, explained</h2>
+<p><code>npm install -g express</code> 
+<a href="http://npmjs.org">NPM</a>, or the Node Package Manager, is a tool that comes with node that allows your install node packages quickly and easily from the command line. This command installs express, the popular MVC-ish framework for node. </p>
+<p><code>express /tmp/foo &amp;&amp; cd /tmp/foo</code> 
+This line of code installs express into /tmp/foo, then changes the directory to /tmp/foo. You can also run this command from the folder you want to install express in (just run express from the command line). You can also specify some options when you generate your starter app, such as the templating and stylesheet language you want to use. </p>
+<p><code>express -t jade -c stylus</code> 
+This command tells express you want to install in the current directory, using <a href="http://jade-lang.com/">Jade</a> as your template language, and <a href="http://learnboost.github.com/stylus/">Stylus</a> as your stylesheet language. </p>
+<p><code>npm install -d</code> 
+This command installs any dependencies that express needs for the instance you have installed. Express has a couple js packages that it needs to run, so this command goes and downloads the latest version of these dependencies. </p>
+<h2 id="what-generate-an-app-gives-you">What &quot;Generate An App&quot; Gives You</h2>
+<ul>
+<li>node_modules</li>
+</ul>
+<p>This folder contains all the js dependencies (like express, stylus, jade, etc) that you need to run express on node. </p>
+<ul>
+<li>public</li>
+</ul>
+<p>This is where your static files go (by default). By default, this folder contains three sub-folders: </p>
+<pre class="highlight"><code class="markdown"><span class="hljs-bullet">1. </span>images
+<span class="hljs-bullet">2. </span>javascripts
+<span class="hljs-bullet">3. </span>stylesheets
+</code></pre><ul>
+<li>routes</li>
+</ul>
+<p>This is where your routing logic goes. Initially, this only contains one route (to your example view).</p>
+<ul>
+<li>views</li>
+</ul>
+<p>This folder is the default location for the views you&#39;ll use in your application. Views usually contain dynamic content, and are often written in a templating language. </p>
+<p>The last thing that&#39;s generated is app.js, which contains a good sample of configuration code as well as the only route your example route contains: </p>
+<p><code>var express = require(&#39;express&#39;) , routes = require(&#39;./routes&#39;); ... app.get(&#39;/&#39;, routes.index);</code></p>
+<p>If you jump into the routes folder, and open index.js, you&#39;ll see your index route: </p>
+<p><code>exports.index = function(req, res) { res.render(&#39;index&#39;, { title: &#39;Express&#39; }) };</code> </p>
+<p>But what does this code mean? The first line of code defines two variables, <code>express and routes</code>. </p>
+<p>The first is a registered node module, express, and the second is just a js file. </p>
+<p>Later in <code>app.js</code>, the line <code>app.get</code> tells node that when the the base Url of your application (something like <a href="http://localhost:3123/">http://localhost:3123/</a>) is called in a browser, that the routes.index method should be called. </p>
+<p>But how does routes variable in the first file get the index method, when in <code>index.js</code> in the routes folder only defines the <code>index</code> function on something calls <code>exports</code>? </p>
+<p>To keep the system loosely coupled, node using a library called <a href="http://requirejs.org">RequireJs</a> to inject dependencies into an application. One way to do this is create a function you want to be able to export to the rest of your application, then simply add your function to the <code>exports</code> object in your code. When you call <code>require(PATH_TO_YOUR_FILE)</code>, any methods you added to <code>exports</code> will be added to the object returned by your call to <code>require</code>. </p>
+<p>The final code is the the call to <code>res.render</code>. This is a call to <code>express</code>, which is telling express to load the file &#39;index.jade&#39; (because in this instance, jade is the default render engine). The second parameter is passing a javascript object containing one element, <code>title</code>, which will be passed the index.jade template to be rendered.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'some-node-js-and-express-js-beginner-help';
+        var disqus_title = 'Some node.js and express.js beginner help';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

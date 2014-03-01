@@ -1,0 +1,18 @@
+a,a:link{cursor:pointer}
+@media (max-width: 767px){body section.content{padding-left:5px;padding-right:5px}
+}@media (min-width: 768px) and (max-width: 991px){body section.content{padding-left:10px;padding-right:10px}
+}@media (min-width: 992px) and (max-width: 1199px){body section.content{padding-left:20px;padding-right:20px}
+}@media (min-width: 1200px){body section.content{padding-left:40px;padding-right:40px}
+}body{padding-top:60px;font-family:Georgia,Palatino,'Palatino Linotype',Times,'Times New Roman',"Hiragino Sans GB","STXihei","微软雅黑",serif;color:#444;background-color:#fafafa;}
+body img#logo{-webkit-box-shadow:#123456 0 0 10px;box-shadow:#123456 0 0 10px;margin-bottom:15px;width:100%}
+body section.content{background-color:#fff;padding-top:10px;padding-bottom:20px;margin-bottom:10px;-webkit-border-radius:5px;border-radius:5px}
+table thead th{padding-right:10px}
+table tfoot th,table tbody th{border-top:1px solid #ddd;padding-right:10px}
+table tfoot td,table tbody td{padding-right:10px}
+.linkwidget{margin-bottom:20px}
+.shortDate{font-family:"Lucida Console",Monaco,monospace}
+img.small{height:200px}
+img.medium{height:400px}
+img.large{height:600px}
+.fat-top-margin{padding-top:60px}
+p.header{text-decoration:underline;text-transform:uppercase}

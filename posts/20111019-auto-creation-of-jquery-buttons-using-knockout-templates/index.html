@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Auto Creation of jQuery Buttons using Knockout Templates | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="auto-creation-of-jquery-buttons-using-knockout-templates" class="post">
+  <div class="post-date">Wed Oct 19 2011
+  <div class="post-content"><h1 id="auto-creation-of-jquery-buttons-using-knockout-templates">Auto Creation of jQuery Buttons using Knockout Templates</h1>
+<p>While converting ASP.NET Webforms to be more clienty using HTML 5, Knockout, and jQuery, I came across a problem. I want to use jQuery buttons on my Knockout-rendered rows, but whenever a new row gets added via a template, the buttons were not being created as jQuery buttons. The issue was, I was calling a method to create the buttons after the page was fully rendered, but never again. So all the new rows wouldn&#39;t have the .button method run on them, and thus no sparkly jQuery buttons. What to do? I&#39;ve got button markup that looks like this: </p>
+<pre class="highlight"><code class="xml"> <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"jButton"</span> <span class="hljs-attribute">data-icon-name</span>=<span class="hljs-value">"refresh"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"click: refresh"</span>&gt;</span> Refresh <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p> And some existing code, that given an element with class &quot;jButton&quot; and optionally the data-icon-name set the icon you want, creates buttons out of divs. I saw one person handle this via a new binding on the button, but I didn&#39;t want to have to change to my existing template to get the behavior I was looking at. I tried a couple of different options, and while looking through the Knockout examples for other options came across the afterAdd option in the template binding. So a quick change to my template binding: </p>
+<pre class="highlight"><code class="xml"> <span class="hljs-tag">&lt;<span class="hljs-title">tbody</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"template: {name:'rowCostItem', foreach: CostItems, afterAdd: function(elem) { var row = $(elem); Buttons.createFrom(row); }}"</span>&gt;</span>
+</code></pre>
+<p> And now I get nice jQuery buttons for all my new rows. P.S. The heart of the Buttons.createFrom() method: </p>
+<pre class="highlight"><code class="javascript"> <span class="hljs-keyword">var</span> btn = $(<span class="hljs-keyword">this</span>); 
+ <span class="hljs-keyword">var</span> iconName = btn.data(<span class="hljs-string">"iconName"</span>); 
+
+ <span class="hljs-keyword">if</span> (iconName) { 
+     btn.button({ icons: { primary: <span class="hljs-string">'ui-icon-'</span> + iconName} });
+ } <span class="hljs-keyword">else</span> { 
+     btn.button(); 
+ }
+</code></pre>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'auto-creation-of-jquery-buttons-using-knockout-templates';
+        var disqus_title = 'Auto Creation of jQuery Buttons using Knockout Templates';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

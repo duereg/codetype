@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>React, server side rendering, and a cool data embedding technique | A Place for Poor Examples</title>
+	<meta name="description" content="Novel way to embed data in an HTML page" />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="react-server-side-rendering" class="post">
+  <div class="post-date">Thu Jan 16 2014
+  <div class="post-content"><h1 id="react-server-side-rendering-and-a-cool-data-embedding-technique">React, server side rendering, and a cool data embedding technique</h1>
+<p>I&#39;ve been spending some time going through the <a href="http://facebook.github.io/react/">React</a> docs and examples for some work on a side project.</p>
+<p>What is React? From their website:</p>
+<blockquote>
+<p>React: A javascript library for building user interfaces</p>
+</blockquote>
+<p>The React devs have some killer ideas about how to render web pages using something they call a Virtual DOM. Also from React&#39;s website:</p>
+<blockquote>
+<p>React uses a virtual DOM diff implementation for ultra-high performance. It can also render on the server using Node.js — no heavy browser DOM required.</p>
+</blockquote>
+<p>Some people who&#39;ve been experimenting with React has shown dramatic client-side rendering performance improvements - <a href="http://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/">2-4x faster in the average case, up to 30-40x in certain cases</a>.</p>
+<p>The Virtual DOM implementation would be enough for most people to switch over to trying out React, but I think the killer feature of React isn&#39;t the blazing client-side performance - it&#39;s the ability to server-side render.</p>
+<p>It&#39;s well known that <a href="https://blog.twitter.com/2012/improving-performance-twittercom">server-side rendering can reduce page load times</a>. Twitter claimed to reduce page loads times to 1/5th of what they had been by server side rendering.</p>
+<p>So:</p>
+<p><code>1/5th * (2x as fast) == Really, Really Fast Rendering</code></p>
+<p>(Especially in low-power devices like phones)</p>
+<p>So how do you server side render with React?</p>
+<p>The client makes a request for a page.</p>
+<p>On the server, you:</p>
+<ol>
+<li>You grab whatever data is appropriate for the request</li>
+<li>You pass that data into some React components, generating HTML</li>
+<li>You embed the data in a page to send to the client</li>
+<li>You embed the generated HTML in a page to send to the client</li>
+<li>You add a script block to include all the needed JS in the page to glue to all together</li>
+<li>You send the client back the html with the data / generated HTML / react JS code.</li>
+</ol>
+<p>There is a good example of this flow <a href="https://npmjs.org/package/react-server-example">here</a>.</p>
+<p>My favorite part of this example - and a cool way to embed some code - are these lines of code:</p>
+<pre class="highlight"><code class="javascript">
+  <span class="hljs-comment">// Include our static React-rendered HTML in our content div.</span>
+  <span class="hljs-comment">// This is the same div that we render the component to on the client side,</span>
+  <span class="hljs-comment">// and by using the same initial data, we can ensure that the contents are the same</span>
+  <span class="hljs-comment">// (React is smart enough to ensure no rendering will actually occur on page load)</span>
+ <span class="hljs-string">'&lt;div id=content&gt;'</span> + myAppHtml + <span class="hljs-string">'&lt;/div&gt;'</span> +
+
+  <span class="hljs-comment">// Ensure that our initial data is also accessible on the client-side by embedding it</span>
+  <span class="hljs-comment">// here in the page.</span>
+  <span class="hljs-comment">// We could have used a window-level variable, or even a JSON-typed script tag,</span>
+  <span class="hljs-comment">// but this option is safe from namespacing and injection issues,</span>
+  <span class="hljs-comment">// and doesn't require parsing</span>
+  <span class="hljs-string">'&lt;script type=text/javascript&gt;'</span> +
+    <span class="hljs-string">'document.getElementById("content").myAppProps = '</span> + escapeJs(<span class="hljs-built_in">JSON</span>.stringify(props)) +
+  <span class="hljs-string">'&lt;/script&gt;'</span> +
+</code></pre>
+<p>That embedding code - adding data to a DOM element for a particular component - is a pretty cool way to get the data you need client-side.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'react-server-side-rendering';
+        var disqus_title = 'React, server side rendering, and a cool data embedding technique';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

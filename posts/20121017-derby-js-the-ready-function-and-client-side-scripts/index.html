@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Derby.js - The Ready() Function, and Adding Client-Side Scripts to your App | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="derby-js-the-ready-function-and-client-side-scripts" class="post">
+  <div class="post-date">Wed Oct 17 2012
+  <div class="post-content"><h1 id="derby-js-the-ready-function-and-adding-client-side-scripts-to-your-app">Derby.js - The Ready() Function, and Adding Client-Side Scripts to your App</h1>
+<p>I&#39;ve found a neat feature of <a href="http://derbyjs.com">derby</a> dealing with the ready() function. I&#39;ve been creating a derby app, and in my application I need to load up a client-side calendar. With a standard HTML web page this is straightforward thing to do. On the page you wanted the calendar, you would include the client js for the calendar, some code to load it, and that would be that. Derby introduced some complexity to this relatively simple task. On my first attempt, I put my scripts in the section of the page that I needed the calendar on. I added a script to load the calendar as well. When I went to the url of the page, it loaded immediately. Success! (I thought).</p>
+<p>Then I clicked a link away from my calendar, and then clicked back. No calendar. What happened? When I loaded the link originally, the page was rendered from the server. The second time, the page was rendered client side. Something wasn&#39;t working with loading the calendar on the client-side render. You need a place to put your code that guarantees that it will load on the client-side. The <code>app.ready()</code> function is designed to handle this scenario. What is the purpose of the <code>app.ready()</code> function? From the derby documentation:</p>
+<blockquote>
+<p>Code that responds to user events and model events should be placed within the app.ready() callback. This provides the model object for the client and makes sure that the code is only executed on the client. <strong>This function is called as soon as the Derby app is loaded on the client.</strong> Note that any code within this callback is only executed on the client and not on the server.</p>
+</blockquote>
+<p>I&#39;ve bolded the part I think is particularly important. This code is run as soon as the client is loaded. Which means if you have more than a single-page app, using <code>app.ready()</code> to load a feature might not work out. So what to do? An undocumented feature of Derby - app.on(). What does it do? It allows you to load code AFTER a specific page has loaded. Which is exactly what I&#39;m looking for. So here&#39;s what I ended up writing in my <code>app.ready()</code>:</p>
+<pre class="highlight"><code class="javascript">app.on(<span class="hljs-string">'render:calendar'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx)</span> {</span>
+  logger.log(<span class="hljs-string">"rendering calendar client-side..."</span>);
+  <span class="hljs-keyword">new</span> Timeline(<span class="hljs-string">"timeline"</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>());
+});
+</code></pre>
+<p> In this example this code will run after rendering the <code>calendar</code> view. On the Calendar page, there is a script block which loads the <code>Timeline</code> function. After writing this code, I tried my page again. Still no luck. I wasn&#39;t getting the calendar to load on both the client and server load. On a lark, I moved the block containing my Timeline javascript to my index view, and tried again. Success. Which makes sense. If you are rendering pages via the client side load, additional resources aren&#39;t going to be loaded. So by putting my script into the index view, it&#39;s unfortunately loaded for all my pages, but at least it&#39;s available for both the client and server side rendering of my cool control.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'derby-js-the-ready-function-and-client-side-scripts';
+        var disqus_title = 'Derby.js - The Ready() Function, and Adding Client-Side Scripts to your App';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>

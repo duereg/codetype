@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		 More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Derby.js - Starting out with Components; Creating a Twitter Bootstrap Input Component | A Place for Poor Examples</title>
+	<meta name="description" content="What I've learned about software development. Don't expect too much." />
+	<meta name="keywords" content="JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET" />
+	<meta name="author" content="Matt Blair" />
+	<meta name="google-site-verification" content="pLaNxAD_C5VD6yWlQnX9ScKil_pSvI3lXz-9k4nOyYU" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta name="generator" content="DocPad v6.63.3" />
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/images/icons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icons/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icons/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icons/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/images/icons/apple-touch-icon-57-precomposed.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/styles/mono-blue.css" />
+
+	<!-- Atom Feed -->
+	<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Posts">
+</head>
+<body>
+	<!-- Menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">A Place for Poor Examples</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/about"
+							class=""
+						>
+							<a href="/pages/about" property="dc:title">
+								About
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/posts"
+							class=""
+						>
+							<a href="/pages/posts" property="dc:title">
+								Posts
+							</a>
+						</li>
+					
+						<li
+							typeof="sioc:Page"
+							about="/pages/hockey-stuff"
+							class=""
+						>
+							<a href="/pages/hockey-stuff" property="dc:title">
+								Hobbies
+							</a>
+						</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<!-- Content -->
+		<section id="content" class="content">
+			<article id="derby-js-starting-out-with-components-creating-a-twitter-bootstrap-input-component" class="post">
+  <div class="post-date">Sat Aug 25 2012
+  <div class="post-content"><h1 id="derby-js-starting-out-with-components-creating-a-twitter-bootstrap-input-component">Derby.js - Starting out with Components; Creating a Twitter Bootstrap Input Component</h1>
+<p>In working with <a href="http://twitter.github.com/bootstrap/base-css.html#forms">Twitter Bootstrap Forms</a>, one of my favorite ways to lay out a form is using the Horizontal form layout. The layout requires a bit of css/html to get each of the form elements (the text boxes and what not) to play nicely. To add form elements to the horizontal form layout, you need the following html structure for each field:</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"control-group"</span>&gt;</span><span class="hljs-comment">&lt;!-- additional classes here to change state --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"control-label"</span>&gt;</span>INPUT_LABEL_TEXT_HERE<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"controls"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> /&gt;</span> <span class="hljs-comment">&lt;!-- This is the control you want to display --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"help-inline"</span>&gt;</span>ERROR_OR_INFORMATIONAL_MESSAGE_HERE<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p> That&#39;s a hefty amount of markup to copy and paste all over your pristine views. Which makes this a great place to use a <a href="http://derbyjs.com/#components">Component</a>.</p>
+<h2 id="so-what-s-a-component-http-derbyjs-com-components-">So what&#39;s a <a href="http://derbyjs.com/#components">Component</a>?</h2>
+<p>A component is basically a derby template you can supply parameters to. Those parameters are supplied in the form of HTML attributes and HTML content. There are two types of components: application and library. Application components can only be used in a single project. Library components can be re-used across multiple projects. For my project I&#39;m going to create an application component. Eventually if I need the component on another project I&#39;ll add it to a component library. But that process is more complicated and less documented so I&#39;ll save that for another day. There are two ways to create an application component:</p>
+<ul>
+<li><strong>Inline</strong>
+If your component is only being used on a single view, you can add it to the same file as your view.</li>
+<li><strong>External</strong>
+If your component is going to be used on multiple views, you should create a separate file for your component.  Apparently there are two ways to create a library component as well:</li>
+</ul>
+<blockquote>
+<p>The ui directory contains a component library, which can be used to create custom components for the containing project. These are re-usable templates, scripts, and styles that can be used to create custom HTML tags for use in applications. General purpose component libraries can be created as separate npm modules.</p>
+</blockquote>
+<p>All components run under the scope of the context in which they are called. Which means you can bind model data to your component without having to pass your component any values. For example:</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>All toys:<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+  {each toys as :toy} <span class="hljs-comment">&lt;!-- Alias :toy available to the component --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">app:toyStatus</span>&gt;</span> <span class="hljs-comment">&lt;!-- All application components live in the app namespace --&gt;</span>
+  {/}
+
+<span class="hljs-tag">&lt;<span class="hljs-title">toyStatus:</span>&gt;</span>  <span class="hljs-comment">&lt;!-- this tag says I am a component --&gt;</span>
+  <span class="hljs-comment">&lt;!-- I'm using alias :toy here, defined above --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>The toy is located at {:toy.location}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+</code></pre>
+<p> If all of this &quot;Model-Bindy&quot; stuff is foreign to you, check out my post <a href="/posts/20120807-derby-js-working-with-view-templates-models-and-bindings">Working with Views, Models, and Bindings</a>.</p>
+<h2 id="i-don-t-like-the-way-you-used-a-scoped-alias-from-your-view-in-your-component-what-if-my-component-is-in-another-file-what-if-i-want-to-use-a-field-with-a-different-name-is-there-a-better-way-to-pass-values-to-a-component-">I don&#39;t like the way you used a scoped alias from your view in your component. What if my component is in another file? What if I want to use a field with a different name? Is there a better way to pass values to a component?</h2>
+<p>From the derby documentation:</p>
+<blockquote>
+<p>Literal values or variable values can be passed to components. These component attributes are available through “macro” template tags, which have triple curly braces.</p>
+</blockquote>
+<p>What does that look like? Again, from the docs:</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Body:</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">app:greeting</span> <span class="hljs-attribute">message</span>=<span class="hljs-value">"Hello"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">greeting:</span>&gt;</span>
+  I was passed this message as an attribute: {{{message}}}
+</code></pre>
+<p> You can also pass html to your component as well. That is a two-part trick: First, write your component with an opening and closing tag. Put the value you want to pass to your component between the tags. Then, in your component, you use the special triple-curly bracket {{{content}}} macro-tag to reference what you passed in. For example:</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Body:</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">app:fancyButton</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">b</span>&gt;</span>Click me now!<span class="hljs-tag">&lt;/<span class="hljs-title">b</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">app:fancyButton</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">fancyButton:</span> <span class="hljs-attribute">nonvoid</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"fancy"</span>&gt;</span>
+    {{{content}}}
+  <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+</code></pre>
+<h2 id="but-i-already-knew-all-that-how-do-i-make-a-component-">But I already knew all that. How do I make a component?</h2>
+<p>The easiest way is to just add the component to your page, as show in the simple example above. This example is taken from the derby website, and it shows you how to reference a component in a separate file:</p>
+<h3 id="shared-html">shared.html</h3>
+<h4 id="-this-is-your-component-which-is-located-in-your-views-folder-">(This is your component, which is located in your views folder.)</h4>
+<pre class="highlight"><code class="xml"> <span class="hljs-tag">&lt;<span class="hljs-title">profile:</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"profile"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<h3 id="home-html">home.html</h3>
+<h4 id="-this-is-the-view-that-will-use-your-component-">(This is the view that will use your component.)</h4>
+<pre class="highlight"><code class="xml">    <span class="hljs-comment">&lt;!-- This line imports your component into the view --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">import:</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"shared"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">Body:</span>&gt;</span>
+      Welcome to the home page
+      <span class="hljs-comment">&lt;!-- include component from an imported namespace --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">app:shared:profile</span>&gt;</span>
+</code></pre>
+<p> The <import> <code>tag at the top, used to include your component into your view, can be called with variety of parameters. For more information on the  &lt;import&gt;</code> tag go to <a href="http://derbyjs.com/#importing_templates">http://derbyjs.com/#importing_templates</a>.</p>
+<h2 id="didn-t-you-say-something-about-twitter-bootstrap-">Didn&#39;t you say something about Twitter Bootstrap?</h2>
+<p>Oh yeah. Got sidetracked there. As you can see, creating a component is relatively easy. Since I already have all the Twitter Bootstrap markup ready, I might as well create a Twitter Bootstrap Component for Derby. To do this, all you have to do is figure out what you want to be able to customize.</p>
+<h3 id="boot-html">boot.html</h3>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">input:</span>&gt;</span>
+{{{#with data}}}
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"control-group {{cssClass}}"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"control-label"</span>&gt;</span>{{label}}<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"controls"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"{{type}}"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"{{value}}"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"help-inline"</span>&gt;</span>{{message}}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+{{{/}}}
+</code></pre>
+<p> As you can see, I added bindings for <code>{{cssClass}}, {{label}}, {{type}}, {{value}}, and {{message}}</code>. Why did I use a #with block to set the scope of my object being passed in? There is a bug in the derby code right now (documented <a href="https://github.com/codeparty/derby/issues/138">here</a>) where you can&#39;t reference an object&#39;s child properties with the triple curly brackets syntax. So {{{data}}} will work, but {{{data.value}}} won&#39;t. The object being bound to the component:</p>
+<pre class="highlight"><code class="javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value, label, type)</span> {</span>
+    <span class="hljs-keyword">this</span>.label = label;
+    <span class="hljs-keyword">this</span>.value = value;
+    <span class="hljs-keyword">this</span>.message = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">this</span>.cssClass = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">this</span>.type = type || <span class="hljs-string">"text"</span>;
+};
+</code></pre>
+<p> And I call it in my view like this:</p>
+<pre class="highlight"><code class="xml"> <span class="hljs-tag">&lt;<span class="hljs-title">app:boot:input</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"{:person.firstName}"</span>&gt;</span>
+</code></pre>
+<p> Where <code>firstName</code> is an object like <code>data</code> described above. So, in a just a little bit of markup and code, I have a great reusable component that I can use to style the look and feel of my application without having to copy and paste code everywhere. I hope this it helps some of the fledging Derby developers out there.</p>
+</div>
+</article>
+<footer>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'codetype';
+        var disqus_identifier = 'derby-js-starting-out-with-components-creating-a-twitter-bootstrap-input-component';
+        var disqus_title = 'Derby.js - Starting out with Components; Creating a Twitter Bootstrap Input Component';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</footer>
+		</section>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"></script><script defer="defer"  src="/scripts/script.js"></script><script defer="defer"  src="/scripts/analytics.js"></script>
+</body>
+</html>
