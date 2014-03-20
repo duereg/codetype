@@ -7,8 +7,24 @@ status: draft
 layout: post
 ```
 
-# Ember vs Knockout
+# Ember and Knockout Model Comparison
 ## A small, appropriate comparison
+
+[Ember.js](http://emberjs.com/) and [Knockout](http://knockoutjs.com/) are interesting case studies is the library vs framework development in JS.
+
+Ember is a
+> A __framework__ for creating ambitious web applications.
+
+(emphasis is mine).
+
+Knockout is library whose goal is to
+> Simplify dynamic JavaScript UIs with the Model-View-View Model (MVVM) pattern.
+
+Ember is [outspoken and proud of its framework status](https://www.youtube.com/watch?v=jScLjUlLTLI). Knockout makes it very clear that is a small library that is just a tool to build _dynamic JavaScript UIs_.
+
+Ember, while a year younger than Knockout, has SIX TIMES as many commits as Knockout. It's also 4 times the size (71kb vs 17kb, once minified and gzipped).
+
+In the end, Knockout covers a small subset of the same functionality of Ember. I'm going to focus on one particular aspect of their overlapping functionality - how they deal with Models.
 
 ### Getting Computed Properties
 
