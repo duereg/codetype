@@ -26,7 +26,7 @@ Ember, while a year younger than Knockout, has SIX TIMES as many commits as Knoc
 
 In the end, Knockout covers a small subset of the same functionality of Ember. I'm going to focus on one particular aspect of their overlapping functionality - how they deal with Models.
 
-### Getting Computed Properties
+### Read-only computed properties
 
 #### Ember
 
@@ -54,7 +54,7 @@ The differences here are trivial. Ember doesn't need you to tell it what propert
 
 Knockout wants you to explicitly state what properties you want to observe. Knockout then uses the named observable function instead of getters and setter.
 
-### Setting Computed Properties
+### Read/write computed properties
 
 #### Ember
 
@@ -96,6 +96,8 @@ Knockout wants you to explicitly state what properties you want to observe. Knoc
   });
 ```
 
+I think this scenario shows where Knockout really shine. I find the Knockout code easily readable. The fact that the Ember code needs comments to explain what part of the code is the setter vs getter is damning.
+
 ### Forcing a Property to Recompute Every Time its Called
 
 #### Knockout
@@ -113,6 +115,8 @@ Knockout wants you to explicitly state what properties you want to observe. Knoc
     return this.get('firstName') + ' ' + this.get('lastName');
   }.property('firstName', 'lastName').volatile()
 ```
+
+I think Ember gets the node here for the chainable extension method. Knockout's choice of passing in a extended configuration, while readable, seems a bit clunky to me.
 
 ### Knockout's Algorithm for Dependency Tracking
 
