@@ -98,6 +98,8 @@ Knockout wants you to explicitly state what properties you want to observe. Knoc
 
 I think this scenario shows where Knockout really shine. I find the Knockout code easily readable. The fact that the Ember code needs comments to explain what part of the code is the setter vs getter is damning.
 
+Also, the fact that the Ember code has to explicitly call out what properties it is watching is frustrating as well.
+
 ### Forcing a Property to Recompute Every Time its Called
 
 #### Knockout
