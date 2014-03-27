@@ -3,12 +3,16 @@ title: Ember vs Knockout - Property Comparison
 description: Ember vs Knockout - Property Comparison
 created: 2014/03/20 08:54:43
 post_name: ember-vs-knockout-property-comparison
-status: draft
+status: publish
 layout: post
 ```
 
 # Ember and Knockout Model Comparison
 ## A small, appropriate comparison
+
+At [ModCloth](http://modcloth.com), I've been working on an internal application that uses [Ember.js](http://emberjs.com/) as its front end framework. In going through a crash course on Ember I've noticed certain architectural decisions they've made in building their Observable Models in comparison to other frameworks - most specifically, to [Knockout](http://knockoutjs.com/).
+
+TANGENT
 
 [Ember.js](http://emberjs.com/) and [Knockout](http://knockoutjs.com/) are great contrasts in the library vs framework debate in JS development.
 
@@ -24,7 +28,9 @@ Ember is [outspoken and proud of its framework status](https://www.youtube.com/w
 
 Ember, while a year younger than Knockout, has SIX TIMES as many commits as Knockout. It's also 4 times the size (71kb vs 17kb, once minified and gzipped).
 
-In the end, Knockout covers a small subset of the same functionality of Ember. I'm going to focus on one particular aspect of their overlapping functionality - how they deal with Models.
+/TANGENT
+
+In the end, Knockout covers a small subset of the same functionality of Ember. I'm going to focus on one particular aspect of their overlapping functionality - how they deal with Observable Models.
 
 ### Read-only computed properties
 
@@ -120,11 +126,20 @@ Also, the fact that the Ember code has to explicitly call out what properties it
 
 I think Ember gets the node here for the chainable extension method. Knockout's choice of passing in a extended configuration, while readable, seems a bit clunky to me.
 
+## Conclusion
+
+The biggest difference I see in the two frameworks in regards to Observable Models is the need of Ember to register property dependencies. This seems like a huge drawback to me - what if you change your code and forget to update the dependencies? Or what if you have a typo in writing in the dependencies?
+
+Since Knockout is slightly older than Ember, it makes me wonder why the Ember creators didn't simply take Knockout as a component and incorporate it into their framework. Solving the same problem again after someone has already spent a lot of time solving the problem reminds me of this famous XKCD cartoon:
+
+![Competing Standards](http://imgs.xkcd.com/comics/standards.png)
+
+##Side Note - How does Knockout get away without explicitly defining dependencies?
+
 ### Knockout's Algorithm for Dependency Tracking
 
->
->  It’s actually very simple and rather lovely. The tracking algorithm goes like this:
->
+It’s actually very simple and rather lovely. The tracking algorithm goes like this:
+
 >  1. Whenever you declare a computed observable, KO immediately invokes its evaluator function to get its initial value.
 >  2. While your evaluator function is running, KO keeps a log of any observables (or computed observables) that your  evaluator reads the value of.
 >  3. When your evaluator is finished, KO sets up subscriptions to each of the observables (or computed observables) that   you’ve touched. The subscription callback is set to cause your evaluator to run again, looping the whole process back to step 1 (disposing of any old subscriptions that no longer apply).
