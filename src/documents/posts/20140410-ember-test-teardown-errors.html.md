@@ -9,13 +9,13 @@ layout: post
 
 If you see the following error in Ember.Data 1.0.0-beta.7:
 
-<pre>
+```
 Cannot read property 'addObject' of null
 TypeError: Cannot read property 'addObject' of null
     at Ember.ArrayProxy.extend.addRecord
     at Ember.Object.extend.updateRecordArray
     at null.<anonymous>
-</pre>
+```
 
 I found this had to do with Test teardown. A monkey patch that solves the issue:
 
