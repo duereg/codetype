@@ -30,11 +30,20 @@ In working with [Twitter Bootstrap Forms](http://twitter.github.com/bootstrap/ba
 
 ## So what's a [Component](http://derbyjs.com/#components)?
 
-A component is basically a derby template you can supply parameters to. Those parameters are supplied in the form of HTML attributes and HTML content. There are two types of components: application and library. Application components can only be used in a single project. Library components can be re-used across multiple projects. For my project I'm going to create an application component. Eventually if I need the component on another project I'll add it to a component library. But that process is more complicated and less documented so I'll save that for another day. There are two ways to create an application component:
+A component is basically a derby template you can supply parameters to. Those parameters are supplied in the form of HTML attributes and HTML content.
+
+There are two types of components: application and library. Application components can only be used in a single project. Library components can be re-used across multiple projects.
+
+For my project I'm going to create an application component. Eventually if I need the component on another project I'll add it to a component library. But that process is more complicated and less documented so I'll save that for another day.
+
+There are two ways to create an application component:
 
   * **Inline**
+
 If your component is only being used on a single view, you can add it to the same file as your view.
+
   * **External**
+
 If your component is going to be used on multiple views, you should create a separate file for your component.  Apparently there are two ways to create a library component as well:
 
 > The ui directory contains a component library, which can be used to create custom components for the containing project. These are re-usable templates, scripts, and styles that can be used to create custom HTML tags for use in applications. General purpose component libraries can be created as separate npm modules.
