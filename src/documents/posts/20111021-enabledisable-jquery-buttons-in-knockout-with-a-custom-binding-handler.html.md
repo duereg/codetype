@@ -14,9 +14,15 @@ layout: post
 
 # Enable/Disable jQuery buttons in Knockout with a Custom Binding Handler
 
-Still working on those jQuery buttons, trying to update old ASP.Net Webforms using jQuery, Knockout, and Amplify. New problem today. I was having problems getting Knockout to enable/disable my jQuery buttons using the Knockout 'enable' bindingHandler. It would enable/disable the underlying element that I had run the .button() method on, but it had no idea about the div that jQuery had wrapped my element in, or how to handle it.
+Still working on those jQuery buttons. Trying to update old ASP.Net Webforms using jQuery, Knockout, and Amplify.
 
-I wrote a custom bindingHandler for Knockout to handle this case. It also can handle non-jQuery elements as well, so you could change the declaration from 'jEnable' to 'enable', and this would work as a all-comers enable function. However, since this method uses jQuery (and therefore is much expensive than the plain old 'enable'), I figured the extra binding was the best approach.
+New problem today.
+
+I was having problems getting Knockout to enable/disable my jQuery buttons using the Knockout 'enable' bindingHandler. It would enable/disable the underlying element that I had run the .button() method on, but it had no idea about the div that jQuery had wrapped my element in, or how to handle it.
+
+I wrote a custom bindingHandler for Knockout to handle this case. It also can handle non-jQuery elements as well, so you could change the declaration from 'jEnable' to 'enable', and this would work as a all-comers enable function.
+
+Since this method uses jQuery (and is more expensive than the plain old 'enable'), I figured the extra binding was the best approach.
 
 ``` js
 	if (ko && ko.bindingHandlers) {
@@ -42,4 +48,4 @@ I wrote a custom bindingHandler for Knockout to handle this case. It also can ha
 	</script>
 ```
 
- A gist of this code is located [here](https://gist.github.com/4023196).
+ A gist of this code is [here](https://gist.github.com/4023196).
