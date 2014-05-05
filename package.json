@@ -43,6 +43,7 @@
   "scripts": {
     "build": "node_modules/docpad/bin/docpad-compile",
     "pretest": "node_modules/docpad/bin/docpad-compile",
+    "test": "node_modules/docpad/bin/docpad deploy-ghpages --env static",
     "start": "node_modules/docpad/bin/docpad-server"
   }
 }
