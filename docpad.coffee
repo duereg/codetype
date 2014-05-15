@@ -2,143 +2,142 @@
 # It is simply a CoffeeScript Object which is parsed by CSON
 docpadConfig = {
 
-	# =================================
-	# Template Data
-	# These are variables that will be accessible via our templates
-	# To access one of these within our templates, refer to the FAQ: https://github.com/bevry/docpad/wiki/FAQ
+  # =================================
+  # Template Data
+  # These are variables that will be accessible via our templates
+  # To access one of these within our templates, refer to the FAQ:
+  # https://github.com/bevry/docpad/wiki/FAQ
 
-	templateData:
+  templateData:
 
-		# Specify some site properties
-		site:
-			# The production url of our website
-			url: "http://mattblair.co"
+    # Specify some site properties
+    site:
+      # The production url of our website
+      url: "http://mattblair.co"
 
-			# Here are some old site urls that you would like to redirect from
-			oldUrls: [
-				'codetype.wordpress.com'
-			]
+      # Here are some old site urls that you would like to redirect from
+      oldUrls: [
+        'codetype.wordpress.com'
+      ]
 
-			# The default title of our website
-			title: "A Place for Poor Examples"
+      # The default title of our website
+      title: "A Place for Poor Examples"
 
-			# The website description (for SEO)
-			description: """
-				What I've learned about software development. Don't expect too much.
-				"""
+      # The website description (for SEO)
+      description: """
+        What I've learned about software development. Don't expect too much.
+        """
 
-			# The website keywords (for SEO) separated by commas
-			keywords: """
-				JavaScript, HTML, software, development, blog, examples, derby, cracking, coding, interview, CoffeeScript, node, express, .NET, C#, ASP.NET
-				"""
+      # The website keywords (for SEO) separated by commas
+      keywords: """
+        JavaScript, HTML, software, development, blog, examples, derby,
+        cracking, coding, interview, CoffeeScript, node, express,
+        .NET, C#, ASP.NET, Ember, Knockout, Angular
+        """
 
-			# The website author's name
-			author: "Matt Blair"
+      # The website author's name
+      author: "Matt Blair"
 
-			# Styles
-			styles: [
-				"/styles/twitter-bootstrap.css"
-				"/styles/style.css"
-				"/styles/mono-blue.css"
-			]
+      # Styles
+      styles: [
+        "/styles/twitter-bootstrap.css"
+        "/styles/style.css"
+        "/styles/mono-blue.css"
+      ]
 
-			# Scripts
-			scripts: [
-				"//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
-				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
-				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
-				"/scripts/script.js"
-				"/scripts/analytics.js"
-			]
+      # Scripts
+      scripts: [
+        "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+        "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+        "/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
+        "/scripts/script.js"
+        "/scripts/analytics.js"
+      ]
 
+    # -----------------------------
+    # Helper Functions
 
+    # Get the prepared site/document title
+    # Often we would like to specify particular formatting to our page's title
+    # we can apply that formatting here
+    getPreparedTitle: ->
+      # if we have a document title, then we should use that and suffix the site's title onto it
+      if @document.title
+        "#{@document.title} | #{@site.title}"
+      # if our document does not have it's own title, then we should just use the site's title
+      else
+        @site.title
 
-		# -----------------------------
-		# Helper Functions
+    # Get the prepared site/document description
+    getPreparedDescription: ->
+      # if we have a document description, then we should use that, otherwise use the site's description
+      @document.description or @site.description
 
-		# Get the prepared site/document title
-		# Often we would like to specify particular formatting to our page's title
-		# we can apply that formatting here
-		getPreparedTitle: ->
-			# if we have a document title, then we should use that and suffix the site's title onto it
-			if @document.title
-				"#{@document.title} | #{@site.title}"
-			# if our document does not have it's own title, then we should just use the site's title
-			else
-				@site.title
-
-		# Get the prepared site/document description
-		getPreparedDescription: ->
-			# if we have a document description, then we should use that, otherwise use the site's description
-			@document.description or @site.description
-
-		# Get the prepared site/document keywords
-		getPreparedKeywords: ->
-			# Merge the document keywords with the site keywords
-			@site.keywords.concat(@document.keywords or []).join(', ')
+    # Get the prepared site/document keywords
+    getPreparedKeywords: ->
+      # Merge the document keywords with the site keywords
+      @site.keywords.concat(@document.keywords or []).join(', ')
 
 
-	# =================================
-	# Collections
-	# These are special collections that our website makes available to us
+  # =================================
+  # Collections
+  # These are special collections that our website makes available to us
 
-	collections:
-		pages: (database) ->
-			database.findAllLive({pageOrder: $exists: true}, [pageOrder:1,title:1])
+  collections:
+    pages: (database) ->
+      database.findAllLive({pageOrder: $exists: true}, [pageOrder:1,title:1])
 
-		posts: (database) ->
-			database.findAllLive({status: 'publish'}, [created:-1]) #tags:$has:'post'
+    posts: (database) ->
+      database.findAllLive({status: 'publish'}, [created:-1]) #tags:$has:'post'
 
-		hockey: (database) ->
-			database.findAllLive({status: 'hockey'}, [created:-1])
-	# =================================
-	# Plugins
+    hockey: (database) ->
+      database.findAllLive({status: 'hockey'}, [created:-1])
+  # =================================
+  # Plugins
 
-	plugins:
+  plugins:
     ghpages:
       deployRemote: 'target'
       deployBranch: 'master'
 
-		downloader:
-			downloads: [
-				{
-					name: 'Twitter Bootstrap'
-					path: 'src/files/vendor/twitter-bootstrap'
-					url: 'https://codeload.github.com/twbs/bootstrap/tar.gz/master'
-					tarExtractClean: true
-				}
-			]
+    downloader:
+      downloads: [
+        {
+          name: 'Twitter Bootstrap'
+          path: 'src/files/vendor/twitter-bootstrap'
+          url: 'https://codeload.github.com/twbs/bootstrap/tar.gz/master'
+          tarExtractClean: true
+        }
+      ]
 
+  # =================================
+  # DocPad Events
 
-	# =================================
-	# DocPad Events
+  # Here we can define handlers for events that DocPad fires
+  # You can find a full listing of events on the DocPad Wiki
+  events:
 
-	# Here we can define handlers for events that DocPad fires
-	# You can find a full listing of events on the DocPad Wiki
-	events:
+    # Server Extend
+    # Used to add our own custom routes to the server before the docpad routes are added
+    serverExtend: (opts) ->
+      # Extract the server from the options
+      {server} = opts
+      docpad = @docpad
 
-		# Server Extend
-		# Used to add our own custom routes to the server before the docpad routes are added
-		serverExtend: (opts) ->
-			# Extract the server from the options
-			{server} = opts
-			docpad = @docpad
+      # As we are now running in an event,
+      # ensure we are using the latest copy of the docpad configuraiton
+      # and fetch our urls from it
+      latestConfig = docpad.getConfig()
+      oldUrls = latestConfig.templateData.site.oldUrls or []
+      newUrl = latestConfig.templateData.site.url
 
-			# As we are now running in an event,
-			# ensure we are using the latest copy of the docpad configuraiton
-			# and fetch our urls from it
-			latestConfig = docpad.getConfig()
-			oldUrls = latestConfig.templateData.site.oldUrls or []
-			newUrl = latestConfig.templateData.site.url
-
-			# Redirect any requests accessing one of our sites oldUrls to the new site url
-			server.use (req,res,next) ->
-				if req.headers.host in oldUrls
-					res.redirect(newUrl+req.url, 301)
-				else
-					next()
+      # Redirect any requests accessing one of our sites oldUrls to the new site url
+      server.use (req,res,next) ->
+        if req.headers.host in oldUrls
+          res.redirect(newUrl+req.url, 301)
+        else
+          next()
 }
-
 
 # Export our DocPad Configuration
 module.exports = docpadConfig
