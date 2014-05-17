@@ -7,14 +7,14 @@ status: publish
 layout: post
 ```
 
-# Ember Data Upgrade Issues 
+# Ember Data Upgrade Issues
 ## The content property of DS.PromiseArray should be set before modifying it
 
 If you see the following error in Ember.Data 1.0.0-beta.7:
 
 **The content property of DS.PromiseArray should be set before modifying it**
 
-The issue is with a field that has been declared async:
+The issue is with changing the contents of an async field.
 
 ```javascript
 //program.js
