@@ -38,7 +38,7 @@ Or this:
 
 [Songbird](http://www.github.com/duereg/songbird) allows you to easily mix asynchronous and synchronous programming styles in node.js.
 
-Songbird is built upon the [bluebird promise library](https://raw2.github.com/petkaantonov/bluebird/master/API.md) (hence the name).
+I based Songbird on the [bluebird promise library](https://raw2.github.com/petkaantonov/bluebird/master/API.md) (hence the name).
 
 Install
 -------
@@ -97,9 +97,9 @@ func.promise.call(obj, args)
 
 ### Handling Multiple Promises
 
-Requiring the songbird library not only updates the Object and Function prototype, but also returns a Promise library in which you can carry out certain actions that aren't easily handled from the the promise property.
+Requiring the songbird library updates the Object and Function prototype and returns a Promise library. This library allows you to carry out certain actions that are hard to handle from the promise property.
 
-For example: you have a situation where you're dealing with multiple promises, but don't care what order they complete in.
+For example: You're dealing with multiple promises but don't care what order they complete in.
 
 ```js
 Promise = require("songbird");
@@ -109,7 +109,7 @@ Promise.all([task1, task2, task3]).spread(function(result1, result2, result3){
 });
 ```
 
-Normally when using `.then` the code would be like:
+Normally when using `.then` the code would look like:
 
 ```js
 Promise = require("songbird");
@@ -126,8 +126,7 @@ For more information about the underlying bluebird promise API, the [API docs ar
 ### Disclaimer
 
 Some people don't like libraries that mix in to Object.prototype
-and Function.prototype. If that's how you feel, then Songbird is probably
-not for you.
+and Function.prototype. If that's how you feel, then Songbird is not for you.
 
 Contributing
 ------------
