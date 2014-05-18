@@ -9,16 +9,6 @@ layout: post
 
 #Sunday Homes
 
-<a href="geo:0,0?q=4326%20WEST%20ST%2C%20OAKLAND%2C%20CA">4326 WEST ST, OAKLAND, CA</a>
-
-4 / 2 - 1,367 - 3,300
-
-569,000
-
-1 - 3:00
-
-- - -
-
 <a href="geo:0,0?q=1002%2055TH%20ST%2C%20OAKLAND%2C%20CA%2C%2094608">1002 55TH ST, OAKLAND, CA, 94608</a>
 
 2 / 1 - 1,002 - 3,640
