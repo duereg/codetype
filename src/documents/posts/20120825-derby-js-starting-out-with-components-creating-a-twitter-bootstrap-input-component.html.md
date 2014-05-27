@@ -160,4 +160,6 @@ var data = function(value, label, type) {
  <app:boot:input data="{:person.firstName}">
 ```
 
- Where `firstName` is an object like `data` described above. So, in a just a little bit of markup and code, I have a great reusable component that I can use to style the look and feel of my application without having to copy and paste code everywhere. I hope this it helps some of the fledging Derby developers out there.
+ Where `firstName` is an object like `data` described above. With just a little bit of markup and code, I have a reusable component that I can use to style my application without having to copy and paste code everywhere.
+
+ I hope this it helps some of the fledging Derby developers out there.
