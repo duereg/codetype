@@ -14,12 +14,14 @@ layout: post
 
 # Cracking the Coding Interview - JavaScript Min/Max Binary Heap
 
-I finished my second algorithm from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) - the [Binary Heap](http://en.wikipedia.org/wiki/Binary_heap). This algorithm racketed up the complexity from the [Linked List](/posts/20120824-cracking-the-coding-interview-javascript-singly-linked-list). The heap's structure is easy to understand - it's a binary tree (a tree where each node can have at most two children). In the case of a max heap, the parents have a greater value than their children. So the values in a Max Heap decrease as you move down the tree from the parent to children.
+I finished my second algorithm from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) - the [Binary Heap](http://en.wikipedia.org/wiki/Binary_heap). This algorithm racketed up the complexity from the [Linked List](/posts/20120824-cracking-the-coding-interview-javascript-singly-linked-list).
+
+The heap's structure is easy to understand - it's a binary tree (a tree where each node can have at most two children). In the case of a max heap, the parents have a greater value than their children. The values in a Max Heap decrease as you move down the tree from the parent to children.
 
 (This image is from Wikipedia)
 ![Max Tree Example](http://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Max-heap.png/240px-Max-heap.png)
 
-The complexity comes from the behaviour. Though the algorithms are easy to understand, there is enough going on in each one that it's easy to sneak in bugs. It took me a bit of time to get each of my implementations the way I wanted it. The insert operation is the easiest to implement. The algorithm is also straight forward.
+The complexity comes from the behavior. Though the algorithms are easy to understand, there is enough going on in each one that it's easy to sneak in bugs. It took me a bit of time to get each of my implementations the way I wanted it. The insert operation is the easiest to implement. The algorithm is also straight forward.
 
   1. Add the element to the bottom of the heap.
   2. Compare the added element with its parent; if they are in the correct order, stop.
@@ -52,7 +54,7 @@ binaryHeap.prototype.getParentIndex = function (childIndex) {
 };
 ```
 
- Delete is a quite bit more complicated, though the algorithm reads about the same. To delete the top of a heap:
+ Delete is more complicated though the algorithm reads about the same. To delete the top of a heap:
   1. Replace the root of the heap with the last element on the last level.
   2. Compare the new root with its children; if they are in the correct order, stop.
   3. If not, swap the element with one of its children and return to the previous step.
@@ -112,4 +114,4 @@ binaryHeap.prototype.getRightChild = function (parentIndex){
 };
 ```
 
- It's quite a bit more code to delete the top element and reshuffle the list into the correct order. With all the extra comparisons there are quite a few places that bugs can sneak into the code. The source code for the project and the tests are [here](https://github.com/duereg/js-algorithms).
+ There is more code needed to delete the top element and reshuffle the list into the correct order. With all the extra comparisons there are many places where bugs can sneak into the code. The source code for the project and the tests are [here](https://github.com/duereg/js-algorithms).
