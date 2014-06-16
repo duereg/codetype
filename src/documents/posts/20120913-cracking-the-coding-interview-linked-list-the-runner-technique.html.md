@@ -9,7 +9,7 @@ created_gmt: 2012/09/13 12:49:39
 comment_status: open
 post_name: cracking-the-coding-interview-linked-list-the-runner-technique
 status: publish
-tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET, algorithms, cracking the coding interview, interviewing, linked list, runner technique, slow pointers, fast pointers
 layout: post
 ```
 
