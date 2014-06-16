@@ -4,6 +4,7 @@ description: Source maps in node.js
 created: 2013/10/19 19:33:27
 post_name: source-maps-and-immature-tooling
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

@@ -9,6 +9,7 @@ created_gmt: 2012/09/13 12:49:39
 comment_status: open
 post_name: cracking-the-coding-interview-linked-list-the-runner-technique
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

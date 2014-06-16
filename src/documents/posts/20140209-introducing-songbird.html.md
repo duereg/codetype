@@ -4,6 +4,7 @@ description: How to have promises everywhere, all the time
 created: 2014/02/09 13:34:01
 post_name: introducing-songbird
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Songbird, Bluebird, Promises, Generators, EMCAScript
 layout: post
 ```
 
@@ -137,12 +138,12 @@ npm install
 npm test
 ```
 
-Songbird is written in [coffeescript](http://coffeescript.org) with
+Songbird is written in [CoffeeScript](http://coffeescript.org) with
 source in `src/` compiled to `lib/`.
 
 Tests are written with mocha and chai in `test/`.
 
-Run tests with `npm test` which will also compile the coffeescript to
+Run tests with `npm test` which will also compile the CoffeeScript to
 `lib/`.
 
 Pull requests are welcome. Please provide tests for your changes and

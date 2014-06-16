@@ -9,6 +9,7 @@ created_gmt: 2011/10/31 05:54:07
 comment_status: open
 post_name: setting-up-a-net-build-server-without-installing-visual-studio
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

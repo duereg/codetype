@@ -9,6 +9,7 @@ created_gmt: 2012/08/29 04:30:00
 comment_status: open
 post_name: cracking-the-coding-interview-javascript-minmax-binary-heap
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

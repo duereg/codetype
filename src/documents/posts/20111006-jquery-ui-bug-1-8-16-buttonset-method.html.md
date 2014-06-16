@@ -9,6 +9,7 @@ created_gmt: 2011/10/06 07:52:59
 comment_status: open
 post_name: jquery-ui-bug-1-8-16-buttonset-method
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

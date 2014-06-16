@@ -9,6 +9,7 @@ created_gmt: 2012/09/11 01:28:58
 comment_status: open
 post_name: how-to-install-sublime-text-2-on-ubuntu-12-04-unity
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

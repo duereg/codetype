@@ -9,6 +9,7 @@ created_gmt: 2012/03/03 03:58:14
 comment_status: open
 post_name: horrible-slow-stupid-scary-build-process
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

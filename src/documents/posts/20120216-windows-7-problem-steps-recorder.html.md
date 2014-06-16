@@ -9,6 +9,7 @@ created_gmt: 2012/02/16 02:56:43
 comment_status: open
 post_name: windows-7-problem-steps-recorder
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

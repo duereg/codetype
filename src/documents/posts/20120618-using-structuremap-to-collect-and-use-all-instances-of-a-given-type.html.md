@@ -9,6 +9,7 @@ created_gmt: 2012/06/18 06:27:41
 comment_status: open
 post_name: using-structuremap-to-collect-and-use-all-instances-of-a-given-type
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

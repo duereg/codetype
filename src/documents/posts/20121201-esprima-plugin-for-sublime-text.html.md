@@ -9,6 +9,7 @@ created_gmt: 2012/12/01 05:24:18
 comment_status: open
 post_name: esprima-plugin-for-sublime-text
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

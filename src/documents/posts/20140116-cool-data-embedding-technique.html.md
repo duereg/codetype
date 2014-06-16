@@ -4,6 +4,7 @@ description: Novel way to embed data in an HTML page
 created: 2014/01/16 00:13:34
 post_name: react-server-side-rendering
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, React
 layout: post
 ```
 

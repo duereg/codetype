@@ -9,6 +9,7 @@ created_gmt: 2011/10/14 04:26:04
 comment_status: open
 post_name: alas-it-was-not-to-be
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 

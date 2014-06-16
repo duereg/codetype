@@ -9,6 +9,7 @@ created_gmt: 2012/09/06 06:57:57
 comment_status: open
 post_name: setting-up-mongodb-to-work-with-derby-js
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
 layout: post
 ```
 
