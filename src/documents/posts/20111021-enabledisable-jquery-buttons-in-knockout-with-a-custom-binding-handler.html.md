@@ -9,7 +9,7 @@ created_gmt: 2011/10/21 04:40:39
 comment_status: open
 post_name: enabledisable-jquery-buttons-in-knockout-with-a-custom-binding-handler
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET, jQuery, Knockout, buttons, ASP.NET, WebForms
 layout: post
 ```
 

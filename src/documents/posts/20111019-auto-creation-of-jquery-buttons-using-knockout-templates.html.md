@@ -9,7 +9,7 @@ created_gmt: 2011/10/19 09:14:56
 comment_status: open
 post_name: auto-creation-of-jquery-buttons-using-knockout-templates
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, jQuery, Knockout, buttons, ASP.NET, WebForms
 layout: post
 ```
 
