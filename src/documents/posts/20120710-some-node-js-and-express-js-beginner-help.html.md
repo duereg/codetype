@@ -9,7 +9,7 @@ created_gmt: 2012/07/10 08:27:32
 comment_status: open
 post_name: some-node-js-and-express-js-beginner-help
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, node, express, node.js, express.js, async
 layout: post
 ```
 

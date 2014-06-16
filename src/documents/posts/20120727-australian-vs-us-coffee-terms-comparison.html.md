@@ -9,7 +9,7 @@ created_gmt: 2012/07/27 03:43:47
 comment_status: open
 post_name: australian-vs-us-coffee-terms-comparison
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, coffee, espresso, latte, americano, long black, short black, macchiato, mocha, america, australia, oz, us, cappuccino, flat white
 layout: post
 ```
 
