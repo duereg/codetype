@@ -9,7 +9,7 @@ created_gmt: 2011/09/24 10:23:33
 comment_status: open
 post_name: beautiful-linq-to-xml
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

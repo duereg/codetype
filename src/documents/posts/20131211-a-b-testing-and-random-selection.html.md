@@ -4,7 +4,7 @@ description: A/B Testing or Random Selection in the browser and on the server
 created: 2013/12/11 11:46:19
 post_name: a-b-testing-and-random-selection
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, Testing, Laboratory
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, Testing, Laboratory
 layout: post
 ```
 

@@ -9,7 +9,7 @@ created_gmt: 2013/02/15 02:55:11
 comment_status: open
 post_name: esvalidate-library-standalone-validation-library-using-esprima
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

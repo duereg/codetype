@@ -9,7 +9,7 @@ created_gmt: 2012/08/31 17:01:40
 comment_status: open
 post_name: cracking-the-coding-interview-javascript-trie
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

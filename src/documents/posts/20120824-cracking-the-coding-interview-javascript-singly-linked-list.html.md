@@ -9,7 +9,7 @@ created_gmt: 2012/08/24 03:50:08
 comment_status: open
 post_name: cracking-the-coding-interview-javascript-singly-linked-list
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

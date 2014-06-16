@@ -9,7 +9,7 @@ created_gmt: 2012/08/17 15:49:32
 comment_status: open
 post_name: cracking-the-coding-interview-javascript-data-structures
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

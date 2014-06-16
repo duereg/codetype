@@ -4,7 +4,7 @@ description: How to have promises everywhere, all the time
 created: 2014/02/09 13:34:01
 post_name: introducing-songbird
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, Songbird, Bluebird, Promises, Generators, EMCAScript
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, Songbird, Bluebird, Promises, Generators, EMCAScript
 layout: post
 ```
 

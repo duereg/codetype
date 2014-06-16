@@ -4,7 +4,7 @@ description: Ember Model.isDirty - or not
 created: 2014/06/05 12:41:45
 post_name: ember-model-isDirty-or-not
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

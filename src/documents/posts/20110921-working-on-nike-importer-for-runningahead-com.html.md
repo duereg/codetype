@@ -9,7 +9,7 @@ created_gmt: 2011/09/21 10:10:06
 comment_status: open
 post_name: working-on-nike-importer-for-runningahead-com
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, C#, .NET
 layout: post
 ```
 

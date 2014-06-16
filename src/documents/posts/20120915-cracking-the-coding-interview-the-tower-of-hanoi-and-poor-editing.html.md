@@ -9,7 +9,7 @@ created_gmt: 2012/09/15 14:39:48
 comment_status: open
 post_name: cracking-the-coding-interview-the-tower-of-hanoi-and-poor-editing
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

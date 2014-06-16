@@ -9,7 +9,7 @@ created_gmt: 2012/04/26 10:03:47
 comment_status: open
 post_name: posting-an-ienumerable-of-interfaces-back-from-your-views-by-extending-the-defaultmodelbinder
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

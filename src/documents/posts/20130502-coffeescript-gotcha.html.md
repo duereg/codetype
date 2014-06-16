@@ -5,7 +5,7 @@ created: 2013/05/02 19:48:02
 comment_status: open
 post_name: coffeescript-gotcha
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 # My ongoing relation with CoffeeScript - and a gotcha

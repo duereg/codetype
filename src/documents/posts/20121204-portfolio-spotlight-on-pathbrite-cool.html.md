@@ -9,7 +9,7 @@ created_gmt: 2012/12/04 04:27:44
 comment_status: open
 post_name: portfolio-spotlight-on-pathbrite-cool
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

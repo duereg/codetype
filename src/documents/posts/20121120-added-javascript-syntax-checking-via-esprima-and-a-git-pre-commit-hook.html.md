@@ -9,7 +9,7 @@ created_gmt: 2012/11/20 04:36:45
 comment_status: open
 post_name: added-javascript-syntax-checking-via-esprima-and-a-git-pre-commit-hook
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

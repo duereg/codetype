@@ -9,7 +9,7 @@ created_gmt: 2012/07/22 06:29:18
 comment_status: open
 post_name: derby-js-playing-with-models
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

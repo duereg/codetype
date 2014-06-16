@@ -4,7 +4,7 @@ description: Ember Data Contributions
 created: 2014/05/18 22:24:45
 post_name: ember-data-contributor
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

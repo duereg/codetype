@@ -9,7 +9,7 @@ created_gmt: 2012/10/30 02:49:25
 comment_status: open
 post_name: free-collection-of-microsoft-e-books
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, C#, .NET
+tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 
