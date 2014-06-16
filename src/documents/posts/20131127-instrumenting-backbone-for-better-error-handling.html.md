@@ -4,7 +4,7 @@ description: Instrumenting Backbone for better error handling
 created: 2013/11/27 06:03:09
 post_name: instrumenting-backbone-for-better-error-handling
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

@@ -9,7 +9,7 @@ created_gmt: 2012/08/01 07:58:59
 comment_status: open
 post_name: html-input-formaction-attribute-an-easy-modernizr-test
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, formaction, modernizr
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, formaction, modernizr
 layout: post
 ```
 

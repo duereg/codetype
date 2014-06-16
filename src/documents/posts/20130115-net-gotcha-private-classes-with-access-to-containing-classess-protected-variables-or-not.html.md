@@ -9,7 +9,7 @@ created_gmt: 2013/01/15 04:57:56
 comment_status: open
 post_name: net-gotcha-private-classes-with-access-to-containing-classess-protected-variables-or-not
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

@@ -9,7 +9,7 @@ created_gmt: 2012/09/05 01:00:48
 comment_status: open
 post_name: javascript-strings-using-array-accessor-to-set-characters
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

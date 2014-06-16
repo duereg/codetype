@@ -9,7 +9,7 @@ created_gmt: 2011/10/31 05:54:07
 comment_status: open
 post_name: setting-up-a-net-build-server-without-installing-visual-studio
 status: publish
-tags: post, development, software, web, html, C#, .NET, Visual Studio, Build, Server, continuous deployment, deployment
+tags: post, development, software, coding, web, html, C#, .NET, Visual Studio, Build, Server, continuous deployment, deployment
 layout: post
 ```
 

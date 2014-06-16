@@ -9,7 +9,7 @@ created_gmt: 2012/08/07 07:18:54
 comment_status: open
 post_name: derby-js-working-with-view-templates-models-and-bindings
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, derby, node, express, views, models, bindings, data-binding
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, derby, node, express, views, models, bindings, data-binding
 layout: post
 ```
 

@@ -9,7 +9,7 @@ created_gmt: 2011/09/24 10:23:33
 comment_status: open
 post_name: beautiful-linq-to-xml
 status: publish
-tags: post, development, software, LINQ, XML, C#, .NET, RunningAhead, importer, Nike, Nike+
+tags: post, development, software, coding, LINQ, XML, C#, .NET,
 layout: post
 ```
 

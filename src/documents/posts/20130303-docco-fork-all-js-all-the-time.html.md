@@ -9,7 +9,7 @@ created_gmt: 2013/03/02 18:54:47
 comment_status: open
 post_name: docco-fork-all-js-all-the-time
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

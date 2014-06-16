@@ -9,7 +9,7 @@ created_gmt: 2012/11/01 10:01:34
 comment_status: open
 post_name: net-sql-parsing-using-the-tsqlparser-library
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
 

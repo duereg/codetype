@@ -9,7 +9,7 @@ created_gmt: 2012/05/04 04:49:16
 comment_status: open
 post_name: why-use-twitter-bootstrap
 status: publish
-tags: post, development, software, web, html, JavaScript, CoffeeScript, EMCAScript, Twitter, Bootstrap, Responsive, Design
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, Twitter, Bootstrap, Responsive, Design
 layout: post
 ```
 
