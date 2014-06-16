@@ -4,6 +4,7 @@ description: Ember - The content property of DS.PromiseArray should be set befor
 created: 2014/04/08 10:38:15
 post_name: ember-the-content-property-of-ds-promise-array
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

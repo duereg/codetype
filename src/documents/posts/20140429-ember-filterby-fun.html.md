@@ -4,6 +4,7 @@ description: Ember FilterBy Fun
 created: 2014/04/29 12:45:20
 post_name: ember-filterby-fun
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

@@ -4,6 +4,7 @@ description: Ember vs Knockout - Property Comparison
 created: 2014/03/20 08:54:43
 post_name: ember-vs-knockout-property-comparison
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

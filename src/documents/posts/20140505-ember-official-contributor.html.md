@@ -4,6 +4,7 @@ description: Ember Official Contributor!
 created: 2014/05/05 10:22:29
 post_name: ember-official-contributor
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 

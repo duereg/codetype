@@ -4,6 +4,7 @@ description: Ember - Test Teardown Error
 created: 2014/04/10 11:33:39
 post_name: ember-test-teardown-errors
 status: publish
+tags: post, development, software, web, html, JavaScript, CoffeeScript, Ember, Ember.js, Ember.data
 layout: post
 ```
 
