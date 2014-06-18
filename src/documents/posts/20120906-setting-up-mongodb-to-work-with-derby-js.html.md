@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Setting up MongoDB to work with Derby.js
-
 This post is going to cover installing and configuring MongoDB to use with Derby. If you're reading this post looking to add model persistence to your Derby application but don't know much about MongoDB, understanding MongoDB will help you understand Derby and the model system it uses.
 
 # What's MongoDB?
