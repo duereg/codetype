@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# React, server side rendering, and a cool data embedding technique
-
 I've been spending some time going through the [React](http://facebook.github.io/react/) docs and examples for some work on a side project.
 
 What is React? From their website:
