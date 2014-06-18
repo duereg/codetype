@@ -13,9 +13,7 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# .Net SQL Parsing - Using the TSqlParser library
-
-As a bit of a preface to this post: it is hard to find a free SQL Parser for .NET. There is a company that has a terrible library that they charge $150 bucks for. There are a couple of incomplete implementations done for school projects or for narrowly focused tasks. So if you want a no-strings attached free parser for SQL, you're out of luck. However, since most people who want a .NET parser are writing code on a Windows machine, and use Visual Studio, there is (lightly documented) hope: the TSqlParser library that ships with Visual Studio.
+A preface to this post: it is hard to find a free SQL Parser for .NET. There is a company that has a terrible library that they charge $150 bucks for. There are a couple of incomplete implementations done for school projects or for narrowly focused tasks. So if you want a no-strings attached free parser for SQL, you're out of luck. However, since most people who want a .NET parser are writing code on a Windows machine, and use Visual Studio, there is (lightly documented) hope: the TSqlParser library that ships with Visual Studio.
 
 This is a fully featured parsing library for SQL Server SQL syntax. I'm not sure about the support of other DB's SQL syntax, but I would imagine it's poor. On an x64 Windows machine, using Visual Studio 2010, the dll's which contain the TSqlParser library are located at: `C:\Program Files (x86)\Microsoft Visual Studio 10.0\VSTSDB` The class `TSql100Parser` in `Microsoft.Data.Schema.ScriptDom.Sql` gets you the parser for Sql Server 2008. To instantiate an instance of the `TSql100Parser` class, you have to supply the constructor with one parameter:
 
