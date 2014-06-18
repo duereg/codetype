@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Esprima Plugin for Sublime Text
-
 In relation to my previous posts [confessing my love for sublime](/posts/20120911-how-to-install-sublime-text-2-on-ubuntu-12-04-unity), and my [enjoyment of Esprima](/posts/20121120-added-javascript-syntax-checking-via-esprima-and-a-git-pre-commit-hook), here is some code that showcases both: An Esprima plugin for Sublime Test!
 
 http://github.com/duereg/sublime-jsvalidate
