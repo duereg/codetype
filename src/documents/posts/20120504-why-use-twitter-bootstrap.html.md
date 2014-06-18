@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Why use Twitter Bootstrap?
-
 I'm a fan of [Twitter Bootstrap](http://twitter.github.com/bootstrap/), the simple and flexible CSS, HTML, and JavaScript user interface framework. And what's not to like? Out of the box, you'll get:
 
   1. **Cross-Platform Support**
