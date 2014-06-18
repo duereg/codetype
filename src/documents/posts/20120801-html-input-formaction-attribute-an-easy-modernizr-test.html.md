@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# HTML5 'formaction' attribute - An easy Modernizr test
-
 > EDIT NOTE: This no longer needs to be done outside of Modernizr. This was added to the Modernizr package about a month ago. [Link to issue](https://github.com/Modernizr/Modernizr/issues/1067)
 
 I've been writing some Html Forms, and in playing with submit buttons came across an interesting attribute in the HTML 5 specs: formaction. The definition, from [HTML Living Standard Doc](http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fs-formaction)
