@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# A/B Testing and Random Selection
-
 Are you looking for an A/B framework? Something you can use in the browser to toggle a user experience - do they see marketing promotion #1, or a picture of a cat?
 
 Or are you interested in random selection - you want to send our 5000 emails of differing types, and see how users respond?
