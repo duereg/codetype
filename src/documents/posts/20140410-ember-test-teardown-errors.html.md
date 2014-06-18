@@ -8,7 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Ember - Test Teardown Error
 ## Cannot read property 'addObject' of null
 
 If you see the following error in Ember.Data 1.0.0-beta.7:
