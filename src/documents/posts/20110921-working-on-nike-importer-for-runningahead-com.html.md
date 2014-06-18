@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, C#, .NET, RunningAhead, importer
 layout: post
 ```
 
-# Working on Nike+ Importer for RunningAhead.com
-
 I'm a fan of the website [www.runningahead.com](http://www.runningahead.com). I use it to track all my sporting life activities. The primary reason I use this site, instead of one of the hundreds like it, is that you can track anything - yoga, rowing, running, P-90x, underwater hockey, tiddlywinks, whatever. Throw in some customizable reporting and some great hardware integration, and it's free, and you've got a winner.
 
 That doesn't mean there aren't things I don't like about the site, and things I wish could be better. But since it's a free site, I'd like to help out and make the site better. I've talked to the site's creator (Eric Yee) and volunteered to help craft some plugins for the site for him.
