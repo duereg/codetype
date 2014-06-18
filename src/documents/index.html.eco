@@ -3,16 +3,13 @@ layout: 'default'
 title: 'Home'
 ---
 
-<!-- Primary marketing message or call to action -->
 <img id="logo" class="img-responsive" alt="A Place for Poor Examples" src="/images/header.jpg" />
-
-<!-- Example row of columns -->
 <div class="row" class="text-center">
 	<div class="col-lg-9">
 		<% postsCollection = @getCollection('posts').toJSON()%>
 		<% for i in [0..2]: %>
 			<% document = postsCollection[i] %>
-			<%- @partial('article', {document: document, content: document.contentRenderedWithoutLayouts}) %>
+			<%- @partial('article', {document: document, content: document.contentRenderedWithoutLayouts, renderLink: true}) %>
 			<hr />
 		<% end %>
 		<a href="/pages/posts">Read More...</a>
