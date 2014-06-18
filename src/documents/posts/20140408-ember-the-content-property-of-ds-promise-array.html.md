@@ -8,7 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Ember Data Upgrade Issues
 ## The content property of DS.PromiseArray should be set before modifying it
 
 If you see the following error in Ember.Data 1.0.0-beta.7:
