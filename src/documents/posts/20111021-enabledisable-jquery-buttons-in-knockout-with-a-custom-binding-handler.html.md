@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Enable/Disable jQuery buttons in Knockout with a Custom Binding Handler
-
 Still working on those jQuery buttons. Trying to update old ASP.Net Webforms using jQuery, Knockout, and Amplify.
 
 New problem today.
