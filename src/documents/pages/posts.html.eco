@@ -4,10 +4,12 @@ layout: page
 pageOrder: 2
 ---
 
-<nav class="linklist">
+<nav class="link-list">
+  <ul>
 	<% for document in @getCollection('posts').toJSON(): %>
 		<li><span class="shortDate"><%= new Date(document.created).toDateString() %></span>
 		&raquo;
 		<a class="title" href="<%= document.url %>"><%= document.title %></a></li>
 	<% end %>
+  </ul>
 </nav>
