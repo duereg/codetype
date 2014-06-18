@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, RunningAhead, importer, Ni
 layout: post
 ```
 
-# Finished the Nike+ Importer for www.runningahead.com
-
 I finished up the Nike+ data importer for www.runningahead.com. You can check out the code for the importer at this Github repository:
 
 <https://github.com/duereg/NikePlusImporter>
