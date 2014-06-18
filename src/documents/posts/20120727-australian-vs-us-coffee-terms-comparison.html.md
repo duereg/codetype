@@ -13,8 +13,6 @@ tags: post, coffee, espresso, latte, americano, long black, short black, macchia
 layout: post
 ```
 
-# Australian vs US Coffee Terms Comparison
-
 This took me a while to figure out when I first moved to Australia. I still remember the look on the barista's face when I tried to order an Americano, and then the absolute puzzlement over what the hell a flat white vs a long black was. I hope this helps other visitors to Australia from the US order a decent cup of coffee!
 
 |Description|Australian Name|US Name|
