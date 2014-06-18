@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Derby.js - Playing with Models
-
 Been playing around with [Derby](http://derbyjs.com) in my spare time. The idea behind the platform is smart - using node and express, you write one set of code, and that code automatically syncs data between browsers, servers, and a database.
 
 Derby is still raw. The documentation is comprehensive but puts important information about the same topic in different places.
