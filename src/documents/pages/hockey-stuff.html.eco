@@ -4,7 +4,7 @@ layout: page
 pageOrder: 3
 ---
 
-<nav class="linklist">
+<nav class="link-list">
   <% for document in @getCollection('hockey').toJSON(): %>
     <li><span class="shortDate"><%= new Date(document.created).toDateString() %></span>
     &raquo;
