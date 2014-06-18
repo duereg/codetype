@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, IEnumerable, C#, .NET, ASP.NET, 
 layout: post
 ```
 
-# Posting an IEnumerable of Interfaces back from your Views by extending the DefaultModelBinder
-
 > **Please note I came across a bug in the code, and revised this post on 31/07/2012.**
 
 Came across an interesting problem today. In ASP.Net MVC, you can easily pass an enumerable of interfaces to your views from your controllers. As long as you have `DisplayTemplates` and `EditorTemplates` defined for the subclasses, then those classes will be rendered correctly from your enumerable of the parent interfaces.
