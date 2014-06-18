@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Auto Creation of jQuery Buttons using Knockout Templates
-
 While converting ASP.NET Webforms to be more clienty using HTML 5, Knockout, and jQuery, I came across a problem.
 
 I want to use jQuery buttons on my Knockout-rendered rows, but whenever a new row gets added via a template, the buttons were not created as jQuery buttons. The issue was that I was calling a method to create the buttons after the page was fully rendered but never again. All the new rows wouldn't have the .button method run on them, and thus no sparkly jQuery buttons.
