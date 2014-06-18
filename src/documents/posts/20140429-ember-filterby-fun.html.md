@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Ember FilterBy Fun
-
 If you happen to be writing filterBy statements in Ember against an object, you will want to use this syntax:
 
 ```javascript
