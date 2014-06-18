@@ -1,7 +1,7 @@
 <article id="<%= @document.post_name %>" class="post">
-  <div class="post-date"><%= new Date(@document.created).toDateString() %>
+  <div class="post-date"><%= new Date(@document.created).toDateString() %></div>
   <div class="post-content">
-    <h1>
+    <h1 class="post-title">
       <% if @renderLink: %>
         <a href="<%= @document.url %>"><%= @document.title %></a>
       <% else: %>
