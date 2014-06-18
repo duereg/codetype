@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview - JavaScript Trie
-
 I finished my third algorithm from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) - the [Trie](http://en.wikipedia.org/wiki/Trie).
 
 Tries are a useful algorithm, if not all that well known. They can be used for efficient spell checking, auto suggestion, as well as the sorting of a collection of strings.
