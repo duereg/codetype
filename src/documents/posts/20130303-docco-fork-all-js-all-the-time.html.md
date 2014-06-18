@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Docco Fork - All JS, all the time
-
 > EDIT: My fork is no longer needed. The folks at docco saw the same thing and recently ported over the library to use [highlight.js](http://highlightjs.org/).
 
 I love documentation generators for code. You know what I've talking about to - something which gives you a split screen of the code and the comments, side by side, for easy reading and scrolling. Like [jasmine](http://pivotal.github.io/jasmine/) uses for their documentation:
