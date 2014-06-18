@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Introducing Songbird
-
 Would you rather write this:
 
 ```javascript
