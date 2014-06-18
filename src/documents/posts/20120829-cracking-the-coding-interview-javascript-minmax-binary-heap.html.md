@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview - JavaScript Min/Max Binary Heap
-
 I finished my second algorithm from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) - the [Binary Heap](http://en.wikipedia.org/wiki/Binary_heap). This algorithm racketed up the complexity from the [Linked List](/posts/20120824-cracking-the-coding-interview-javascript-singly-linked-list).
 
 The heap's structure is easy to understand - it's a binary tree (a tree where each node can have at most two children). In the case of a max heap, the parents have a greater value than their children. The values in a Max Heap decrease as you move down the tree from the parent to children.
