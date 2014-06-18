@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview - The Tower of Hanoi and Poor Editing
-
 I just finished the [Stack](http://en.wikipedia.org/wiki/Stack_\(abstract_data_type\)) section of [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) and came across an old puzzle - [The Tower of Hanoi](http://en.wikipedia.org/wiki/Tower_of_Hanoi). I struggled with solving this problem. I wrote this elaborate, strange algorithm to try to solve it (which should have been a dead give-away that I had it wrong). Ironically enough, hidden in the 20-30 lines of code I wrote were the three lines of code I needed to solve the problem. Anyways, after beating my head in trying to solve this, I ended up going to the back of the book and looking up the solution. And found this pile of shit psuedocode. I've shortened the comments, but the content is the same.
 
 ``` c
