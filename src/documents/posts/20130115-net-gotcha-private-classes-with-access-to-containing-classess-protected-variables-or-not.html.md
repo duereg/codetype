@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# .Net Gotcha - Private Classes With Access To Containing Classes's Protected Variables (Or Not)
-
 A friend and I were working on some code together when we found an interesting edge case in .Net that neither of us knew about. This is what we knew: if you have a class with a protected field in it, if you declare a private class inside of that class, the private class can access the protected variable. The example below shows what this looks like.
 ``` cs
  public class ParentClassWithProtectedField {
