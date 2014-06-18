@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview - JavaScript Singly Linked List
-
 I finished my first algorithm from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) - the almighty [Singly Linked List](http://en.wikipedia.org/wiki/Linked_list#Singly.2C_doubly.2C_and_multiply_linked_lists).
 
 This is the low-hanging fruit of the data structures I mean to tackle. Even implementing this simple structure, I managed to somehow squeeze in a bug that luckily I caught in my testing. An unfortunate case of premature optimization.
