@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, StructureMap, C#, .NET
 layout: post
 ```
 
-# Using StructureMap to collect and use all instances of a given type
-
 Had an issue at work where I wanted to store my rules and handlers for a class outside of the class definition, so I could better test the component. Found an easy way to add all your rules into [StructureMap](http://docs.structuremap.net/), and then retrieve those rules as a list via constructor injection.
 
 ``` cs
