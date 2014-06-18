@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Derby.js - Starting out with Components; Creating a Twitter Bootstrap Input Component
-
 In working with [Twitter Bootstrap Forms](http://twitter.github.com/bootstrap/base-css.html#forms), one of my favorite ways to lay out a form is using the Horizontal form layout. The layout requires a bit of css/html to get each of the form elements (the text boxes and what not) to play nicely. To add form elements to the horizontal form layout, you need the following html structure for each field:
 
 ``` html
