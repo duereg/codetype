@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Source maps in node.js
-
 One of the projects I'm working on deals with source maps.
 
 If you don't know anything about source maps [this link](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) is a good introduction to what source maps are and why they're useful.
