@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Added JavaScript syntax checking via Esprima and a Git pre-commit hook
-
 I came across a brilliant project the other day - [Esprima](http://esprima.org/) from [Ariya Hidayat](https://plus.google.com/103266860731871773002/posts), the author of PhantomJS. What is Esprima? Esprima is a JavaScript Parser written in JavaScript Syntax Validator. It forms the basis of several different tools - a minifier, a code coverage tool, a syntax validator - just to name a few. I was immediately interested in the syntax validation tool. It's not a linter - it just checks that the JavaScript written is syntactically correct. Why would you want this if you already have JsHint and JsLint?
 
   1. It is extremely fast. Validating three.js (800 KB source) takes less than a second on a modern machine.
