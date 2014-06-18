@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Derby.js - Working with Views, Models, and Bindings
-
 In my previous [post](/posts/20120722-derby-js-playing-with-models) about [derby](http://derbyjs.com/), I talked a bit about how to create a model in derby and one rule you need to follow when creating models (the first two path segments should be an object).
 
 I'm creating a test application to help me learn derby [here](http://github.com/duereg/Potluck). In the process of doing absolutely everything wrong to start I've learned a bit about how Derby binds to models. Let's say you're got some markup like this that you'd like to bind to.
