@@ -13,6 +13,4 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Alas, it was not to be
-
 My jQuery bug was already documented. :(
