@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, C#, .NET, Windows
 layout: post
 ```
 
-# Windows 7 - Problem Steps Recorder
-
 Just found out about a good tool that ships with Windows 7.
 
 One of the hardest things about debugging software can be getting the users to document what went wrong so you can test the scenario. Problem Steps Recorder - which ships with Windows 7 - records a user's actions and documents them in an easy to understand format. It even gives the user the option of sending the recording via e-mail right from the program.
