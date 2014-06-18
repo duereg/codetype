@@ -32,7 +32,7 @@ docpadConfig = {
       keywords: """
         JavaScript, HTML, software, development, blog, examples, derby,
         cracking, coding, interview, CoffeeScript, node, express,
-        .NET, C#, ASP.NET, Ember, Knockout, Angular
+        .NET, C#, ASP.NET, Ember, Knockout, Angular, algorithms, analysis, analytics
         """
 
       # The website author's name
