@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-#Ember Model.isDirty - or not
-
 In Ember, if you have models like this:
 
 ```javascript
