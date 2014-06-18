@@ -8,8 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Ember Official Contributor!
-
-[Check Out My First Official Contribution to Ember!](https://github.com/emberjs/ember.js/commit/84151ddd3452d2094073c204f05bc820620a32fb)
+[Check Out My Contribution to Ember!](https://github.com/emberjs/ember.js/pulls/duereg?direction=desc&page=1&sort=created&state=closed)
 
 (Not sexy but I'm happy to be helping out.)
