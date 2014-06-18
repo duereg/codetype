@@ -8,7 +8,7 @@ status: publish
 tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, C#, .NET
 layout: post
 ```
-# My ongoing relation with CoffeeScript - and a gotcha
+
 [CoffeeScript](http://coffeescript.org/), what can I tell ya - I didn't want to love it.
 
 I have a completely unreasonable grudge against significant whitespace.
