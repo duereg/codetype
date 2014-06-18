@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, C#, .NET, Visual Studio, B
 layout: post
 ```
 
-# Setting up a .NET build server WITHOUT installing Visual Studio
-
 My client tasked me with upgrading their build server. Today, their platform builds VS 2080 solutions in .NET 3.5 - and I've been pushing to upgrade everyone to Visual Studio (VS) 2010 and eventually .NET 4.0. I want to upgrade the server to build a VS 2010 solution in .NET 3.5.
 
 This will allow everyone to upgrade to VS 2010 while leaving the task of upgrading the production web servers to another day. I tried the easy approach. I install .NET 4.0 on the build server and run the MSBuild scripts that already exist. Nothing good happens.
