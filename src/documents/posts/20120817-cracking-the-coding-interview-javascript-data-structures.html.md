@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview: JavaScript Data Structures
-
 A friend and co-worker of mine (one of the best and brightest I've worked with) recently left our company to go work for Microsoft. Having gone through the Microsoft interview process myself (hilariously unprepared, to the enjoyment of my interviewer), I wondered what he had done to get ready for the process. He recommended one book - [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) \- which he said had been recommended to him as the bible for preparation.
 
 Interested in what his holy grail had to offer, I picked up a copy. In the first couple of pages there is a chart that lists a bunch of CS staples (linked lists, trees, hash tables, stacks, queues, etc). After listing these concepts out (which every good programmer should know), it then goes on to say
