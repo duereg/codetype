@@ -8,7 +8,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Ember and Knockout Model Comparison
 ## A small, appropriate comparison
 
 At [ModCloth](http://modcloth.com), I've been working on an internal application that uses [Ember.js](http://emberjs.com/) as its front end framework. In learning Ember I've noticed some interesting architectural decisions they've made.
