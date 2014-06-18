@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Javascript Strings - Using Array Accessor '[]' to set characters
-
 I've been learning quite a bit about JavaScript in writing algorithms from [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20). I learned something new about strings in JavaScript and how they can be accessed. From [MDN](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String#Distinction_between_string_primitives_and_String_objects):
 
 > Character access There are two ways to access an individual character in a string. The first is the charAt method:
