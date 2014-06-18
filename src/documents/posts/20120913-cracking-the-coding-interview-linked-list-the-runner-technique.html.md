@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Cracking the Coding Interview - Linked Lists - The Runner Technique
-
 I've been going over the [Linked List](http://en.wikipedia.org/wiki/Linked_list#Singly.2C_doubly.2C_and_multiply_linked_lists) section of [Cracking the Coding Interview](http://www.amazon.com/gp/product/098478280X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=098478280X&linkCode=as2&tag=aplfopoex-20) and most times I get stumped with a problem the solution is the Runner Technique (or slow/fast pointers).
 
 The idea behind the runner technique is simple; use two pointers that either move at different speeds or are a set distance apart and iterate through a list.
