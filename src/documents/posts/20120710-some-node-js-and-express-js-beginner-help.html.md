@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Some node.js and express.js beginner help
-
 I've just started using [node.js](http://nodejs.org/) with [express.js](http://expressjs.com) on both Windows (with iisnode) and Ubuntu.
 
 I love the stack (one programming language from front to back!), but some of the documentation has been frustrating for me. I wanted to document what I've learned so far in the hopes that it'll help someone else down the line.
