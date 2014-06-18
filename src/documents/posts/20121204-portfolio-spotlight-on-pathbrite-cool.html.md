@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Portfolio Spotlight on Pathbrite = Cool?
-
 I've recently created a [portfolio](https://pathbrite.com/portfolio/PBBvoPB0J) on [Pathbrite](https://www.pathbrite.com/). If you haven't heard of Pathbrite, they are a company aiming to:
 
 > Collect, organize and share a lifetime of learning and achievement.
