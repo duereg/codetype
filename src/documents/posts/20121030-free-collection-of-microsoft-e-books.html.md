@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Free Collection of Microsoft E-Books
-
 If you're a Microsoft Dev, want to learn a bit more about the following products:
 
   * SharePoint 2010
@@ -28,4 +26,9 @@ If you're a Microsoft Dev, want to learn a bit more about the following products
   * ASP.NET MVC 4
   * Microsoft Dynamics CRM 2011 (God Rest Your Soul)
 
-Microsoft has released a bunch of free e-books about these technologies (and a few others). The links to the e-books: [Microsoft Free E-Books - Page 1](http://blogs.msdn.com/b/mssmallbiz/archive/2012/07/27/large-collection-of-free-microsoft-ebooks-for-you-including-sharepoint-visual-studio-windows-phone-windows-8-office-365-office-2010-sql-server-2012-azure-and-more.aspx) [Microsoft Free E-Books - Page 2](http://blogs.msdn.com/b/mssmallbiz/archive/2012/07/30/another-large-collection-of-free-microsoft-ebooks-and-resource-kits-for-you-including-sharepoint-2013-office-2013-office-365-duet-2-0-azure-cloud-windows-phone-lync-dynamics-crm-and-more.aspx?wa=wsignin1.0)
+Microsoft has released a bunch of free e-books about these technologies (and more).
+
+The links to the e-books:
+
+ * [Microsoft Free E-Books - Page 1](http://blogs.msdn.com/b/mssmallbiz/archive/2012/07/27/large-collection-of-free-microsoft-ebooks-for-you-including-sharepoint-visual-studio-windows-phone-windows-8-office-365-office-2010-sql-server-2012-azure-and-more.aspx)
+ * [Microsoft Free E-Books - Page 2](http://blogs.msdn.com/b/mssmallbiz/archive/2012/07/30/another-large-collection-of-free-microsoft-ebooks-and-resource-kits-for-you-including-sharepoint-2013-office-2013-office-365-duet-2-0-azure-cloud-windows-phone-lync-dynamics-crm-and-more.aspx?wa=wsignin1.0)
