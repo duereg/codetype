@@ -13,8 +13,6 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-# Derby.js - The Ready() Function, and Adding Client-Side Scripts to your App
-
 I've found a neat feature of [derby](http://derbyjs.com) dealing with the ready() function. I've been creating a derby app, and in my application I need to load up a client-side calendar. With a standard HTML web page this is straightforward thing to do. On the page you wanted the calendar, you would include the client js for the calendar, some code to load it, and that would be that. Derby introduced some complexity to this relatively simple task. On my first attempt, I put my scripts in the section of the page that I needed the calendar on. I added a script to load the calendar as well. When I went to the url of the page, it loaded immediately. Success! (I thought).
 
 Then I clicked a link away from my calendar, and then clicked back. No calendar. What happened? When I loaded the link originally, the page was rendered from the server. The second time, the page was rendered client side. Something wasn't working with loading the calendar on the client-side render. You need a place to put your code that guarantees that it will load on the client-side. The `app.ready()` function is designed to handle this scenario. What is the purpose of the `app.ready()` function? From the derby documentation:
