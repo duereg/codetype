@@ -13,8 +13,6 @@ tags: post, development, software, coding, LINQ, XML, C#, .NET,
 layout: post
 ```
 
-# Beautiful LINQ to Xml
-
 Is there anything better in life than finding a better way to do something? An easier commute, a better night's sleep, a tastier cake recipe? In starting the Nike+ importer for www.runningahead.com, I knew I was going to have to deal with a bit of XML. Which used to mean XPath. Not so much anymore. LINQ to XML, you rock my world. It turns XML like this...
 ``` xml
  <extendedDataList>
