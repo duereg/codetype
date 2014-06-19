@@ -1,0 +1,8 @@
+<nav class="link-list">
+  <h3>Recent Posts</h3>
+  <% for document in @getCollection('posts').toJSON()[0..5]: %>
+    <div class="recent-post">
+      <a class="title" href="<%= document.url %>"><%= document.title %></a>
+    </div>
+  <% end %>
+</nav>
