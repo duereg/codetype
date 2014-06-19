@@ -2,7 +2,13 @@
 layout: default
 ---
 
-<%- @partial('article', {document: @document, content: @content}) %>
-<%- @partial('comments', {document: @document}) %>
-
+<div class="row" class="text-center">
+  <div class="col-lg-9">
+    <%- @partial('article', {document: @document, content: @content}) %>
+    <%- @partial('comments', {document: @document}) %>
+  </div>
+  <div class="col-lg-3 hidden-xs hidden-sm">
+    <%- @partial('post-dates') %>
+  </div>
+</div>
 
