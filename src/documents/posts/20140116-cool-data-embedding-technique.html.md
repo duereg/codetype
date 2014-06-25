@@ -4,7 +4,7 @@ description: Novel way to embed data in an HTML page
 created: 2014/01/16 00:13:34
 post_name: react-server-side-rendering
 status: publish
-tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, EMCAScript, React
+tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, React
 layout: post
 ```
 
@@ -26,7 +26,7 @@ It's well known that [server-side rendering can reduce page load times](https://
 
 So:
 
-`1/5th * (2x as fast) == Really, Really Fast Rendering`
+`1/5th * (2x as fast) == Blazing Rendering`
 
 (Especially in low-power devices like phones)
 
@@ -43,7 +43,7 @@ On the server, you:
  5. You add a script block to include all the needed JS in the page to glue to all together
  6. You send the client back the html with the data / generated HTML / react JS code.
 
-There is a good example of this flow [here](https://npmjs.org/package/react-server-example).
+A good example of this flow [here](https://npmjs.org/package/react-server-example).
 
 My favorite part of this example - and a cool way to embed some code - are these lines of code:
 
