@@ -43,3 +43,7 @@ good: closure compile will drop whats not used correctly.
 export function foo() { }
 export function bar() { }
 ```
+
+re-using argument variables makes it quite hard to see the original value, also it has some negative performance side-effects.
+
+using the comma operator for long variable declarations, especially if they include method invocations makes it impossible to easily set breakpoints.
