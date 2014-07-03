@@ -6,7 +6,7 @@ pageOrder: 1
 
 My name is Matt Blair. I was born in Virginia and now I'm in the US in the Bay Area. I write code during the day, play underwater hockey when I get a chance, and do other things occasionally.
 
-I'm the author of libraries such as [songbird](https://github.com/duereg/songbird), [laboratory](https://github.com/duereg/laboratory), [esvalidate](https://github.com/duereg/esvalidate), [grunt-extract-sourcemap](https://github.com/duereg/grunt-extract-sourcemap), and [js-algorithms](https://github.com/duereg/js-algorithms).
+I'm the author of libraries such as [songbird](https://github.com/duereg/songbird), [js-algorithms](https://github.com/duereg/js-algorithms), [esvalidate](https://github.com/duereg/esvalidate), [grunt-extract-sourcemap](https://github.com/duereg/grunt-extract-sourcemap), and [laboratory](https://github.com/duereg/laboratory).
 
 I've contributed to projects such as [emberjs](https://github.com/emberjs/ember.js), [ember-data](https://github.com/emberjs/data), [write-good](https://github.com/btford/write-good), browserify-middleware, fluentmigrator, amplify, and cassette.
 
