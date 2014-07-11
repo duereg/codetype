@@ -1,13 +1,13 @@
 ```
 title: Ember.Data Model Issues
 description: Ember.Data Model Issues
-created: 2014/07/08 17:34:50
+created: 2014/07/11 09:50:03
 post_name: ember-data-model-issues-booleans
-status: draft
+status: publish
 tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, EMCAScript, Ember, Ember.js, Ember.data, ES6, boolean, bool, attr
 layout: post
 ```
-I am working with some older Ember.Data code, and I came across a model like this:
+I was working with some older Ember.Data code, and I came across a model like this:
 
 ```javascript
 App.MyFancyModel = DS.Model.extend({
@@ -36,4 +36,10 @@ aFancyModel.set('isSomethingElse', true);
 aFancyModel.get('isDirty'); //RETURNS TRUE!!!
 ```
 
-So I guess my question is this: is this the expected behavior? I can't find any documentation on setting boolean values directly on the model like this anywhere in the Ember.Data docs.
+My question was this: was this the expected behavior? I can't find any documentation on setting boolean values directly on the model like this anywhere in the Ember.Data docs.
+
+After asking around on [discuss.emberjs.com](http://discuss.emberjs.com/t/model-declaration-false-vs-ds-attr-boolean-defaultvalue-false/5860), I got an answer.
+
+This behavior is by design. Fields designated with just a variable (e.g. isSelected) are local attributes. You can use them just like an other attribute.
+
+The difference with fields declared this way is they won't dirty the model and they aren't sent across the wire on save or update.
