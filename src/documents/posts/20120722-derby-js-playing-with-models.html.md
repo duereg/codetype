@@ -17,7 +17,7 @@ Been playing around with [Derby](http://derbyjs.com) in my spare time. The idea 
 
 Derby is still raw. The documentation is comprehensive but puts important information about the same topic in different places.
 
-I've culled the following eight lines of documentation of defining models from the documents:
+I've culled the following eight lines of documentation of defining models from the documentation:
 
 > **Racer Paths** Racer paths are translated into database collections and documents using a natural mapping: `collection.documentId.document` All synced paths (anything that doesn’t start with an underscore) must follow this convention. In other words, all model data stored at the first two path segments should be an object and not a string, number, or other primitive type.
 
