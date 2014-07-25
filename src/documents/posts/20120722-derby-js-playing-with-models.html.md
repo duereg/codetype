@@ -27,6 +27,6 @@ Now, this information is useful if you're trying out the model system for the fi
 
 **In other words, all model data stored at the first two path segments should be an object and not a string, number, or other primitive type.**
 
-What this means: if, in creating your first model, you trying something like this: `model.set('people', []);` Eventually you will get an error. However, `model.set('myApp.containers.people', []);` will work just fine.
+What this means: if, in creating your first model, you trying something like this: `model.set('people', []);` you will get an error. `model.set('myApp.containers.people', []);` will work just fine.
 
 _**A follow up to this post is [here](/posts/20120807-derby-js-working-with-view-templates-models-and-bindings).**_
