@@ -13,11 +13,12 @@ docpadConfig = {
     # Specify some site properties
     site:
       # The production url of our website
-      url: "http://mattblair.co"
+      url: "http://blog.mattblair.co"
 
       # Here are some old site urls that you would like to redirect from
       oldUrls: [
-        'codetype.wordpress.com'
+        'codetype.wordpress.com',
+        'duereg.github.io'
       ]
 
       # The default title of our website
