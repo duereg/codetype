@@ -1,6 +1,6 @@
 ```
-title: React (JSX); class vs className, for vs htmlFor
-description: React (JSX); class vs className, for vs htmlFor
+title: React and the annoyances of JSX
+description: React and JSX. class vs className, for vs htmlFor
 created: 2014/09/09 15:26:00
 post_name: react-jsx-class-className-for-htmlFor
 status: publish
