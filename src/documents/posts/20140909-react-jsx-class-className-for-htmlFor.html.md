@@ -30,6 +30,6 @@ How is this a problem? I take the markup for an existing component. I copy the m
 
 These are valid HTML attributes, but in React, you have to use "htmlFor" and "className" respectively.
 
-Why? Because Facebook hates you.
+Why? Because Facebook [hates you and decides against logical arguments](https://github.com/facebook/react/pull/269).
 
 Apparently at some point, you could at least use "class" in your JSX. But at some point the executive decision was made that because JSX is JavaScript, you shouldn't be able to use reserved words in JSX (like "class" and "for"). Even though JSX gets interpolated into JavaScript. And it's got angle brackets. And it almost identically resembles HTML.
