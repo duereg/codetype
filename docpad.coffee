@@ -111,6 +111,10 @@ docpadConfig = {
         }
       ]
 
+    highlightjs:
+        aliases:
+            sh: 'bash'
+
   # =================================
   # DocPad Events
 
