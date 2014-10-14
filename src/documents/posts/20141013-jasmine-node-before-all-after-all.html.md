@@ -8,7 +8,7 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-On Feb 9, 2011, Fat (Jacob Turner, one of the creators on [Bootstrap](http://getbootstrap.com/)) opened a [pull request](https://github.com/pivotal/jasmine/pull/56) to add beforeAll and afterAll statements to the [jasmine](https://github.com/pivotal/jasmine) library.
+On Feb 9, 2011, Fat (Jacob Thornton, one of the creators on [Bootstrap](http://getbootstrap.com/)) opened a [pull request](https://github.com/pivotal/jasmine/pull/56) to add beforeAll and afterAll statements to the [jasmine](https://github.com/pivotal/jasmine) library.
 
 Pivotal, at the time, thought that they were just about to implement:
 
