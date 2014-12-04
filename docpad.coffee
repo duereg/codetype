@@ -122,6 +122,22 @@ docpadConfig = {
   # You can find a full listing of events on the DocPad Wiki
   events:
 
+    # Used to minify our assets with gulp
+    writeAfter: (opts, next) ->
+      # Prepare
+      safeps = require('safeps')
+      pathUtil = require('path')
+      docpad = @docpad
+
+      # Perform the uglify js min task
+      minify = ['gulp', 'minify']
+
+      # Execute
+      safeps.spawn(minify, {safe:false,output:true},next)
+
+      # Chain
+      @
+
     # Server Extend
     # Used to add our own custom routes to the server before the docpad routes are added
     serverExtend: (opts) ->
@@ -142,6 +158,9 @@ docpadConfig = {
           res.redirect(newUrl+req.url, 301)
         else
           next()
+
+      # Chain
+      @
 }
 
 # Export our DocPad Configuration
