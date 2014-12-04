@@ -8,7 +8,7 @@ tags: post, development, software, coding, web, html, JavaScript, CoffeeScript, 
 layout: post
 ```
 
-If you're not aware of your code coverage when building a serious application, if you're not building a serious app.
+If you're not aware of your code coverage when building a serious application, you're not building a serious app.
 
 So I love [istanbul](https://github.com/gotwarlost/istanbul) and [gulp-istanbul](https://github.com/SBoudrias/gulp-istanbul).
 
