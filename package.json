@@ -40,7 +40,7 @@
     "gulp-imagemin": "^2.0.0",
     "gulp-minify-html": "^0.1.7",
     "gulp-util": "^3.0.1",
-    "safeps": "^2.2.12"
+    "safeps": "^6.0.2"
   },
   "devDependencies": {
     "docpad-plugin-livereload": "~2.7.1"
@@ -48,8 +48,9 @@
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
     "build": "node_modules/docpad/bin/docpad-compile",
-    "pretest": "node_modules/docpad/bin/docpad-compile",
+    "pretest": "git remote add target https://github.com/duereg/duereg.github.io.git",
     "test": "node_modules/docpad/bin/docpad deploy-ghpages --env static",
+    "deploy": "node_modules/docpad/bin/docpad deploy-ghpages --env static",
     "start": "node_modules/docpad/bin/docpad-server"
   }
 }

@@ -17,3 +17,11 @@ docpad run
 
 3. [Open http://localhost:9778/](http://localhost:9778/)
 
+## To Deploy
+
+Make sure to set up the `target` remote to point at the `duereg.github.io` project:
+
+`git remote add target https://github.com/duereg/duereg.github.io.git`
+
+`npm run deploy`
+
