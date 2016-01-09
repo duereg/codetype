@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "coffee-script": "^1.8.0",
-    "docpad": "~6.78.1",
+    "docpad": "~6.78.4",
     "docpad-plugin-cleanurls": "~2.8.1",
     "docpad-plugin-coffeescript": "~2.5.0",
     "docpad-plugin-downloader": "~2.1.4",
@@ -34,7 +34,7 @@
     "docpad-plugin-marked": "~2.3.0",
     "docpad-plugin-partials": "~2.9.2",
     "docpad-plugin-related": "~2.2.2",
-    "docpad-plugin-stylus": "~2.9.0",
+    "docpad-plugin-stylus": "~2.11.0",
     "docpad-plugin-text": "~2.3.3",
     "gulp": "^3.8.10",
     "gulp-imagemin": "^2.0.0",
@@ -43,7 +43,7 @@
     "safeps": "^2.2.12"
   },
   "devDependencies": {
-    "docpad-plugin-livereload": "~2.6.1"
+    "docpad-plugin-livereload": "~2.7.1"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
