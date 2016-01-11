@@ -54,7 +54,7 @@ This command, while well documented, doesn't give away the true beauty of this c
 
 Hiding on this line is the heart of the command:
 
->  Given two arguments, creates or updates a symbolic ref <name> to point at the given branch <ref>.
+>  Given two arguments, creates or updates a symbolic ref `<name>` to point at the given branch <ref>.
 
 What does this do? Let's say you're working on a sloppy branch. You want to carry over those changes onto another branch (like master), without changing the history of the that branch.
 
