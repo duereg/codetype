@@ -1,6 +1,6 @@
 ```
-title: Upgrade your Open Source work to use Node 4
-description: Upgrading Travis to work with Node 4
+title: Move your Open Source work to Node 4
+description: Move your Open Source work to Node 4
 created: 2015/09/10 04:11:00
 post_name: upgrade-travis-and-OS-for-node-4
 status: publish
