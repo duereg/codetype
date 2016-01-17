@@ -1,6 +1,6 @@
 ```
-title: FOR REALS Guide to upgrading from Babel 5 => 6
-description: FOR REALS Guide to upgrading from Babel 5 => 6
+title: Guide to upgrading from Babel 5 => 6
+description: Guide to upgrading from Babel 5 => 6
 created: 2016/01/12 01:12:16
 post_name: git-replay-changes
 status: publish
