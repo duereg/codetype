@@ -1,7 +1,7 @@
 ```
 title: Guide to upgrading from Babel 5 => 6
 description: Guide to upgrading from Babel 5 => 6
-created: 2016/01/12 01:12:16
+created: 2015/12/31 23:59:59
 post_name: git-replay-changes
 status: publish
 tags: post, development, software, coding, babel, ecmascript, javascript, es5, es6, es2015
