@@ -14,7 +14,7 @@ I upgraded a heap of projects I was working on to node 4.2.3 and [babel 6](/post
 
 As I did a quick and dirty upgrade, I kept thinking to myself: doesn't node 4/5 have [pretty good support for es6/2015](https://nodejs.org/en/docs/es6/#which-features-ship-with-node-js-by-default-no-runtime-flag-required)?
 
-As I was looking around the internet for ~~Hello Kitty Formalwear~~ babel 6 upgrade tips, I came across [this package which read my mind](https://github.com/jbach/babel-preset-es2015-node4).
+As I was looking around the internet for  ~~Hello Kitty Formalwear~~  babel 6 upgrade tips, I came across [this package which read my mind](https://github.com/jbach/babel-preset-es2015-node4).
 
 So if you're a node 4/5 user, by doing this:
 
