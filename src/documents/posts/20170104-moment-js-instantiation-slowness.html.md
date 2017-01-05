@@ -30,6 +30,7 @@ By doing some memoization of date formatting in our API, we've seen these perfor
 |Max    |651ms  |597ms  |
 |Average|309ms  |268ms  |
 
+
 Without making any significant changes, we've managed to shave 41ms off of our response time on average!
 
 Hope this helps someone else.
