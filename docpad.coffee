@@ -1,7 +1,11 @@
 # The DocPad Configuration File
 # It is simply a CoffeeScript Object which is parsed by CSON
 docpadConfig = {
-
+  environments:
+    static:
+      plugins:
+        cleanurls:
+          enabled: false
   # =================================
   # Template Data
   # These are variables that will be accessible via our templates
