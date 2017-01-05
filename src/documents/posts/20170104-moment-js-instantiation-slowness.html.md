@@ -1,5 +1,5 @@
 ```
-title: Performance Improvement via less moment-ing
+title: Moment.js instantiation slowness
 description: Moment.js instantiation slowness
 created: 2017/01/04 18:14:15
 post_name: moment-js-instantiation-slowness
@@ -7,8 +7,6 @@ status: publish
 tags: post, development, performance, node, moment, slowness, instantiation
 layout: post
 ```
-
-## Moment.js instantiation slowness
 
 Was doing some test speedup/performance improvement work recently on the search API and found out something; the moment.js library takes around 100 microseconds (or .1 milliseconds) to create a new instance.
 
