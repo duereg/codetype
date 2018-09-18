@@ -14,5 +14,5 @@ gulp.task 'html-min', ->
     .pipe(minifyHtml())
     .pipe(gulp.dest('out'))
 
-gulp.task 'default', ['image-min', 'html-min']
-gulp.task 'minify', ['image-min', 'html-min']
+gulp.task 'default', ['html-min']
+gulp.task 'minify', ['html-min']
