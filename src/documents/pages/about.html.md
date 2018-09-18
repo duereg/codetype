@@ -10,6 +10,8 @@ I'm the author of libraries such as [songbird](https://github.com/duereg/songbir
 
 I'm a mediocre presenter at meetups and [conferences](/forwardjs-2016-prezzo/).
 
+You can read about my management style [here](https://github.com/duereg/manager-readme).
+
 I've contributed to projects such as [emberjs](https://github.com/emberjs/ember.js), [ember-data](https://github.com/emberjs/data), browserify-middleware, fluentmigrator, amplify, and cassette. I help maintain [write-good](https://github.com/btford/write-good).
 
 I've also the author of the semi-decent sublime plugin [sublime-jsvalidate](https://github.com/duereg/sublime-jsvalidate) and the partially worthwhile [sublime-write-gooder](https://github.com/duereg/sublime-write-gooder).
