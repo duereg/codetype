@@ -3,7 +3,7 @@ layout: 'default'
 title: 'Home'
 ---
 
-<img id="logo" class="img-responsive" alt="A Place for Poor Examples" src="/images/header.jpg" />
+<img id="logo" class="img-responsive" alt="A Place for Poor Examples" src="/images/header.jpg" style="max-height: 150px" />
 <div class="row" class="text-center">
 	<div class="col-lg-9">
 		<% postsCollection = @getCollection('posts').toJSON()%>
