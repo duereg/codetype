@@ -4,7 +4,7 @@ description: ElasticSearch sharding work
 created: 2018/03/05 12:12:13
 post_name: elasticsearch-sharding-work
 status: publish
-tags: post, manager, readme, ElasticSearch, ES, sharding, indexes, indices, querying, fetching, indexing
+tags: post, ElasticSearch, ES, sharding, indexes, indices, querying, fetching, indexing
 layout: post
 ```
 

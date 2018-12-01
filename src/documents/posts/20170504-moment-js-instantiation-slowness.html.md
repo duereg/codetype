@@ -1,7 +1,7 @@
 ```
 title: Moment.js instantiation slowness
 description: Moment.js instantiation slowness
-created: 2017/01/04 18:14:15
+created: 2017/05/04 18:14:15
 post_name: moment-js-instantiation-slowness
 status: publish
 tags: post, development, performance, node, moment, slowness, instantiation
@@ -32,4 +32,3 @@ By doing some memoization of date formatting in our API, we've seen these perfor
 Without making any significant changes, we've managed to shave 41ms off of our response time on average!
 
 Hope this helps someone else.
-

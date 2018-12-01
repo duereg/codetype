@@ -4,7 +4,7 @@ description: Examine sharding and highlighting strategy with ES
 created: 2018/11/21 19:49:00
 post_name: elasticsearch-perf-work
 status: publish
-tags: post, manager, readme, ElasticSearch, ES, sharding, indexes, indices, querying, fetching, indexing, performance, highlighting
+tags: post, ElasticSearch, ES, sharding, indexes, indices, querying, fetching, indexing, performance, highlighting
 layout: post
 ```
 
